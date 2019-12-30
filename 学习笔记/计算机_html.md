@@ -482,6 +482,18 @@ width:200px;
 
 ### 颜色
 
+**三原色法则**
+
+>255，0，0 红色
+>0，255，0 绿色
+>0，0，255 蓝色
+>255，255，0 黄色
+>0，255，255 青色
+>255，0，255 紫色
+>靠左红 靠右蓝 中间绿 左中黄 右中青 两边紫
+>红橙黄绿青蓝紫
+
+
 **表示法**
 
 1. red颜色名字
@@ -495,7 +507,34 @@ width:200px;
 注：Hue 是色盘上的度数（从 0 到 360） - 0 (或 360) 是红色，120 是绿色，240 是蓝色。Saturation 是百分比值；0% 意味着灰色，而 100% 是全彩。Lightness 同样是百分比值；0% 是黑色，100% 是白色。
 
 **常用颜色名**
-aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, orange, purple, red, silver, teal, white, yellow
+
+1. aqua(浅绿)
+2. black
+3. blue
+4. fuchsia
+5. gray(灰)
+6. green
+7. lime(绿黄)
+8. maroon
+9. navy
+10. olive
+11. orange
+12. purple
+13. red
+14. silver
+15. teal(蓝绿色)
+16. white
+17. yellow
+18. brown(棕色)
+19. pink
+20. indigo(靛青)
+21. cyan(蓝绿)
+22. sand(沙色)
+23. khaki(卡其色)
+24. amber(琥珀色)
+
+**常用色彩搭配**
+五色之变不可胜观
 
 ### 字体
 
