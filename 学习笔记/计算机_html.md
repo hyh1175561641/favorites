@@ -500,7 +500,7 @@ aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, orange, purp
 ### 字体
 
 Font&Typeface：font是指某套具有同样样式、尺寸的字形；typeface则是一或多个font在一或多个尺寸的集合。
-字体样式：有衬线(Serif)&无衬线(Sans Serif)
+字体样式：有衬线(Serif)，大量文字内容区域。无衬线(Sans Serif)，标题，醒目的区域。
 字形：常规体(regular)，细体(light)，粗体(bold)，斜体(italic)，黑体(black)
 字体类型：TureType&OpenType.（OpenType更强大，遇到时特别标注）
 
@@ -575,8 +575,11 @@ Diwan：英国Diwan公司(Diwan Science and Information Technology Ltd.)
 
 
 
-# 相关书籍的翻阅记录
-《海底两万里》儒勒凡尔纳 外国文学出版社 IBSN：12345678901
+# 书籍翻阅记录
+
+## 《HTML5权威指南》[美]Adam Freeman 人民邮电出版社 IBSN 978-7-115-33836-5
+
+
 
 
 
