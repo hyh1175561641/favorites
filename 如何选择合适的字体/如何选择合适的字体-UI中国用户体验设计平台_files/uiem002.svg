@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="48" height="48" viewBox="0 0 48 48">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f5d936;
+        stroke: url(#linear-gradient-1);
+        stroke-linejoin: round;
+        stroke-width: 1px;
+        filter: url(#filter-chain-1);
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #825825;
+        filter: url(#filter-chain-2);
+      }
+
+      .cls-3 {
+        fill: #d46150;
+        filter: url(#inner-shadow-1);
+      }
+    </style>
+
+    <linearGradient id="linear-gradient-1" gradientUnits="userSpaceOnUse" x1="23.406" y1="44.938" x2="23.406" y2="0.938">
+      <stop offset="0" stop-color="#d69912"/>
+      <stop offset="1" stop-color="#dec54f"/>
+    </linearGradient>
+    <filter id="filter-chain-1" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" in="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="dropBlur"/>
+      <feFlood flood-color="#855925" flood-opacity="0.4"/>
+      <feComposite operator="in" in2="dropBlur" result="dropShadowComp"/>
+      <feGaussianBlur stdDeviation="0.333" in="SourceAlpha"/>
+      <feComposite/>
+      <feComposite/>
+      <feComposite result="outerGlowBlur"/>
+      <feFlood flood-color="#ebd96f" flood-opacity="0.35"/>
+      <feComposite operator="in" in2="outerGlowBlur"/>
+      <feBlend mode="linearDodge" in2="dropShadowComp" result="outerGlow"/>
+      <feComposite in="SourceGraphic" result="shadowed"/>
+      <feImage x="1.90625" y="0.9375" width="43.00005" height="44" preserveAspectRatio="none" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDMuMDAwMDUiIGhlaWdodD0iNDQiPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIzNy40ODQiIHkxPSI0NCIgeDI9IjUuNTE2Ij4KICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmNWMwMWIiLz4KICA8c3RvcCBvZmZzZXQ9IjAuNyIgc3RvcC1jb2xvcj0iI2Y1ZGY0ZSIvPgogIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y5ZWVhMiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIi8+PC9zdmc+"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+      <feBlend in2="shadowed" result="gradientFill"/>
+      <feGaussianBlur stdDeviation="0.333" in="SourceAlpha" result="innerGlowBlur"/>
+      <feFlood flood-color="#f9f7bd" flood-opacity="0.26"/>
+      <feComposite operator="out" in2="innerGlowBlur"/>
+      <feComposite operator="in" in2="SourceAlpha"/>
+      <feBlend in2="gradientFill" result="innerGlow"/>
+      <feOffset dy="1" in="SourceAlpha"/>
+      <feGaussianBlur result="innerShadowBlur"/>
+      <feFlood flood-color="#fff" flood-opacity="0.6"/>
+      <feComposite operator="out" in2="innerShadowBlur"/>
+      <feComposite operator="in" in2="SourceAlpha"/>
+      <feBlend in2="innerGlow" result="innerShadow"/>
+    </filter>
+    <filter id="filter-chain-2" filterUnits="userSpaceOnUse">
+      <feOffset dx="0.545" dy="0.839" in="SourceAlpha"/>
+      <feGaussianBlur result="dropBlur"/>
+      <feFlood flood-color="#f7e87e" flood-opacity="0.75"/>
+      <feComposite operator="in" in2="dropBlur" result="dropShadowComp"/>
+      <feComposite in="SourceGraphic" result="shadowed"/>
+      <feFlood flood-color="#69441e"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+      <feBlend in2="shadowed" result="solidFill"/>
+      <feOffset dx="1" dy="1.732" in="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="innerShadowBlur"/>
+      <feFlood flood-color="#040000" flood-opacity="0.3"/>
+      <feComposite operator="out" in2="innerShadowBlur"/>
+      <feComposite operator="in" in2="SourceAlpha"/>
+      <feBlend mode="multiply" in2="solidFill" result="innerShadow"/>
+    </filter>
+    <filter id="inner-shadow-1" filterUnits="userSpaceOnUse">
+      <feOffset dy="-2" in="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="innerShadowBlur"/>
+      <feFlood flood-color="#040000" flood-opacity="0.3"/>
+      <feComposite operator="out" in2="innerShadowBlur"/>
+      <feComposite operator="in" in2="SourceAlpha"/>
+      <feBlend mode="multiply" in2="SourceGraphic" result="innerShadow"/>
+    </filter>
+  </defs>
+  <g style="fill: #f5d936; filter: url(#filter-chain-1)">
+    <path d="M41.954,9.899 L26.365,1.589 C24.741,0.723 22.083,0.723 20.458,1.589 L4.869,9.899 C3.245,10.764 1.916,12.890 1.916,14.621 L1.916,31.240 C1.916,32.972 3.245,35.097 4.869,35.963 L20.458,44.273 C22.083,45.139 24.741,45.139 26.365,44.273 L41.954,35.963 C43.578,35.097 44.907,32.972 44.907,31.240 L44.907,14.621 C44.907,12.890 43.578,10.764 41.954,9.899 Z" id="path-1" style="stroke: inherit; filter: none; fill: inherit" class="cls-1"/>
+  </g>
+  <use xlink:href="#path-1" style="stroke: url(#linear-gradient-1); filter: none; fill: none"/>
+  <path d="M26.003,13.939 C26.003,13.939 29.359,9.919 32.549,9.919 C35.701,9.919 38.985,13.990 38.985,13.990 L38.959,18.090 C38.959,18.090 35.584,14.242 32.413,14.242 C29.242,14.242 26.003,18.099 26.003,18.099 L26.003,13.939 Z" class="cls-2"/>
+  <path d="M7.991,14.070 C7.991,14.070 11.178,10.004 14.368,10.004 C17.520,10.004 20.930,13.810 20.930,13.810 L20.862,18.073 C20.862,18.073 17.487,14.242 14.316,14.242 C11.145,14.242 7.991,18.084 7.991,18.084 L7.991,14.070 Z" class="cls-2"/>
+  <path d="M22.887,24.033 L22.887,24.045 L10.076,24.045 C10.076,27.361 10.465,30.406 12.287,32.794 C14.890,36.207 18.958,39.133 23.032,39.148 C27.153,39.162 31.279,36.225 33.901,32.801 C35.726,30.417 36.120,27.372 36.126,24.056 L22.887,24.033 Z" class="cls-2"/>
+  <path d="M23.023,38.932 C21.863,38.932 19.884,38.398 18.307,37.647 C16.332,36.706 14.414,34.732 14.414,34.732 C14.414,32.852 15.154,32.903 16.393,31.550 C18.018,29.774 20.295,29.251 23.072,29.251 C23.120,29.251 23.168,29.254 23.215,29.255 L23.215,29.261 C25.945,29.301 28.141,29.739 29.737,31.478 C30.979,32.829 31.927,32.761 31.930,34.641 C31.930,34.641 30.425,36.770 28.240,37.813 C26.488,38.649 24.123,38.933 23.023,38.932 Z" class="cls-3"/>
+</svg>
