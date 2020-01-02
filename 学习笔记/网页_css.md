@@ -265,9 +265,29 @@ table-layout:;
 ```css
 div{
 border:;
-	border-style:;
+	border-style:上 右 下 左（上 两边 下）（上下 两边）;
+  	border-top-style:;
+  	border-right-style:;
+  	border-bottom-style:;
+  	border-left-style:;
 	border-width:;
+  	border-top-width:;
+  	border-right-width:;
+  	border-bottom-width:;
+  	border-left-width:;
 	border-color:;
+  	border-top-color:;
+  	border-right-color:;
+  	border-bottom-color:;
+  	border-left-color:;
+	border-top:;
+		border-top-color:;
+		border-top-style:;
+		border-top-width:;
+	border-right:;
+		border-right-color:;
+		border-right-style:;
+		border-right-width:;
 	border-bottom:;
 		border-bottom-color:;
 		border-bottom-style:;
@@ -276,14 +296,6 @@ border:;
 		border-left-color:;
 		border-left-style:;
 		border-left-width:;
-	border-right:;
-		border-right-color:;
-		border-right-style:;
-		border-right-width:;
-	border-top:;
-		border-top-color:;
-		border-top-style:;
-		border-top-width:;
 
 /*css3*/
 border-radius:左上右下  右上左下;
@@ -305,6 +317,8 @@ box-shadow:;
 }
 ```
 
+border边框颜色随着文字颜色变化而变化
+
 ### 轮廓
 
 ```css
@@ -323,13 +337,15 @@ outline:;
 div{
 padding:上下 两边;
 padding:上  两边  下;
-padding:top right bottom left;
-	padding-bottom:;
+padding:top right bottom left;/*不可取负值*/
+	padding-bottom:15px,%;
 	padding-left:;
 	padding-right:;
 	padding-top:;
 }
 ```
+
+1. 上下内边距的百分数相对于父元素宽度设置，而不是相对于高度。
 
 ### 外边距
 
@@ -337,8 +353,8 @@ padding:top right bottom left;
 div{
 margin:上下  两边;
 margin:上  两边  下;
-margin:top right bottom left;
-	margin-bottom:;
+margin:top right bottom left;/*可取负值*/
+	margin-bottom:15px,%;
 	margin-left:;
 	margin-right:;
 	margin-top:;
@@ -347,8 +363,9 @@ margin:top right bottom left;
 
 
 
+1. 两个元素的垂直外边距相遇时，外边距会合并成两者的较大者。只有普通块元素的垂直外边距会发生合并，行内元素，浮动框或绝对定位之间的外边距不会合并。
 
-border边框颜色随着文字颜色变化而变化
+
 
 
 ## 定位
