@@ -270,12 +270,12 @@ border:;
   	border-right-style:;
   	border-bottom-style:;
   	border-left-style:;
-	border-width:;
+	border-width:15px thin(1px) medium(3px) thick(5px);
   	border-top-width:;
   	border-right-width:;
   	border-bottom-width:;
   	border-left-width:;
-	border-color:;
+	border-color:transparent;/*边框颜色可以是透明*/
   	border-top-color:;
   	border-right-color:;
   	border-bottom-color:;
@@ -301,11 +301,11 @@ border:;
 border-radius:左上右下  右上左下;
 border-radius:左上  右上左下  右下;
 border-radius:左上  右上  右下  左下;
-border-radius:;
-	border-bottom-left-radius:;
-	border-bottom-right-radius:;
-	border-top-left-radius:;
-	border-top-right-radius:;
+border-radius:15px %;/*border圆角边框*/
+	border-top-left-radius:上 左;
+	border-top-right-radius:上 右;
+	border-bottom-right-radius:下 右;
+	border-bottom-left-radius:下 右;
 
 border-image:;
 	border-image-outset:;
@@ -317,18 +317,26 @@ box-shadow:;
 }
 ```
 
-border边框颜色随着文字颜色变化而变化
+1. 如果样式是none，那么宽度永远是0。
+2. border边框颜色随着文字颜色变化而变化。
+3. 如果边框是透明的，那么内容的背景会延伸出来，与外边距为界。
 
 ### 轮廓
 
 ```css
 div{
-outline:;
-	outline-color:;
-	outline-style:;
-	outline-width:;
+outline:color style width;
+	outline-color:invert;/*默认。执行颜色反转（逆向的颜色）。可使轮廓在不同的背景颜色中都是可见。*/
+	outline-style:none,dotted(点状),dashed(虚线框),solid(实线框),double(双线框),groove(凹槽),ridge(凸槽),inset(凹边),outset(凸边);
+	outline-width:thin,medium,thick,15px;
 }
 ```
+
+1. 如果样式是none，轮廓不会出现，宽度为0。
+2. 始终在outline-color之前声明outline-style。元素只有获得轮廓以后才能改变其轮廓的颜色。
+
+
+
 
 
 ### 内边距
@@ -354,16 +362,18 @@ div{
 margin:上下  两边;
 margin:上  两边  下;
 margin:top right bottom left;/*可取负值*/
-	margin-bottom:15px,%;
-	margin-left:;
+	margin-top:15px,%;
 	margin-right:;
-	margin-top:;
+	margin-bottom:;
+	margin-left:;
 }
 ```
 
 
+1. 上下内边距的百分数相对于父元素宽度设置，而不是相对于高度。
+2. 两个元素的垂直外边距相遇时，外边距会合并成两者的较大者。只有普通块元素的垂直外边距会发生合并，行内元素，浮动框或绝对定位之间的外边距不会合并。
+3. 
 
-1. 两个元素的垂直外边距相遇时，外边距会合并成两者的较大者。只有普通块元素的垂直外边距会发生合并，行内元素，浮动框或绝对定位之间的外边距不会合并。
 
 
 
@@ -372,9 +382,49 @@ margin:top right bottom left;/*可取负值*/
 
 ### 定位
 
+``` css
+div{
+bottom:;
+clear:;
+clip:;
+cursor:;
+display:none(不显示)
+  			block(转换成块级元素)
+  			inline(默认值，显示为内联元素)
+			  inline-block(行内块元素)
+  			list-item(作为列表显示)
+				run-in(根据上线文作为块元素或内联元素显示)
+			  compact(已删除)
+			  marker(已删除)
+			  table(块级表格 类似<table>)
+			  inline-table(内联表格 类似<table>)
+			  table-row-group(作为一或多个行的分组显示 类似<tbody>)
+			  table-header-group(同上，类似<tbody>)
+				table-footer-group(同上，类似<tbody>)
+  			table-row(作为一个表格行显示 类似<tr>)
+  			table-column-group(作为一个或多个列的分组来显示 类似<colgroup>)
+  			table-column(作为一个单元格列显示 类似<col>)
+			  table-cell(作为一个表格单元格显示 类似<td><th>)
+  			table-caption(作为一个表格标题显示 类似<caption>)
 
+float:;
+left:;
+overflow:;
+position:;
+right:;
+top:;
+vertical-align:;
+visibility:;
+z-index:;
+}
+```
 
 ### 浮动
+
+**内联元素（行内元素）和块级元素**
+
+1. 行内元素只能包含数据和其他行内元素；块级元素可以包含行内元素和其他块级元素。块级元素占据一行，行内元素只包含几个字。块级元素创建比行内元素更”大型“的结构。块级元素会新起一行，行内元素会跟在同一行的后面。
+2. 
 
 
 
