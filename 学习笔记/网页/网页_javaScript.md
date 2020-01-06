@@ -121,28 +121,107 @@ Type Identifier Expected 缺类型标识符
 1. 未初始化的变量保存值`undefined`。
 2. 修改变量值的同时也可以改变值的类型，但是不推荐改变值的类型。
 
+**初始化多个变量**
 
+初始化多个变量，用逗号分开：
+
+```javascript
+var message = "hi",
+    found = false,
+    age = 29;
+```
+
+
+
+**typeof操作符**
+typeof操作符检测给定变量的数据类型，返回某个字符串：
+`undefined``boolean``string``number``object``function`
+总共有6种可能的值。
+1. typeof的操作数可以是变量也可以是数值字面量。
+2. typeof是一个操作符而不是函数，圆括号可有可无。
+3. 调用typeof null会返回"object"，因为特殊值null被认为是一个空的对象引用。
+
+**Undefined未定义**
+
+
+
+**Null**
+
+
+
+
+**boolean布尔值**
+
+
+
+
+
+**number数值**
+
+
+
+
+**string字符串**
+
+
+
+**object对象**
+
+
+
+### 操作符
+
+
+
+
+
+### 语句
+
+
+
+### 函数
 
 
 
 ### 作用域
 
 
-1. var操作符定义的变量将成为定义该变量的作用域中的局部变量，函数退出值被销毁。
+1. `var message="hi";//局部变量` var操作符定义的变量将成为定义该变量的作用域中的局部变量，函数退出值被销毁。
+2. `message="hi";//全局变量` 省略var操作符，变量会变成全局变量，但不推荐使用
 
 
 
 ### 引用类型
 
+
+
+
+
+
+
 ## 面向对象
+
+
+
+
+
+
 
 ## 函数表达式
 
+
+
+
+
+
+
 ## BOM
+
+
+
 
 ## DOM
 
-## JSON
 
 
 
@@ -154,7 +233,12 @@ Type Identifier Expected 缺类型标识符
 
 ## 《JavaScript高级程序设计（第3版）》[美]Nicholas C.Zakas 著 李松峰 曹力 译 人民邮电出版社 ISBN 978-7-115-27579-0
 [随书源码](http://www.wrox.com/WileyCDA/WroxTitle/Professional-JavaScript-for-Web-Developers-3rd-Edition.productCd-1118026691,descCd-DOWNLOAD.html)
-1 
+
+1.1 1.2
+
+3.1.* 3.3 3.4 3.4.1 
+
+
 
 
 # 链接
