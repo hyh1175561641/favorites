@@ -90,6 +90,8 @@
 
 `<script>,<noscript>,<applet>,<embed>,<object>,<param>`
 
+见`./网页_html.md`
+
 ## 全局属性
 
 ```html
