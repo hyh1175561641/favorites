@@ -320,6 +320,7 @@ box-shadow:;
 1. 如果样式是none，那么宽度永远是0。
 2. border边框颜色随着文字颜色变化而变化。
 3. 如果边框是透明的，那么内容的背景会延伸出来，与外边距为界。
+4. 边框如果横竖交叉，一条边上的边框会变成梯形。
 
 ### 轮廓
 
@@ -380,15 +381,19 @@ margin:top right bottom left;/*可取负值*/
 
 ## 定位
 
+css有三种定位方式：普通流，浮动和绝对定位
+
+普通流：从上至下一个接一个的排列，框之间的垂直距离是由框的垂直外边距计算出来的。
+
+[这个页面的css定位机制难搞，下次看懂之后填充到这里。](https://www.w3school.com.cn/css/css_positioning.asp)
+
 ### 定位
+
+定位允许你定义元素框相对于正常位置应该出现的位置。
 
 ``` css
 div{
-bottom:;
-clear:;
-clip:;
-cursor:;
-display:none(不显示)
+display:none(不显示)/*元素生成的框类型*/
   			block(转换成块级元素)
   			inline(默认值，显示为内联元素)
 			  inline-block(行内块元素)
@@ -405,21 +410,40 @@ display:none(不显示)
   			table-column-group(作为一个或多个列的分组来显示 类似<colgroup>)
   			table-column(作为一个单元格列显示 类似<col>)
 			  table-cell(作为一个表格单元格显示 类似<td><th>)
-  			table-caption(作为一个表格标题显示 类似<caption>)
+  			table-caption(作为一个表格标题显示 类似<caption>);
+visibility:visible(默认，可见) hidden(不可见，仍然占位) collapse(删除一行或一列表格，但是不影响表格布局);/*元素是否可见*/
 
-float:;
-left:;
-overflow:;
-position:;
+
+/*绝对定位：*/
+position: static(普通流，默认值) absolute(绝对定位，相对于static以外的第一个父元素) relative(相对定位) fixed(固定定位，相对浏览器窗口);/*元素的定位类型*/
+top:auto % 15px;
 right:;
-top:;
-vertical-align:;
-visibility:;
-z-index:;
+bottom:;
+left:;
+overflow:visible(默认，内容溢出呈现在框外) hidden(溢出部分被隐藏) scroll(溢出部分会显示滚动条) auto(溢出有滚动条);/*内容溢出时*/
+clip:rect(top,right,bottom,left) auto(不裁剪，默认值);/*裁剪绝对定位的元素*/
+vertical-align:baseline(基线对齐) sub(对齐下标) super(对齐上标) top(顶端对齐) text-top(与父元素字体顶端对齐) middle(中部对齐) bottom(底端对齐) text-bottom(与父元素字体底端对齐) 15px %;/*垂直对齐*/
+z-index:auto(默认) (写一个具体的数字);/*图层前后顺序*/
+
+
+/*浮动定位*/
+float:none(默认，不浮动) left(向左浮动) right(向右浮动);/*浮动*/
+clear:none(默认) left(左侧不允许浮动) right(右侧不允许浮动) both(两边不允许浮动);/*清除浮动*/
+
+cursor:;/*鼠标形状，共17种，见手册*/
 }
 ```
 
+- 相对定位仍保留原来的位置， 绝对定位的盒模型全部消失
+- 绝对定位之后变成块级元素
+- 绝对定位的元素的位置相对于最近的已定位祖先元素
+- 绝对定位元素时，尽量使用left和top属性定位。
+- absolute的right和bottom是相对于浏览器窗口定位的。
+
 ### 浮动
+
+- 当一个元素浮动时，盒子模型脱离普通流，下面的元素将向上，浮动的元素覆盖底下的元素
+- [以后再看吧](https://www.w3school.com.cn/css/css_positioning_floating.asp)
 
 **内联元素（行内元素）和块级元素**
 
@@ -474,6 +498,24 @@ width:200px;
 - ease 容易，舒适，减轻，缓解
 
 ### css3动画
+
+
+
+
+
+
+
+
+
+
+
+
+# 参考资料
+
+[]
+
+
+
 
 
 

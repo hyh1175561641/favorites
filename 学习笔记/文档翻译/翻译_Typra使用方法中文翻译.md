@@ -114,8 +114,11 @@ For more questions or feedbacks, please contact us by:
 We opened a Github issue page in case you want to start a discussion or as an alternative way to report bugs/suggestions: https://github.com/typora/typora-issues/issues
 
 
-
-#Markdown Reference 使用手册
+# 【end】
+# 【end】
+# 【end】
+# 【end】
+# Markdown Reference 使用手册
 
 # Markdown For Typora Typora使用Markdown语言
 
@@ -126,7 +129,7 @@ We opened a Github issue page in case you want to start a discussion or as an al
 **Markdown**是[Daring Fireball](http://daringfireball.net/)创建的;组织坐落在
 
 
-## Block Elements 块元素
+## Block Elements[^elements] 块元素
 
 ### Paragraph and line breaks
 
@@ -280,21 +283,27 @@ Finally, by including colons (`:`) within the header row, you can define text in
 
 A colon on the left-most side indicates a left-aligned column; a colon on the right-most side indicates a right-aligned column; a colon on both sides indicates a center-aligned column.
 
-### Footnotes
+### Footnotes 脚注
 
 ``` markdown
 You can create footnotes like this[^footnote].
+你可以这样创建脚注[^脚注]。
 
 [^footnote]: Here is the *text* of the **footnote**.
+[^脚注]: 这是上句 **文字** 的**脚注**。
 ```
 
-will produce:
+will produce示例:
 
 You can create footnotes like this[^footnote].
+你可以这样创建脚注[^脚注].
 
 [^footnote]: Here is the *text* of the **footnote**.
+[^脚注]: 这是上句 **文字** 的**脚注**。
 
 Hover over the ‘footnote’ superscript to see content of the footnote.
+将鼠标悬停在"脚注"的上标以查看脚注的内容.
+
 
 ### Horizontal Rules
 
@@ -310,7 +319,7 @@ Typora now supports [YAML Front Matter](http://jekyllrb.com/docs/frontmatter/). 
 
 Input `[toc]` and press the `Return` key. This will create a  “Table of Contents” section. The TOC extracts all headers from the document, and its contents are updated automatically as you add to the document.
 
-## Span Elements
+## Span Elements[^elements] 行内元素
 
 Span elements will be parsed and rendered right after typing. Moving the cursor in middle of those span elements will expand those elements into markdown source. Below is an explanation of the syntax for each span element.
 
@@ -516,3 +525,25 @@ You can use the `<video>` HTML tag to embed videos. For example:
 You can find more details [here](http://support.typora.io/HTML/).
 
 [GFM]: https://help.github.com/articles/github-flavored-markdown/
+
+
+
+[^elements]: block elements：块级元素，块级元素是可以单独成一行，可以自立门户的独立元素。像主语。                                                 span elements：行级元素，行级元素是修饰字型，是依附于其他文字的元素。像形容词。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
