@@ -528,7 +528,7 @@ You can find more details [here](http://support.typora.io/HTML/).
 
 
 
-[^elements]: block elements：块级元素，块级元素是可以单独成一行，可以自立门户的独立元素。像主语。                                                 span elements：行级元素，行级元素是修饰字型，是依附于其他文字的元素。像形容词。
+[^elements]: block elements：块级元素，块级元素是可以单独成一行，可以自立门户的独立元素。像主语。<br/>span elements：行级元素，行级元素是修饰字型，是依附于其他文字的元素。像形容词。
 
 
 
