@@ -3,6 +3,7 @@
 **内容记录**
 
 * 主要记录不常用的功能，常用知识为节省版面可以不记
+* 标题下关键字
 * 写代码的经验，可以记例子
 * 容易出错或经常被遗忘的点
 * 技巧，妙用
@@ -16,6 +17,7 @@
 ```markdown
 
 # 标题（#）
+**关键字** **关键字** **关键字**
 内容或简述（普通内容）
 `css
 代码（）
@@ -155,11 +157,20 @@ typeof操作符检测给定变量的数据类型，返回某个字符串：
 2. typeof是一个操作符而不是函数，圆括号可有可无。
 3. 调用typeof null会返回"object"，因为特殊值null被认为是一个空的对象引用。
 
+**New Word**
+
+- numeric literal 数值文字，数值字面量
+
+
+
 **Undefined未定义**
+
+声明了变量，但是未赋值
 
 
 
 **Null**
+
 
 
 
@@ -175,11 +186,16 @@ typeof操作符检测给定变量的数据类型，返回某个字符串：
 
 
 
+
 **string字符串**
 
 
 
+
+
 **object对象**
+
+
 
 
 
@@ -247,6 +263,10 @@ typeof操作符检测给定变量的数据类型，返回某个字符串：
 
 ## 《JavaScript高级程序设计（第3版）》[美]Nicholas C.Zakas 著 李松峰 曹力 译 人民邮电出版社 ISBN 978-7-115-27579-0
 [随书源码](http://www.wrox.com/WileyCDA/WroxTitle/Professional-JavaScript-for-Web-Developers-3rd-Edition.productCd-1118026691,descCd-DOWNLOAD.html)
+
+[Professional JavaScript for Web Developers, 3rd Edition - Wrox](http://www.wrox.com/WileyCDA/WroxTitle/Professional-JavaScript-for-Web-Developers-3rd-Edition.productCd-1118026691.html) 
+
+[Professional JavaScript for Web Developers, 3rd Edition - Wrox](http://www.wrox.com/WileyCDA/WroxTitle/Professional-JavaScript-for-Web-Developers-3rd-Edition.productCd-1118026691,descCd-DOWNLOAD.html) 
 
 1.1 1.2
 

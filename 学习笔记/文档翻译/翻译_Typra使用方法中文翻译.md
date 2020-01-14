@@ -16,7 +16,7 @@ Thank you for choosing **Typora**. This document will help you to start Typora.
 
 **Note**: Markdown tags for inline styles, such as `**` will be hidden or displayed smartly. Markdown tags for block level styles, such as `###` or `- [x]` will be hidden once the block is rendered.
 
-## Markdown For Typora Typora使用Markdown语言
+## Markdown For Typora Typora使用Markdown语言*为typora定制的markdown*
 
 **Typora** is using [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown/), For more detail, please open [Markdown Reference](Markdown%20Reference.md).
 **Typora**是使用了GitHub Flavored Markdown，为更多细节，请打开Markdown Reference。

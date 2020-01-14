@@ -64,10 +64,75 @@
 `<form>,<input>,<textarea>,<button>,<select>,<optgroup>,<option>,<label>,<fieldset>,<legend>,<isindex>,<datalist>,<keygen>,<output>`
 
 ### 列表
-`<ul>,<ol>,<li>,<dir>,<dl>,<dt>,<dd>,<menu>,<menuitem>,<command>`
+
+```html
+<ol type="有序列表"
+    start
+    reversed
+    ></ol>
+<ul type="无序列表"></ul>
+<li type="列表项"></li>
+<dl 定义列表：一前一后的一种样式></dl>
+<dt 定义列表的项目></dt>
+<dd 定义列表的描述></dd>
+```
 
 ### 表格
-`<table>,<caption>,<th>,<tr>,<td>,<thead>,<tbody>,<tfoot>,<col>,<colgroup>`
+
+
+
+```html
+
+<table border="15px(宽度)"
+       frame
+       rules
+       summary
+       width
+       cellspacing
+       cellpadding
+       align用样式替代
+       bgcolor用样式替代
+       ></table>
+<tr align="对齐方式"
+    bgcolor="用样式代替"
+    char
+    charoff
+    valign
+    ></tr>
+<th abbr
+    align
+    axis
+    bgcolor
+    char
+    charoff
+    colspan
+    headers
+    height
+    nowrap
+    rowspan
+    scope
+    valign
+    width
+    ></th>
+<td 同th标签></td>
+
+
+<caption><thead><tbody><tfoot><col><colgroup>
+
+
+```
+```html
+<table border="1">
+	<tr>
+  	<th></th>
+  	<th></th>
+  </tr>
+  <tr>
+  	<td></td>
+    <td></td>
+  </tr>
+</table>
+```
 
 ## 框架
 `<frame>,<frameset>,<noframes>,<iframe>`
@@ -130,6 +195,33 @@ title属性鼠标悬停时显示此段文字”是\<form\>\<a\>元素的常用�
 7. vmin 浏览器宽和高较小的那个的1%
 8. vmax 浏览器宽和高较大的那个的1%
 
+
+
+### SEO三大标签
+
+```html
+<title>这里写标题（百度28个字）</title>
+<meta name="description" content="这里写描述(不超过120个汉字)" />
+<meta name="Ketwords" content="这里写关键字（限制在6~8个词左右）" />
+```
+- description是搜索结果的简述
+
+
+
+###  ico图标
+
+放在根目录底下
+
+```html
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+<!-- http://www.jd.com/favicon.ico --> 
+```
+
+
+
+
+
+ico制作网站www.bitbug.net
 
 
 # 具体实例

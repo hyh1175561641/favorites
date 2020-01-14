@@ -157,16 +157,28 @@ text-decoration:none,overline,line-through,
   underline,blink;/*文本一条线修饰，可以多个值同时使用*/
 	a{text-decoration: none;}
 text-indent:50px,50%;/*文本缩进，可负值*/
-text-shadow:;/**/
 text-transform:none,uppercase,lowercase,capitalize;/*大小写转换*/
 unicode-bidi:;/**/
-white-space:normal/*默认值，合并空白符成一个，忽略换行符*//*处理空白符，空格、换行和 tab 字符*/
+white-space:normal/*默认值，合并空白符成一个，忽略换行符*/
+  								/*处理空白符，空格、换行和 tab 字符*/
 						pre/*空白被保留，类似<pre>标签*/
 						nowrap/*文本不换行*/
 						pre-wrap/*空白符保留，换行符保留*/
 						pre-line;/*合并空白符，换行符保留*/
 word-spacing:normal,10px;/*字（单词）间隔，可取负值，单词之间间距为5px*/
 vertical-align:;/**/
+  
+/*css3*/
+text-shadow:15px(左右位置，可负) 15px(上下位置，可负) 15px(模糊距离) color(颜色);/*文本阴影效果*/
+word-wrap:normal(默认) break-word(对长单词或URL地址内部换行);/*允许拆分长单词分割换行*/
+text-overflow:clip(修剪文本) ellipsis(末尾显示省略号) 字符串(代替被修剪的文本);/*文本溢出显示方式*/
+word-break:;
+}
+
+p{/*省略号三部曲*/
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
 }
 ```
 1. text-indent:注意：一般来说，可以为所有块级元素应用 text-indent，但无法将该属性应用于行内元素，图像之类的替换元素上也无法应用 text-indent 属性。不过，如果一个块级元素（比如段落）的首行中有一个图像，它会随该行的其余文本移动。
@@ -182,7 +194,14 @@ vertical-align:;/**/
    | pre      | 保留   | 保留   | 不允许   |
    | pre-wrap | 保留   | 保留   | 允许     |
 
-   
+
+
+
+**New Word**
+
+- wrap 包，缠绕，外套，围巾
+
+
 
 ### 字体
 
@@ -238,12 +257,16 @@ target:;
 
 ```css
 div{
-list-style:;
-	list-style-image:;
-	list-style-position:;
-	list-style-type:;
+list-style:url(img) square inside;
+	list-style-type:disc(默认，实心圆) none(无标记) circle(空心圆) square(实心方块) decimal(数字) 其他样式见手册;/*列表前面的标记*/
+	list-style-position:outside(默认) inside;/*标记的位置*/
+	list-style-image:none url("img.png");/*图像作为标记*/
 }
 ```
+
+- 始终规定一个list-style-type以防图像不可用
+
+
 
 ### 表格
 
@@ -318,9 +341,10 @@ box-shadow:;
 ```
 
 1. 如果样式是none，那么宽度永远是0。
-2. border边框颜色随着文字颜色变化而变化。
-3. 如果边框是透明的，那么内容的背景会延伸出来，与外边距为界。
-4. 边框如果横竖交叉，一条边上的边框会变成梯形。
+2. border默认width是3px。
+3. border边框颜色随着文字颜色变化而变化。
+4. 如果边框是透明的，那么内容的背景会延伸出来，与外边距为界。
+5. 边框如果横竖交叉，一条边上的边框会变成梯形。
 
 ### 轮廓
 
@@ -330,14 +354,18 @@ outline:color style width;
 	outline-color:invert;/*默认。执行颜色反转（逆向的颜色）。可使轮廓在不同的背景颜色中都是可见。*/
 	outline-style:none,dotted(点状),dashed(虚线框),solid(实线框),double(双线框),groove(凹槽),ridge(凸槽),inset(凹边),outset(凸边);
 	outline-width:thin,medium,thick,15px;
+	
+outline-offset:15px;/*css3,轮廓偏离*/
 }
 ```
 
 1. 如果样式是none，轮廓不会出现，宽度为0。
 2. 始终在outline-color之前声明outline-style。元素只有获得轮廓以后才能改变其轮廓的颜色。
+3. 轮廓和边框的区别，轮廓不占用空间，轮廓可能是非矩形。
 
+**New Word**
 
-
+- offset 抵消，补偿，偏离量
 
 
 ### 内边距
@@ -375,7 +403,15 @@ margin:top right bottom left;/*可取负值*/
 2. 两个元素的垂直外边距相遇时，外边距会合并成两者的较大者。只有普通块元素的垂直外边距会发生合并，行内元素，浮动框或绝对定位之间的外边距不会合并。
 3. 
 
+### 用户界面css3
 
+```css
+/**/  /**/
+div{
+resize:none(不可调) horizontal(调宽) vertical(调高) both;/*用户可调整盒子尺寸*/
+box-sizing:content-box(内边距和边框另外计算，买东西另外购买) border-box(包括了边框和内边距，赠送了大礼包);/*宽高容纳的范围*/
+}
+```
 
 
 
@@ -385,7 +421,9 @@ css有三种定位方式：普通流，浮动和绝对定位
 
 普通流：从上至下一个接一个的排列，框之间的垂直距离是由框的垂直外边距计算出来的。
 
-[这个页面的css定位机制难搞，下次看懂之后填充到这里。](https://www.w3school.com.cn/css/css_positioning.asp)
+浮动
+
+绝对定位
 
 ### 定位
 
@@ -448,7 +486,8 @@ cursor:;/*鼠标形状，共17种，见手册*/
 **内联元素（行内元素）和块级元素**
 
 1. 行内元素只能包含数据和其他行内元素；块级元素可以包含行内元素和其他块级元素。块级元素占据一行，行内元素只包含几个字。块级元素创建比行内元素更”大型“的结构。块级元素会新起一行，行内元素会跟在同一行的后面。
-2. 
+2. 内联元素在一行中可以使用内边距，边框和外边距调整间距，但是不影响内联元素的高度，设置行高可以增加内联元素的高度。
+3. 由一行形成的水平框称为行框(Line Box)。
 
 
 
@@ -503,6 +542,34 @@ width:200px;
 
 
 
+## 其他
+
+### css样式初始化
+
+**浏览器原始样式**
+
+- body元素外边距为8px
+- h1~h6标题，p有外边距
+- h1~h6标题自动加粗
+
+**css reset类库样式重置**
+
+```css
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,dt,dd{
+  margin:0;
+  padding:0;
+}
+ul,ol{
+  list-style:none;
+}
+a{
+  color:#000;
+  text-decoration:none;
+}
+```
+
+- normalize.css
+
 
 
 
@@ -512,7 +579,52 @@ width:200px;
 
 # 参考资料
 
-[]
+- [w3school](https://www.w3school.com.cn/css/index.asp)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
