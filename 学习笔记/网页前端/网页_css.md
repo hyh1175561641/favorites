@@ -166,7 +166,8 @@ white-space:normal/*默认值，合并空白符成一个，忽略换行符*/
 						pre-wrap/*空白符保留，换行符保留*/
 						pre-line;/*合并空白符，换行符保留*/
 word-spacing:normal,10px;/*字（单词）间隔，可取负值，单词之间间距为5px*/
-vertical-align:;/**/
+
+vertical-align:baseline(基线对齐) middle(中部对齐，x的交叉点) text-top(与父元素字体顶端对齐) text-bottom(与父元素字体底端对齐) sub(对齐下标) super(对齐上标) top(顶端对齐) bottom(底端对齐) 15px %;/*垂直对齐，基线是字母x的底边*/
   
 /*css3*/
 text-shadow:15px(左右位置，可负) 15px(上下位置，可负) 15px(模糊距离) color(颜色);/*文本阴影效果*/
@@ -193,6 +194,8 @@ p{/*省略号三部曲*/
    | nowrap   | 合并   | 忽略   | 不允许   |
    | pre      | 保留   | 保留   | 不允许   |
    | pre-wrap | 保留   | 保留   | 允许     |
+
+3. 行内元素的概念，顶线(text-top) 中线(middle) 基线(baseline) 底线(text-bottom) 行框(border) 顶端(top) 低端(bottom)
 
 
 
@@ -279,6 +282,27 @@ empty-cells:;
 table-layout:;
 }
 ```
+
+
+
+### 多列
+
+```css
+div{
+columns:;
+  columns-count:;
+  columns-fill:;
+  columns-gap:;
+  columns-rule:;
+	  columns-rule-color:;
+	  columns-rule-style:;
+  	columns-rule-width:;
+  columns-span:;
+  columns-width:;
+}
+```
+
+
 
 
 
@@ -460,7 +484,6 @@ bottom:;
 left:;
 overflow:visible(默认，内容溢出呈现在框外) hidden(溢出部分被隐藏) scroll(溢出部分会显示滚动条) auto(溢出有滚动条);/*内容溢出时*/
 clip:rect(top,right,bottom,left) auto(不裁剪，默认值);/*裁剪绝对定位的元素*/
-vertical-align:baseline(基线对齐) sub(对齐下标) super(对齐上标) top(顶端对齐) text-top(与父元素字体顶端对齐) middle(中部对齐) bottom(底端对齐) text-bottom(与父元素字体底端对齐) 15px %;/*垂直对齐*/
 z-index:auto(默认) (写一个具体的数字);/*图层前后顺序*/
 
 
