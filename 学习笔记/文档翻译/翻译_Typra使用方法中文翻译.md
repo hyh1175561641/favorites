@@ -114,10 +114,7 @@ For more questions or feedbacks, please contact us by:
 We opened a Github issue page in case you want to start a discussion or as an alternative way to report bugs/suggestions: https://github.com/typora/typora-issues/issues
 
 
-# 【end】
-# 【end】
-# 【end】
-# 【end】
+# ################
 # Markdown Reference 使用手册
 
 # Markdown For Typora Typora使用Markdown语言
