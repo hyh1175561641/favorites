@@ -148,6 +148,10 @@
 ```
 图像无法显示时用alt属性值替代图片
 
+
+
+[图片可以是透明的](https://www.w3school.com.cn/css/css_image_transparency.asp)
+
 ## 媒体
 `<audio>,<source>,<track>,<video>`
 
@@ -240,6 +244,22 @@ ico制作网站www.bitbug.net
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+# 英文单词
+
+
+
+grid  栅(shān)格
 
 
 # 书籍翻阅记录

@@ -112,6 +112,19 @@ div{
 邻居选择器，用+隔开，选择下边第一个邻居
 选择器分组，用,隔开，设置共同的样式
 
+
+
+### 伪选择器
+
+```css
+a:link{未访问的链接}
+a:visited{已访问的链接}
+a:hover{鼠标悬停时}
+a:active{鼠标点击时}
+```
+
+
+
 ## 基本样式
 
 ### 尺寸
@@ -516,8 +529,73 @@ cursor:;/*鼠标形状，共17种，见手册*/
 
 ## 变换
 
+### 2D转换
+
+通过 CSS3 转换，我们能够对元素进行移动、缩放、转动、拉长或拉伸
+
+转换是使元素改变形状、尺寸和位置的一种效果。
+
+
+
+```css
+div{
+transform:
+  translate(X,Y)(left,top)/*坐标平移，可负值*/
+  	translateX(X)
+  	translateY(Y)
+  rotate(9deg)/*中心旋转，可负值*/
+  scale(X,Y)/*放大倍数*/
+  	scaleX(X)
+  	scaleY(Y)
+  skew(X,Y)/*元素倾斜的角度*/
+  	skewX(X)
+  	skewY(Y)
+  matrix(nx6)/*6个参数，2D转换组合方法*/
+  none/*不转换*/;
+}
+```
+
+判断坐标平移时，盯着左上角顶点，先确定X轴，再确定Y轴
+
+旋转中心为元素的中心点
+
+元素的放大倍数，先确定宽度倍数，再确定高度倍数，中心点位置不变
+
+坐标轴不发生倾斜，先确定竖线角度，再确定横线角度
+
+### 3D转换
+
+3D转换是在2D转换上的扩充
+
+css转换仍然是一种静态的变换，搭配过渡才能动起来，但是转换提供了一个具体过程
+
+```css
+div{
+transform:
+  translate3d(X,Y,Z)/*空间坐标移动，可负值*/
+  	translateX(X)
+  	translateY(Y)
+  	translateZ(Z)
+  scale3d(X,Y,Z)/*缩放倍数*/
+  	scaleX(X)
+  	scaleY(Y)
+  	scaleZ(Z)
+  rotate3d(X,Y,Z,deg)/*中心旋转，可负值*/
+  	rotateX(X)/*沿竖轴旋转*/
+  	rotateY(Y)/*沿横轴旋转*/
+  	rotateZ(Z)/*2D旋转*/
+  perspective()/*3D透视图，使用方法以后再学*/
+  matrix3d(nx16)/*组合方法，16个参数*/
+	none;/*不转换*/
+}
+```
+
+
 
 ### css3过渡
+
+过渡必须指明效果指定的CSS属性，时间长
+
 ```css
 transition:width 1s linear 2s;
 	transition-property:width; --none --all --property
@@ -561,6 +639,38 @@ width:200px;
 
 ### css3动画
 
+动画将一套CSS样式逐渐变化为另一套样式
+
+```css
+div{
+  animation:name duration timing-function delay iteration-count direction;/*动画的6个属性，必写名字和时间*/
+  	animation-name:none;/*关键帧的名字*/
+  	animation-duration:2s;/*时间长度*/
+  	animation-timing-function:linear(线性的)ease(默认，先慢后快)ease-in(先慢)ease-out(后慢)ease-in-out(前后都慢)cubic-bezier(n,n,n,n);/*速度曲线，贝塞尔曲线*/
+  	animation-delay:2s;/*动画延迟一段时间再开始*/
+  	animation-iteration-count:infinite(无限次) 3;/*动画播放的次数*/
+  	animation-direction:normal(默认不反向)alternate;/*轮流反向播放动画*/
+  
+	animation-play-state:paused(暂停)running(运行);/*动画运行还是暂停*/
+	animation-fill-mode:none forwards backwards both;/*动画在播放之前或之后，动画的状态，翻手册*/
+  	
+  @keyframes name/*定义动画 关键帧*/
+  {
+    from{css:;}/*0%*/
+    to{css:;}/*100%*/
+    或者是
+    0%{top:0px;}
+		25%{top:200px;}
+		50%{top:100px;}
+		75%{top:200px;}
+		100%{top:0px;}
+  }
+  
+}
+```
+
+
+
 
 
 
@@ -595,6 +705,21 @@ a{
 
 
 
+### 浏览器前缀
+
+[浏览器前缀MDN](https://developer.mozilla.org/zh-CN/docs/Glossary/Vendor_Prefix)
+
+[浏览器前缀](https://www.cnblogs.com/cwzqianduan/p/8880021.html)
+
+```html
+-webkit- 谷歌浏览器，Safari浏览器
+-ms- IE浏览器
+-moz- 火狐浏览器
+-o- 欧朋浏览器
+```
+
+
+
 
 
 
@@ -602,6 +727,8 @@ a{
 # 英文单词
 
 
+
+decoration 装饰，装潢，修饰（下划线，上划线，中划线）
 
 outline 轮廓，大纲，框
 
