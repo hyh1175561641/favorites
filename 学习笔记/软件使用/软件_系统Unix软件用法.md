@@ -29,7 +29,7 @@
 **缺点（需要注意的地方，不要这样使用）**
 1. 
 
-## 其他补充
+## 其他
 **英文词汇**
 + 
 
@@ -52,51 +52,7 @@
 
 
 
-# Emacs
 
-## 用法
-**软件布局**
-**快捷键**
-文件操作
->C+x C+f 打开文件
->C+x C+s 保存文件
-
-光标移动
->
-
-复制粘贴
->
-
-
-**使用技巧（形成的使用习惯，一般这样使用）**
-**缺点（需要注意的地方，避开坑，不要这样使用）**
-## 其他补充
-**英文词汇**
-**链接地址**
-1.[Emacs For Mac OS X](https://emacsformacosx.com)
-2.[Mac OS安装emacs](https://blog.csdn.net/SCHOLAR_II/article/details/80976314)
-3.[一年内成为emacs高手](https://blog.csdn.net/redguardtoo/article/details/7222501)
-**······**
-【end】
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# VIM
 
 
 
