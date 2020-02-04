@@ -121,6 +121,8 @@ a:link{未访问的链接}
 a:visited{已访问的链接}
 a:hover{鼠标悬停时}
 a:active{鼠标点击时}
+
+nth-child(2)
 ```
 
 
@@ -273,10 +275,10 @@ target:;
 
 ```css
 div{
-list-style:url(img) square inside;
+list-style:square inside url('img');
 	list-style-type:disc(默认，实心圆) none(无标记) circle(空心圆) square(实心方块) decimal(数字) 其他样式见手册;/*列表前面的标记*/
-	list-style-position:outside(默认) inside;/*标记的位置*/
-	list-style-image:none url("img.png");/*图像作为标记*/
+	list-style-position:outside(默认) inside inherit;/*标记的位置*/
+	list-style-image:none url("img.png") inherit;/*图像作为标记*/
 }
 ```
 
@@ -644,7 +646,7 @@ width:200px;
 ```css
 div{
   animation:name duration timing-function delay iteration-count direction;/*动画的6个属性，必写名字和时间*/
-  	animation-name:none;/*关键帧的名字*/
+  	animation-name:none name;/*关键帧的名字*/
   	animation-duration:2s;/*时间长度*/
   	animation-timing-function:linear(线性的)ease(默认，先慢后快)ease-in(先慢)ease-out(后慢)ease-in-out(前后都慢)cubic-bezier(n,n,n,n);/*速度曲线，贝塞尔曲线*/
   	animation-delay:2s;/*动画延迟一段时间再开始*/

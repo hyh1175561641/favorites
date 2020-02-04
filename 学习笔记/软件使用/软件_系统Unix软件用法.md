@@ -60,3 +60,18 @@
 
 # Git
 
+
+
+
+
+
+
+
+
+# Apache
+
+```html
+
+sudo apachectl restart
+
+```
