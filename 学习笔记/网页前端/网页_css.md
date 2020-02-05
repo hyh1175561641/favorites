@@ -46,6 +46,39 @@
 ``````
 
 ## 选择器
+
+### 通配符选择器
+
+
+
+### 元素选择器
+
+
+
+### 类选择器
+
+
+
+### ID选择器
+
+
+
+### 属性选择器
+
+
+
+### 后代选择器
+
+### 子元素选择器
+
+### 兄弟选择器
+
+### 邻居选择器
+
+
+
+
+
 ### 选择器权重
 1. 下面选择器由权重由轻到重排序
 2. 写在后面的选择器覆盖前面的选择器
@@ -121,8 +154,32 @@ a:link{未访问的链接}
 a:visited{已访问的链接}
 a:hover{鼠标悬停时}
 a:active{鼠标点击时}
+input:focus{获得焦点的input元素}
+:first-letter{}
+:first-line{}
+:before{}
+:after{}
+:lang(language){}
+:root
+:empty
+:target
+:enabled
+:disabled
+:checked
+:not()
+::selection
 
-nth-child(2)
+:first-of-type{}
+:last-of-type{}
+:only-of-type{}
+:only-child{}
+:nth-child{}
+:nth-last-child{}
+:nth-of-type{}
+:nth-last-of-type{}
+:first-child{}
+:last-child{}
+:
 ```
 
 
@@ -147,20 +204,31 @@ div{
 
 ```css
 div{
-	background:red;/*复合样式*/
-	background-color:red;
-  background-position-x:0%;
-  background-position-y:0%;
-  background-repeat: repeat;
-  background-attachment:scroll;
-  background-image:none;
-  background-size:auto;
-  background-orgin:padding-box;
-  background-clip:border-box;
+	background:color image repeat attachment position;/*复合样式*//*按上面的顺序来写*/
+		background-color:red transparent;/*背景的颜色*/
+  	background-position:(top+ center+ bottom)x (left+ center+ right)  % %  15px 15px;/*背景的位置左右，上下*/
+  	background-size:15px 15px  % %  cover(图片比元素大) contain(元素比图片大);/*宽度，高度*/
+  	background-repeat: repeat(默认) repeat-x(水平重复) repeat-y(垂直重复) no-repeat(不重复);/*背景的重复*/
+  	background-orgin:padding-box(内边距框) border-box(边框盒子) content-box(内容框);/*定位起始点框*/
+  	background-clip:border-box(边框有背景) padding-box(内边距有背景) content-box(内容有背景);/*背景的裁剪*/
+  	background-attachment:scroll(默认 背景滚动) fixed(背景不动) inherit(继承);/*页面滚动和背景滚动*/
+  	background-image:none(默认) /*背景图像*/
+      url('URL') 
+      linear-gradient()/*线性渐变*/
+      radial-gradient()/*径向渐变*/
+      repeating-linear-gradient()/*重复线性渐变*/
+      repeating-radial-gradient()/*重复径向渐变*/;
 }
 ```
 
+- 背景的颜色包括元素的内容，内边距和边框区域，如果边框是虚线，则可以看到虚线背后的背景色
+- Background-position属性要写两个值，如果设置第一个值，第二个值是center或50%
+- background-size属性的百分比是以元素的大小为基准，不是以图片的大小为准，如果设置了第一个值宽度，第二个高度值是auto
+
+
+
 ### 文本
+
 ```css
 p{
 color:;/*文本颜色*/
@@ -317,6 +385,16 @@ columns:;
 }
 ```
 
+### 其他
+
+元素的透明度
+
+```css
+div{
+  opacity:0-1;/*元素的透明度，值可以是小数*/
+}
+```
+
 
 
 
@@ -326,22 +404,23 @@ columns:;
 ### 边框
 ```css
 div{
-border:;
+border:width style color;
+	border-width:15px thin(1px) medium(3px) thick(5px);
+  	border-top-width:none(无边框) hidden(表格专用) dotted(点状) dashed(虚线) solid(实线) double(双线) groove(3D凹槽) ridge(3D垄状) inset(3Dinset边框) outset(3Doutset边框);
+  	border-right-width:;
+  	border-bottom-width:;
+  	border-left-width:;
 	border-style:上 右 下 左（上 两边 下）（上下 两边）;
   	border-top-style:;
   	border-right-style:;
   	border-bottom-style:;
   	border-left-style:;
-	border-width:15px thin(1px) medium(3px) thick(5px);
-  	border-top-width:;
-  	border-right-width:;
-  	border-bottom-width:;
-  	border-left-width:;
-	border-color:transparent;/*边框颜色可以是透明*/
+	border-color:color transparent;/*边框颜色可以是透明*/
   	border-top-color:;
   	border-right-color:;
   	border-bottom-color:;
   	border-left-color:;
+  
 	border-top:;
 		border-top-color:;
 		border-top-style:;
@@ -722,6 +801,15 @@ a{
 
 
 
+### 网页的布局
+
+- 网页的布局由上到下，从左到右
+
+- 头部区域
+- 导航菜单区域
+- 内容区域
+- 底部区域
+
 
 
 
@@ -729,6 +817,8 @@ a{
 # 英文单词
 
 
+
+transparent 透明的，显然的，坦率地，易懂的
 
 decoration 装饰，装潢，修饰（下划线，上划线，中划线）
 
