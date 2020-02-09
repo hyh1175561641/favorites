@@ -264,6 +264,19 @@ p{/*省略号三部曲*/
   white-space:nowrap;
   text-overflow:ellipsis;
 }
+
+text-emphasis
+hanging-punctuation
+punctuation-trim
+
+text-align-last
+text-justify
+text-outline
+text-overflow
+text-shadow
+text-wrap
+word-break
+word-wrap
 ```
 1. text-indent:注意：一般来说，可以为所有块级元素应用 text-indent，但无法将该属性应用于行内元素，图像之类的替换元素上也无法应用 text-indent 属性。不过，如果一个块级元素（比如段落）的首行中有一个图像，它会随该行的其余文本移动。
    提示：如果想把一个行内元素的第一行“缩进”，可以用左内边距或外边距创造这种效果
@@ -322,6 +335,8 @@ font-kerning:auto;/**/
 font-optical-sizing:auto;/**/
 font-language-override:normal;/**/
 font-feature-settings:normal;/**/
+  
+@font-face
 }
 
 ```
@@ -395,11 +410,33 @@ div{
 }
 ```
 
+内容生成属性
 
+网格属性
+
+分页属性
+
+用户外观属性
+
+[runoob css文档内容](https://www.runoob.com/cssref/css-reference.html)
 
 
 
 ## 盒子模型
+
+弹性盒子模型
+
+### 盒子属性
+
+```css
+overflow-x:;
+overflow-y:;
+overflow-style:;
+rotation:;
+rotation-point:;
+```
+
+
 
 ### 边框
 ```css
@@ -634,6 +671,12 @@ transform:
   matrix(nx6)/*6个参数，2D转换组合方法*/
   none/*不转换*/;
 }
+
+transform-origin
+transform-style
+perspective
+perspective-origin
+backface-visibility
 ```
 
 判断坐标平移时，盯着左上角顶点，先确定X轴，再确定Y轴
@@ -750,6 +793,23 @@ div{
 }
 ```
 
+css函数
+
+```
+attr()
+calc()
+cubic-bezier()
+hsl()
+hsla()
+linear-gradient()
+radial-gradient()
+repeating-linear-gradient()
+repeating-radial-gradient()
+rgb()
+rgba()
+var()
+```
+
 
 
 
@@ -801,16 +861,21 @@ a{
 
 
 
-### 网页的布局
-
-- 网页的布局由上到下，从左到右
-
-- 头部区域
-- 导航菜单区域
-- 内容区域
-- 底部区域
 
 
+## 对CSS的总结
+
+CSS是对文档的修饰，内容的修饰，背景的修饰，
+
+对HTML元素进行定位和选择
+
+把内容装进盒子里，
+
+然后对盒子进行定位，
+
+以及一些简单的拉伸变换旋转和动画
+
+在此之前要
 
 
 

@@ -157,10 +157,6 @@ typeof操作符检测给定变量的数据类型，返回某个字符串：
 2. typeof是一个操作符而不是函数，圆括号可有可无。
 3. 调用typeof null会返回"object"，因为特殊值null被认为是一个空的对象引用。
 
-**New Word**
-
-- numeric literal 数值文字，数值字面量
-
 
 
 **Undefined未定义**
@@ -258,6 +254,12 @@ typeof操作符检测给定变量的数据类型，返回某个字符串：
 
 
 
+## Canvas绘图
+
+
+
+
+
 
 # 书籍翻阅记录
 
@@ -268,9 +270,7 @@ typeof操作符检测给定变量的数据类型，返回某个字符串：
 
 [Professional JavaScript for Web Developers, 3rd Edition - Wrox](http://www.wrox.com/WileyCDA/WroxTitle/Professional-JavaScript-for-Web-Developers-3rd-Edition.productCd-1118026691,descCd-DOWNLOAD.html) 
 
-1.1 1.2
 
-3.1.* 3.3 3.4 3.4.1 
 
 
 
