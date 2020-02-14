@@ -533,6 +533,30 @@ title属性鼠标悬停时显示此段文字”是\<form\>\<a\>元素的常用�
 
 ## 事件属性
 
+HTML事件是发生在HTML元素上的事情，当在HTML页面中使用JavaScript时，JavaScript可以触发这些事件。
+
+HTML事件可以是浏览器行为，也可以是用户行为，当页面完成加载时，input字段改变时，按钮被点击时，当JavaScript触发时可以执行一段代码
+
+```html
+<buttom onclick="this.innerHTML=Date()">时间？</buttom>
+```
+
+
+
+```html
+<!--常见的HTML事件的列表-->
+onchange
+onclick
+onmouseover
+onmouseout
+onkeydown
+onload
+```
+
+
+
+
+
 
 
 

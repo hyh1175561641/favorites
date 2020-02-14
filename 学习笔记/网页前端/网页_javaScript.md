@@ -181,17 +181,44 @@ typeof操作符检测给定变量的数据类型，返回某个字符串：
 2. typeof是一个操作符而不是函数，圆括号可有可无。
 3. 调用typeof null会返回"object"，因为特殊值null被认为是一个空的对象引用。
 
+```javascript
+typeof "John"// 返回 string 
+typeof 3.14// 返回 number
+typeof NaN// 返回 number
+typeof false// 返回 boolean
+typeof [1,2,3,4]// 返回 object
+typeof {name:'John', age:34}// 返回 object
+typeof new Date()// 返回 object
+typeof function(){}// 返回 function
+typeof myCar// 返回 undefined (如果 myCar 没有声明)
+typeof null// 返回 object
+```
+
 
 
 ### Undefined
+
+undefined是一个没有设置值的变量
 
 未初始化的变量保存值`undefined`
 
 声明了变量，但是未赋值
 
+任何变量都可以通过设置值为undefined来清空
+
 
 
 ### Null
+
+null是一个只有一个值的特殊类型，表示“什么都没有”，表示一个空对象引用。
+
+```javascript
+//null和undefined的值相等，但类型不相等
+typeof undefined //undefined
+typeof null //object
+null === undefined //false
+null == undefined //true
+```
 
 
 
@@ -235,9 +262,124 @@ document.write("你好\
 
 如果对数值使用引号，该值会被当做文本来处理
 
+**字符串的使用**
+
+```javascript
+//使用索引位置来访问字符串中的每个字符
+var name = "Bill Gates";
+var character = name[5];//G
+
+//可以使用转义字符
+var answer = 'It\'s alright'
+var answer = "He is called \"Johnny\""
+//字符串中可使用的转义字符有 \' \" \\ \n \r \t \b \f
+
+//字符串的长度
+var txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var sln = txt.length;
+```
 
 
 
+**字符串对象**
+
+```javascript
+//通常的字符串是原始值，可使用字符创建：var firstName = "John"
+//也可以使用new关键字将字符串定义为一个对象：var first = new String("John")
+//不要创建String对象，会拖慢执行速度
+var x = "John";//typeof x //String
+var y = new String("John");//typeof y //Object
+(x === y) //false,因为x是字符串，y是对象
+```
+
+
+
+```javascript
+//String对象的属性和方法
+//String对象属性
+String.constructor//对创建该对象的函数的引用
+String.lenght//字符串的长度
+String.prototype//允许您向对象添加属性和方法
+
+//String对象方法
+String.charAt()//返回在指定位置的字符
+String.charCodeAt()//返回在指定的位置的字符的Unicode编码
+String.concat()//连接两个或更多字符串，并返回新的字符串
+String.fromCharCode()//将Unicode编码转为字符
+String.indexOf()//返回某个指定的字符串值在字符串中首次出现的位置
+String.includes()//查找字符串中是否包含指定的子字符串
+String.lastIndexOf()//从后向前搜索字符串，并从起始位置（0）开始计算返回字符串最后出现的位置
+String.match()//查找找到一个或多个正则表达式的匹配
+String.repeat()//复制字符串指定次数，并将它们连接在一起返回
+String.replace()//在字符串中查找匹配的子串， 并替换与正则表达式匹配的子串
+
+String.search()//查找与正则表达式相匹配的值
+String.slice()//提取字符串的片断，并在新的字符串中返回被提取的部分
+String.split()//把字符串分割为字符串数组
+String.startsWith()//查看字符串是否以指定的子字符串开头
+String.substr()//从起始索引号提取字符串中指定数目的字符
+String.substring()//提取字符串中两个指定的索引号之间的字符
+String.toLowerCase()//把字符串转换为小写
+String.toUpperCase()//把字符串转换为大写
+String.trim()//去除字符串两边的空白
+String.toLocaleLowerCase()//根据本地主机的语言环境把字符串转换为小写
+
+String.toLocaleUpperCase()//根据本地主机的语言环境把字符串转换为大写
+String.valueOf()//返回某个字符串对象的原始值
+String.toString()//返回一个字符串
+
+//String HTML 包装方法
+//HTML返回包含在相对应的HTML标签中的内容
+String.anchor()//创建 HTML 锚。
+String.big()//用大号字体显示字符串。
+String.blink()//显示闪动字符串。
+String.bold()//使用粗体显示字符串。
+String.fixed()//以打字机文本显示字符串。
+String.fontcolor()//使用指定的颜色来显示字符串。
+String.fontsize()//使用指定的尺寸来显示字符串。
+String.italics()//使用斜体显示字符串。
+String.link()//将字符串显示为链接。
+String.small()//使用小字号来显示字符串。
+String.strike()//用于显示加删除线的字符串。
+String.sub()//把字符串显示为下标。
+String.sup()//把字符串显示为上标。
+```
+
+
+
+
+
+### object对象
+
+
+
+### function函数
+
+**代码**：按照编写顺序依次执行的每条语句
+
+**代码块**：可以一并地执行语句序列
+
+**函数**：函数是由事件驱动的或当它被调用时执行的可重复使用的代码块。问题来了，函数是由事件驱动的这是什么意思，什么是事件驱动？百度JavaScript事件驱动机制。
+
+```javascript
+//函数包裹在花括号里，前面使用关键词function
+function functionname(){
+  //执行代码
+}
+
+//调用函数时，可以传递参数，必须以一致的顺序出现
+function myFunction(name, job){
+  alert("Welcome" + name + ", the " + job);
+}//Welcome Harry Potter, the Wizard
+myFunction('Harry Potter','Wizard');
+
+//带有返回值的函数，使用return语句时，函数会停止，返回指定值
+function myFunction(){
+  var x=5;
+  return x;//返回值5
+}
+var myVar = myFunction();//函数调用将被返回值取代
+```
 
 
 
@@ -256,7 +398,7 @@ var person = new Object;
 
 
 
-### object对象
+### Object对象
 
 ```javascript
 //对象由花括号分隔。在对象内部，对象的属性以名称和值对的形式来定义
@@ -292,7 +434,7 @@ name = person.fullName;//function(){return this.firstName + "" + this.lastName()
 
 
 
-### array数组
+### Array数组
 
 ```javascript
 //创建数组
@@ -306,15 +448,120 @@ var cars=["Saab","Volvo","BMW"];//简写
 
 
 
+### RegExp正则表达式
+
+正则表达式，在代码中常简写为regex、regexp、RE。使用单个字符串来描述、匹配一系列符合某个句法规则的字符串搜索模式
+
+[以后慢慢看](https://www.runoob.com/js/js-regexp.html)
 
 
-### function函数
+
+### Date日期
+
+```javascript
+Date.getDate()//从Date对象返回一个月中的某一天(1~31)
+Date.getDay()//从Date对象返回一周中的某一天(0~6)
+Date.getFullYear()//从Date对象以四位数字返回年份
+Date.getHours()//返回Date对象的小时(0~23)
+Date.getMilliseconds()//返回Date对象的毫秒(0~999)
+Date.getMinutes()//返回Date对象的分钟(0~59)
+Date.getMonth()//从Date对象返回月份(0~11)
+Date.getSeconds()//返回Date对象的秒数(0~59)
+Date.getTime()	返回//1970年1月1日至今的毫秒数
+```
+
+
+
+### Math数学
+
+
+
+
+
+### 类型转换
+
+```javascript
+//判断数据类型，由于typeof 数组返回是object类型，所以这种方法无法判断数组类型
+
+//constructor属性返回所有JavaScript变量的构造函数
+"John".constructor//返回函数String(){[native code]}
+(3.14).constructor//返回函数Number(){[native code]}
+false.constructor//返回函数Boolean(){[native code]}
+[1,2,3,4].constructor//返回函数Array(){[native code]}
+{name:'John', age:34}.constructor//返回函数Object(){[native code]}
+new Date().constructor//返回函数Date(){[native code]}
+function () {}.constructor//返回函数Function(){[native code]}
+
+//使用construction属性来检查对象是否为数组
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+document.getElementById("demo").innerHTML = isArray(fruits);
+function isArray(myArray) {
+    return myArray.constructor.toString().indexOf("Array") > -1;
+}//true
+```
+
+[以后再看吧](https://www.runoob.com/js/js-type-conversion.html)
 
 
 
 ## 操作符
 
+算术运算符，赋值运算符，字符串连接运算符，比较运算符，逻辑运算符，条件运算符
 
+```javascript
+//算术运算符
++加法
+-减法
+*乘法
+/除法
+%取模
+++自增
+--自减
+
+//赋值运算符
+=赋值
++=等同于 x+=y x=x+y
+-=等同于 x-=y x=x-y
+*=等同于 x*=y x=x*y
+/=等同于 x/=y x=x/y
+%=等同于 x%=y x=x%y
+
+//字符串+运算符
+text1 = "What a very";
+text2 = "nice day";
+text3 = text1 + text2;//What a verynice day
+text4 = text1 + " " + text2;//What a very nice day
+//如果其中有一个数字，把数字变成字符串，再进行拼接
+x = 5 + 5;//10
+y = "5" + 5;//55
+z = "Hello" + 5;//Hello5
+
+//比较运算符，计算结果是true或者false
+==等于
+===绝对等于（值和类型都相等）
+!=不等于
+!==不绝对等于（值和类型至少有一个不相等）
+>大于
+<小于
+>=大于或等于
+<=小于或等于
+
+//逻辑运算符
+&& and
+|| or
+! not
+
+//条件运算符
+A?B:C
+
+//位运算符
+& AND
+| OR
+~ 取反
+^ 异或
+<< 左移
+>> 右移
+```
 
 
 
@@ -322,29 +569,163 @@ var cars=["Saab","Volvo","BMW"];//简写
 
 通常在每条可执行的语句结尾添加分号;或者在一行中编写多条语句;
 
+### if...Else语句
+
+条件语句基于不同的条件来执行不同的动作
+
+```javascript
+//if语句，只有当指定条件是true时，使用该语句来执行代码
+if(condition){
+  //条件为true时执行的代码
+}
+
+//if...else语句,只有条件为true时执行代码，条件为false时执行其他代码
+if(condition){
+  //条件为true时执行的代码
+}else{
+  //条件不为true时执行的代码
+}
+
+//if...else if...else语句，该语句选择多个代码块之一来执行
+if(condition1){
+  //条件1为true时执行的代码
+}else if(condition2){
+  //条件2为true时执行的代码
+}else{
+  //当条件1和条件2都不为true时执行的代码
+}
+```
+
+### switch语句
+
+基于不同的条件来执行不同的动作
 
 
-## 函数
+```javascript
+//switch语句，该语句来选择多个代码块之一来执行
+switch(n){//首先设置表达式n，然后与下面每一个case语句相比较，如果匹配则执行代码
+  case 1:
+    1;
+    break;//使用break组织代码自动的向下一个case执行
+  case 2:
+    2;
+    break;
+  default://default匹配不存在时做的事情
+    0;
+}
+```
 
-**代码**：按照编写顺序依次执行的每条语句
+### for循环
 
-**代码块**：可以一并地执行语句序列
+循环可以将代码块执行指定的次数
+
+```javascript
+for(var i=0;i<10;i++){//初始化语句；判断语句；更新语句
+  //语句循环10次
+}
+
+//循环遍历对象的属性
+var person = {fname:"Bill", lname:"Gates", age:56};
+for(x in person){
+  txt = txt + person[x];
+}
+```
 
 
 
+### while循环
+
+只要指定条件为true，循环就可以一直执行代码块
+
+```javascript
+while(i<5){
+  //只要变量小于5，循环一直进行
+}
+
+do{
+  //在检查条件是否为真之前，先执行一次代码
+}
+while(i<5);
+```
+
+
+
+### break和continue语句
+
+break语句跳出循环，continue用于跳过循环的一个迭代
+
+```javascript
+//break跳出switch()语句
+//break可以跳出循环
+for(i=0;i<10;i++){
+  if(i==3){break;}
+  x = x + "The number is " + i + "<br>";
+}//i等于3之后都没有
+
+//continue中断循环中的迭代，然后继续循环下一个迭代
+for(i=0;i<10;i++){
+  if(i==3){continue;}
+  x = x + "The number is " + i + "<br>";
+}//i等于3跳过了
+
+//label标签
+label:statements
+break labelname;//跳出有标签的代码块
+continue labelname;
+```
 
 
 
 
 ## 作用域
 
+作用域是可访问变量的集合，在JavaScript中，对象和函数同样也是变量
 
-1. `var message="hi";//局部变量` var操作符定义的变量将成为定义该变量的作用域中的局部变量，函数退出值被销毁。
-2. `message="hi";//全局变量` 省略var操作符，变量会变成全局变量，但不推荐使用
+```javascript
+//函数作用域，变量在函数内部声明，变量为局部作用域，只能在函数内部访问，执行完毕自动销毁
+function myFunction(){
+  var carName = "Volvo";//内部可以调用
+}//外部不能访问
+
+//全局变量，变量在函数外定义，网页中所有脚本和函数均可以使用
+var carName = "Volvo";//外部可以调用
+function myFunction(){
+  //内部可以调用
+}
+//如果变量在函数内没有声明，该变量为全局变量
+function myFunction(){
+  carName = "Volvo";
+}
+
+//变量的生命周期在它声明时初始化，局部变量在函数执行完毕后销毁，全局变量在页面关闭后销毁
+//函数参数只在函数内起作用，是局部变量
+```
 
 
 
 
+1. `message="hi";//全局变量` 省略var操作符，变量会变成全局变量，但不推荐使用
+2. 如果把值赋给尚未声明的变量，这会作为一个window属性，`carname="Volvo"`这将声明window的一个属性carname
+3. 在HTML中，全局变量是window对象，所有数据变量都属于window对象[runoob 作用域](https://www.runoob.com/js/js-scope.html)
+
+```javascript
+//这个东西搞不懂，以后慢慢琢磨
+日期2020-02-11
+
+//非严格模式下给未声明变量赋值创建的全局变量，是全局对象的可配置属性，可以删除。
+var var1 = 1; // 不可配置全局属性
+var2 = 2; // 没有使用 var 声明，可配置全局属性
+
+console.log(this.var1); // 1
+console.log(window.var1); // 1
+
+delete var1; // false 无法删除
+console.log(var1); //1
+
+delete var2; 
+console.log(delete var2); // true
+console.log(var2); // 已经删除 报错变量未定义
+```
 
 
 
@@ -360,7 +741,11 @@ var cars=["Saab","Volvo","BMW"];//简写
 
 
 
-## 函数表达式
+## 异常
+
+
+
+### Error对象
 
 
 
@@ -372,12 +757,67 @@ var cars=["Saab","Volvo","BMW"];//简写
 
 
 
+### window对象
+
+
+
+### Navigator对象
+
+
+
+### Screen对象
+
+
+
+### History对象
+
+
+
+### Location对象
+
+
+
+### 存储对象
+
+
+
+
+
 
 # DOM
 
 
 
+### Document对象
 
+
+
+### 元素对象
+
+
+
+### 属性对象
+
+
+
+### 事件对象
+
+
+
+### Console对象
+
+```javascript
+Console.log()//控制台输出一条信息
+Console.log()//控制台输出一条信息
+```
+
+
+
+### CSSStyleDeclaration对象
+
+
+
+### HTMLCollection对象
 
 
 
@@ -430,6 +870,12 @@ W3C:World Wide Web Consortium 万维网联盟
 
 
 # 链接
+
+[runoob](https://www.runoob.com/js/js-tutorial.html)
+
+[runoob js参考手册](https://www.runoob.com/jsref/jsref-tutorial.html)
+
+
 
 
 
