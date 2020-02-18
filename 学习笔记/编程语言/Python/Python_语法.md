@@ -75,11 +75,15 @@ Interactive Editor for Python
 
 ## 命令行
 
-命令行解释
+**命令行交互式编程**
+
+略，用处不大
+
+检测一个包是否成功安装时，import引入一下
 
 
 
-脚本文件
+**脚本文件**
 
 ```python
 #!/usr/bin/python3
@@ -88,6 +92,8 @@ print("Hello World!")
 ```
 ```bash
 $ python3 hello.py #执行脚本
+$ chmod +x hello.py #授予权限
+$ ./hello.py #执行脚本
 ```
 
 命令行参数
@@ -164,31 +170,159 @@ total = ['item_one', 'item_two', 'item_three',
 
 ## 数据类型
 
+可以使用del语句删除一些数字对象的引用
+
+```python
+del var, var1, var2
+```
+
+
+
 ### Number 数字
 
-int整数
+Python数字数据类型用于存储数值
 
-bool布尔值
+**int整数**
 
-float浮点数
+```python
+var a=10;
+var 
+```
 
-complex复数
+
+
+**bool布尔值**
+
+**float浮点数**
+
+**complex复数**
 
 ### String 字符串
 
+字符串转义字符
+
+字符串运算符
+
+字符串格式化
+
+Unicode字符串
+
 ### List 列表
+
+访问值
+
+更新值
+
+删除值
+
+列表截取与拼接
 
 ### Tuple 元组
 
-### Set 集合
+访问元组
+
+修改元组
+
+删除元组
+
+索引截取
+
+内置函数
 
 ### Dictionary 字典
 
+键值对
+
+访问修改删除
+
+### Set 集合
+
+
+
+
+
 ### 数据类型转换
+
+**检测数据类型**
+
+```python
+# type可以检测数据类型
+type(()) # <type 'tuple'>
+a = 5.5
+type(a) == type(3.3) # True
+
+#第二种检测数据类型的方法
+names = ["aaa","bbb"]
+isinstance(name, list) # True
+a = "ccc"
+isinstance(a, str) # 这里的String类型是str
+
+# 元组类型是tuple
+```
+
+
+
+
 
 ## 运算符
 
+算术，比较，赋值，逻辑，位运算，成员运算符，身份运算符
 
+```python
+# 算术运算符
++加法
+-减法
+*乘法
+/除法
+%取模
+**幂
+//取整数，向下取整数，舍掉小数（负数补齐小数）
+
+# 比较运算符
+==
+!=
+>
+<
+>=
+<=
+
+# 赋值运算符
+=
++=
+-=
+*=
+/=
+%=
+**=
+//=
+:=海象运算符（3.8版本新增）
+  
+# 位运算符
+&与
+|或
+^异或
+~取反
+<<左移
+>>右移
+
+# 逻辑运算符
+and与
+or或
+not非
+
+# 成员运算符
+in在指定序列中找到值返回True，否则返回False
+not in在指定序列中没有找到值返回True，否则返回False
+
+# 身份运算符
+is判断两个标识符是不是引用自同一个对象
+is not判断两个标识符是不是引用自不同的对象
+
+# 优先级
+
+```
+
+注意：python中没有自增自减运算符
 
 ## 语句
 
@@ -207,11 +341,64 @@ import sys; x = 'runoob'; sys.stdout.write(x + '\n')
 
 ### 条件语句
 
+```python
+# python中用elif代替了else if
+if condition_1:
+  statement_block_1
+elif condition_2:
+  statement_block_2
+else:
+  statement_block_3
+  
+# 使用冒号:
+# 使用缩进来划分语句块
+# python没有switch-case语句
+```
+
+
+
 ### 循环语句
+
+```python
+while condition:
+  statements
+# python中没有do while循环
+
+# while else在条件语句为false时执行的语句块
+while expr:
+  statement
+else:
+  additional_statement
+
+# for循环可以遍历任何序列的项目，列表或字符串
+for variable in sequence:
+  statements
+else:
+  statements
+
+# rang()函数生成数字序列0,1,2,3,4,5...
+for i in range(5):
+  print(i) # 循环5次，0,1,2,3,4
+range(5,9) # 指定区间 5,6,7,8
+range(0,10,3) # 指定增量 0,3,6,9
+a = ['Google','Baidu','Runoob','Taobao','QQ']
+for i in range(len(a)):
+  print(i, a[i]) # range()和len()结合使用
+  
+# break 和 continue
+break跳出循环
+continue进入下一次迭代
+
+# else字句，在列表穷尽或者条件false时执行，但是遇到break时不执行
+```
+
+### pass语句
+
+python pass是空语句，为了保持程序结构的完整性，不做任何事情，一般用做占位语句
 
 ### 迭代器与生成器
 
-
+[以后再看](https://www.runoob.com/python3/python3-iterator-generator.html)
 
 ## 函数
 

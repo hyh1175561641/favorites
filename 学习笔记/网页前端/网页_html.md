@@ -91,6 +91,7 @@
 <meta http-equiv="refresh" content="3"><!--每隔3秒刷新一次网页-->
 
 <link rel="stylesheet" type="text/css" href="styles.css"><!--链接样式表-->
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 ```
 
 

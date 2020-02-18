@@ -108,9 +108,7 @@
 
 
 
+# 附录：
 
-
-
-
-
+![VIM键盘图](img/vi-vim-cheat-sheet-sch.gif)
 
