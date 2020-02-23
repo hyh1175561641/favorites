@@ -779,7 +779,17 @@ console.log(var2); // 已经删除 报错变量未定义
 
 ### 存储对象
 
+[runoobHTML教程的存储内容](https://www.runoob.com/html/html5-webstorage.html)
 
+[还有HTML数据库](https://www.runoob.com/html/html5-web-sql.html)
+
+[HTML应用程序缓存](https://www.runoob.com/html/html5-app-cache.html)
+
+[web workers](https://www.runoob.com/html/html5-webworkers.html)
+
+[HTML服务器发送事件](https://www.runoob.com/html/html5-serversentevents.html)
+
+[HTMLwebsocket](https://www.runoob.com/html/html5-websocket.html)
 
 
 
@@ -825,9 +835,9 @@ Console.log()//控制台输出一条信息
 
 
 
+# 地理定位
 
-
-
+[runoob地理定位](https://www.runoob.com/html/html5-geolocation.html)
 
 # 对JavaScript的总结
 

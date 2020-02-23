@@ -51,6 +51,12 @@ Python3.0版本，常被称为Python3000，或简称Py3k。相当于Python的早
 
 ## 开发环境
 
+**Anconda**
+
+Anaconda包括Conda、Python以及一大堆安装好的工具包
+
+conda是一个开源的包、环境管理器，可以用于在同一个机器上安装不同版本的软件包及其依赖，并能够在不同的环境之间切换
+
 vim emacs sublime
 
 PyCharm

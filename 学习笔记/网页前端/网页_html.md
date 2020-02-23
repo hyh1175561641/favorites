@@ -410,17 +410,23 @@ body内容的组织结构，语义化标签
         width="宽度 px"
         height="高度 px"
         name="可以让链接target到框架里"
+        HTML5
         srcdoc="必需是有效的HTML语法，几个简短的HTML元素"
         sandbox="以后再看吧"
         seamless 浏览器支持的不多
         ></iframe>
 <!--src、sandbox和seamless常常一起用-->
+
+<!--示例-->
 <iframe src="demo_iframe.htm" name="iframe_a"></iframe>
 <a href="www.baidu.com" target="iframe_a">baidu.com</a>
 <!--点击链接时，在框架内打开了链接地址-->
 ```
 
 ## 图像
+
+svg和canvas到时候一起看，还有mathML数学公式，还有图片拖放
+
 ```html
 <img src="必须属性，图像的URL"
      alt="必须属性，图像无法显示时的替代文本"
@@ -628,6 +634,10 @@ demo_index.html demo.css
 ```
 
 
+
+### 特殊符号实体
+
+[](https://www.runoob.com/html/html-entities.html)
 
 
 

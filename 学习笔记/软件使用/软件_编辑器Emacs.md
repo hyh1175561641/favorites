@@ -44,3 +44,19 @@
 3.[一年内成为emacs高手](https://blog.csdn.net/redguardtoo/article/details/7222501)
 
 
+
+
+
+
+
+
+
+解决emacs自动产生备份文件的烦恼
+
+给  ~/.emacs 文件末尾添加两行代码
+
+```shell
+;; all backups goto ~/.backups instead in the current directory
+(setq backup-directory-alist (quote (("." . "~/.backups"))))
+```
+
