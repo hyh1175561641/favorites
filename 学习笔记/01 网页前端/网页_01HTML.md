@@ -89,6 +89,7 @@
 <meta name="description" content="Free Web tutorials on HTML and CSS"><!--定义页面描述-->
 <meta name="author" content="Hege Refsnes"><!--定义页面作者-->
 <meta http-equiv="refresh" content="3"><!--每隔3秒刷新一次网页-->
+<meta http-equiv="refresh" content="0;url=http://www.baidu.com">
 
 <link rel="stylesheet" type="text/css" href="styles.css"><!--链接样式表-->
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
