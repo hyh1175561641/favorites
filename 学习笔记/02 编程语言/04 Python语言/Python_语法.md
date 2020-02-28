@@ -47,6 +47,11 @@ Python3.0版本，常被称为Python3000，或简称Py3k。相当于Python的早
 
 配置环境变量
 
+```
+安装模块
+python3 -m pip install xxx
+```
+
 
 
 ## 开发环境
@@ -118,6 +123,71 @@ file #执行给定文件
 ```
 
 [命令行参数](https://www.runoob.com/python3/python3-command-line-arguments.html)
+
+```
+$ python3 --help
+usage: /usr/local/Cellar/python/3.7.6_1/Frameworks/Python.framework/Versions/3.7/Resources/Python.app/Contents/MacOS/Python [option] ... [-c cmd | -m mod | file | -] [arg] ...
+Options and arguments (and corresponding environment variables):
+-b     : issue warnings about str(bytes_instance), str(bytearray_instance)
+         and comparing bytes/bytearray with str. (-bb: issue errors)
+-B     : don't write .pyc files on import; also PYTHONDONTWRITEBYTECODE=x
+-c cmd : program passed in as string (terminates option list)
+-d     : debug output from parser; also PYTHONDEBUG=x
+-E     : ignore PYTHON* environment variables (such as PYTHONPATH)
+-h     : print this help message and exit (also --help)
+-i     : inspect interactively after running script; forces a prompt even
+         if stdin does not appear to be a terminal; also PYTHONINSPECT=x
+-I     : isolate Python from the user's environment (implies -E and -s)
+-m mod : run library module as a script (terminates option list)
+-O     : remove assert and __debug__-dependent statements; add .opt-1 before
+         .pyc extension; also PYTHONOPTIMIZE=x
+-OO    : do -O changes and also discard docstrings; add .opt-2 before
+         .pyc extension
+-q     : don't print version and copyright messages on interactive startup
+-s     : don't add user site directory to sys.path; also PYTHONNOUSERSITE
+-S     : don't imply 'import site' on initialization
+-u     : force the stdout and stderr streams to be unbuffered;
+         this option has no effect on stdin; also PYTHONUNBUFFERED=x
+-v     : verbose (trace import statements); also PYTHONVERBOSE=x
+         can be supplied multiple times to increase verbosity
+-V     : print the Python version number and exit (also --version)
+         when given twice, print more information about the build
+-W arg : warning control; arg is action:message:category:module:lineno
+         also PYTHONWARNINGS=arg
+-x     : skip first line of source, allowing use of non-Unix forms of #!cmd
+-X opt : set implementation-specific option
+--check-hash-based-pycs always|default|never:
+    control how Python invalidates hash-based .pyc files
+file   : program read from script file
+-      : program read from stdin (default; interactive mode if a tty)
+arg ...: arguments passed to program in sys.argv[1:]
+
+Other environment variables:
+PYTHONSTARTUP: file executed on interactive startup (no default)
+PYTHONPATH   : ':'-separated list of directories prefixed to the
+               default module search path.  The result is sys.path.
+PYTHONHOME   : alternate <prefix> directory (or <prefix>:<exec_prefix>).
+               The default module search path uses <prefix>/lib/pythonX.X.
+PYTHONCASEOK : ignore case in 'import' statements (Windows).
+PYTHONUTF8: if set to 1, enable the UTF-8 mode.
+PYTHONIOENCODING: Encoding[:errors] used for stdin/stdout/stderr.
+PYTHONFAULTHANDLER: dump the Python traceback on fatal errors.
+PYTHONHASHSEED: if this variable is set to 'random', a random value is used
+   to seed the hashes of str, bytes and datetime objects.  It can also be
+   set to an integer in the range [0,4294967295] to get hash values with a
+   predictable seed.
+PYTHONMALLOC: set the Python memory allocators and/or install debug hooks
+   on Python memory allocators. Use PYTHONMALLOC=debug to install debug
+   hooks.
+PYTHONCOERCECLOCALE: if this variable is set to 0, it disables the locale
+   coercion behavior. Use PYTHONCOERCECLOCALE=warn to request display of
+   locale coercion and locale compatibility warnings on stderr.
+PYTHONBREAKPOINT: if this variable is set to 0, it disables the default
+   debugger. It can be set to the callable of your debugger of choice.
+PYTHONDEVMODE: enable the development mode.
+```
+
+
 
 ## 规则
 
@@ -195,13 +265,21 @@ var a=10;
 var 
 ```
 
-
-
 **bool布尔值**
 
 **float浮点数**
 
 **complex复数**
+
+**十六进制八进制二进制**
+
+```
+0xAF # 175
+010 # 8
+0b1011010010 # 722
+```
+
+
 
 ### String 字符串
 
@@ -279,10 +357,19 @@ isinstance(a, str) # 这里的String类型是str
 +加法
 -减法
 *乘法
-/除法
-%取模
 **幂
-//取整数，向下取整数，舍掉小数（负数补齐小数）
+/除法
+//取整数
+%取模
+# 例子：取模将向下园整
+ 10% 3  #  1
+ 10%-3  # -2
+-10% 3  #  2
+-10%-3  # -1
+ 10// 3  #  3
+ 10//-3  # -3
+-10// 3  #  3
+-10//-3  # -3
 
 # 比较运算符
 ==
@@ -418,11 +505,17 @@ python pass是空语句，为了保持程序结构的完整性，不做任何事
 
 ### 参数
 
+形参：
+
+实参：
+
 ### 返回值
 
 
 
 ### 内置函数
+
+**换行输出**
 
 ```python
 # print默认输出是换行的，如果要实现不换行需要在变量末尾加上 end=""：
@@ -446,6 +539,24 @@ b
 ---------
 a b
 ```
+
+
+
+**输入输出**
+
+```python
+input("提示信息")
+```
+
+**数学函数**
+
+```python
+abs(-10)  # 绝对值
+pow(2,3)  # 幂函数，2的3次方8
+round(2/3)# 把小数化为整数，四舍五入
+```
+
+
 
 
 
@@ -503,16 +614,7 @@ from sys import argv,path
 
 
 
-
-
-
-
-
-
-
-# 标准库
-
-# 第三方模块
+# 标准库模块
 
 
 
@@ -584,3 +686,12 @@ JSON
 
 [优秀博客 - 简书](https://www.jianshu.com/p/5d7366ac16ec) 
 
+
+
+[Documentation中文文档](https://docs.python.org/zh-cn/3/index.html)
+
+[Tutorial中文入门教程](https://docs.python.org/zh-cn/3/tutorial/index.html)
+
+[Library中文标准库](https://docs.python.org/zh-cn/3/library/index.html)
+
+[Reference中文语言参考](https://docs.python.org/zh-cn/3/reference/index.html)
