@@ -125,10 +125,6 @@ JavaScript是脚本语言，浏览器读取代码时，逐行地执行脚本代�
 
 - 修改变量值的同时也可以改变值的类型，但是不推荐改变值的类型。
 
-**操作符**
-
-算术运算符。
-
 **初始化多个变量**
 
 初始化多个变量，用逗号分开：
@@ -148,9 +144,6 @@ function doSomething(){
 }
 //严格模式下，JavaScript的执行结果会有很大不同
 ```
-
-**语句**
-以分号结尾
 
 **关键字**
 
@@ -182,7 +175,7 @@ typeof操作符检测给定变量的数据类型，返回某个字符串：
 3. 调用typeof null会返回"object"，因为特殊值null被认为是一个空的对象引用。
 
 ```javascript
-typeof "John"// 返回 string 
+typeof "John"// 返回 string
 typeof 3.14// 返回 number
 typeof NaN// 返回 number
 typeof false// 返回 boolean
@@ -202,15 +195,24 @@ undefined是一个没有设置值的变量
 
 未初始化的变量保存值`undefined`
 
-声明了变量，但是未赋值
-
 任何变量都可以通过设置值为undefined来清空
+
+一个不存在的变量，变量名拼写错误也是undefined
+
+```javascript
+//未声明的变量可以typeof，但不可以使用
+var age;//声明但是未初始化
+alert(age);//undefined
+alert(ageee);//产生错误
+typeof age;//undefined
+typeof ageee;//undefined
+```
 
 
 
 ### Null
 
-null是一个只有一个值的特殊类型，表示“什么都没有”，表示一个空对象引用。
+null是一个只有一个值的特殊类型，表示“什么都没有”，表示一个空对象引用（空对象指针）。
 
 ```javascript
 //null和undefined的值相等，但类型不相等
@@ -220,24 +222,83 @@ null === undefined //false
 null == undefined //true
 ```
 
-
+如果定义的变量将来用于保存对象，那么最好初始化为null
 
 
 
 ### boolean布尔值
 
-布尔类型只能有两个值：true或false
+布尔类型只能有两个值：true或false。都是小写
 
+Boolean()函数，可以将任何数据类型转换为Boolean值
+
+各种类型的值转换为Boolean值，true和false
+
+|Boolean|ture|false|
+|----|----|----|
+|String|任何非空字符串|空字符串|
+|Number|任何非零数字值（包括无穷大）|0和NaN|
+|Object|任何对象|null|
+|Undefined|n/a|undefined|
+
+n/a(或N/A)是not applicable的缩写，意思是”不适用“
 
 
 ### number数值
 
-数字可以带小数点，极大或极小的数字可以通过科学计数法书写
+**整数**
 
 ```javascript
-var x1=34;
-var x2=34.00;
-var y=123e5;//12300000
+var intNum=34;//十进制
+var octalNum=070;//八进制
+var octalNum1=079;//如果超出0-7，解析为十进制79
+var x3=0xA;//十六进制
+```
+
+八进制在严格模式下是无效的
+
+进行算术计算时，八进制和十六进制表示的数值都转换成十进制数值
+
+**小数**
+
+```javascript
+var floatNum = 34.00;
+var floatNum = 123e5;//12300000
+```
+
+浮点数值的最高精度是17位小数
+
+小数采用的是基于IEEE754方案
+
+**数值范围**
+
+-Infinity负无穷
+
+Infinity正无穷
+
+**NaN**
+
+NaN，即非数值（Not a Number）是一个特殊的值，
+
+**Number对象**
+
+```javascript
+对象
+constructor//返回对创建此对象的Number函数的引用
+MAX_VALUE//可表示的最大的数
+MIN_VALUE//可表示的最小的数
+NEGATIVE_INFINITY//负无穷大，溢出时返回该值
+POSITIVE_INFINITY//正无穷大，溢出时返回该值
+NaN//非数字值
+prototype//允许您可以向对象添加属性和方法
+
+方法
+isFinite()//检测指定参数是否为无穷大
+toExponential()//把对象的值转换为指数计数法
+toFixed()//把数字转换为字符串，结果的小数点后有指定位的数字
+toPrecision()//把数字格式化为指定的长度
+toString()//把数字转化为字符串，使用指定的基数
+valueOf()//返回一个Number对象的基本数字值
 ```
 
 

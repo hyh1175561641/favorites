@@ -107,7 +107,7 @@ $ chmod +x hello.py #授予权限
 $ ./hello.py #执行脚本
 ```
 
-命令行参数
+**命令行参数**
 
 ```bash
 $ python3
@@ -196,6 +196,7 @@ PYTHONDEVMODE: enable the development mode.
 - 区分大小写
 - 第一个字符是字母表中的字母或下划线_
 - 其他部分字符是由字母、数字和下划线组成
+- 变量名采用C风格，用下划线隔开不同的单词
 
 **保留字**
 

@@ -525,6 +525,12 @@ Content-Length主体的长度
 
 guides 指南
 
+redirect 重新寄送 再直接的 在直接询问 重定向
+
+handler 处理者 管理者 处理程序
+
+clipper 大剪刀 剪削者 理发剪 斩波器 截波器 限制器
+
 
 
 # 链接
