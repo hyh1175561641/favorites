@@ -98,6 +98,7 @@ Interactive Editor for Python
 
 ```python
 #!/usr/bin/python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-  指定编码
 print("Hello World!")
 ```
@@ -282,7 +283,89 @@ var
 
 
 
+
+
+**复合数据类型**
+
+Python支持一种数据结构的基本概念，名为容器(container)。容器基本上就是可包含其 他对象的对象。
+
+两种主要的容器是序列(如列表和元组)和映射(如字典)。在序列中， 每个元素都有编号，而在映射中，每个元素都有名称(也叫键)。 有一种既不是序列也不是映射的容器，它就是集合(set) 。
+
+**Sequence序列**
+
+python中有三种序列，列表元组字符串
+
+```python
+# 通用序列操作，包括索引、切片、相加、相乘、成员资格检查。另外，python还提供了一些内置函数，可用于确定序列的长度以及找出序列中最大和最小元素
+# 索引，序列的编号从0开始递增，取负值时从右边开始取值
+greeting = 'Hello'
+greeting[0] #'H'
+greeting[-1] # 'o'
+'Hello'[1] # 'e' 可以直接对字符串字面量进行操作
+
+>>> fourth = input('Year: ')[3]
+Year: 2005
+>>> fourth
+'5' # 可以直接对函数的返回值进行操作
+```
+
+```python
+# 切片，访问特定范围内的元素，使用两个索引，用冒号分隔
+tag = '<a href="http://www.python.org">Python web site</a>'
+tag[9:30] # 'http://www.python.org'
+tag[32:-4] # 'Python web site'
+
+numbers = [1,2,3,4,5,6,7,8,9,10]
+numbers[3:6] # [4,5,6]
+numbers[0:1] # [1]  第一个元素包含在内，第二个不包含
+numbers[7:10] # [8,9,10] 索引10并不存在，但是要这样写
+numbers[-3:0] # [] 如果第一个索引在第二个的后面，则空
+numbers[-3:] # [8,9,10] 省略第二个索引到最后
+numbers[:3] # [1,2,3] 省略第一个索引从开始到索引
+numbers[:] # [1,...,10] 复制整个索引两个都省略
+
+numbers[0:10:1] # [1,...,10] 步长是1
+numbers[0:10:2] # [1,3,5,7,9] 步长是2
+numbers[::4] # [1,5,9] 步长是4
+numbers[8:3:-1] # [9,8,7,6,5] 步长为负数，从右向左提取元素
+numbers[10:0:-2] # [10,8,6,4,2]
+numbers[0:10:-2] # []
+numbers[::-2] # [10,8,6,4,2]
+numbers[5::-2] # [6,4,2] 起点索引是5，逐步减2
+numbers[:5:-2] # [10,8] 终点索引是5，逐步减2
+```
+
+```python
+# 序列相加
+[1,2,3] + [4,5,6] # [1,2,3,4,5,6]
+'Hello,' + 'World!' # 'Hello,World!'
+[1,2,3] + 'Hello' # 错误，不能拼接不同类型的序列
+
+# 乘法
+'python' * 5 # 'pythonpythonpythonpythonpython'
+[42] * 10 # [42,42,42,42,42,42,42,42,42,42]
+[None] * 10 # [None,...,None] 包含10个元素的列表
+
+# 成员资格，检查特定的值是否包含在序列中，可使用运算符in
+'w' in 'rw' # True
+'x' in 'rw' # False
+'mlh' in ['mlh','foo','bar'] # True 
+'$$$' in '$$$ Get rich now!!! $$$'# True 不仅仅是字符，还能检查子字符串
+
+# 内置函数 长度 最小值 最大值
+numbers = [100,34,678]
+len(numbers) # 3
+max(numbers) # 678
+min(numbers) # 34
+max(2,3) # 3 可以直接将数作为实参
+min(9,3,2,5) # 2
+```
+
+
+
 ### String 字符串
+
+
 
 字符串转义字符
 
@@ -292,17 +375,85 @@ var
 
 Unicode字符串
 
+
+
+```python
+# 如果想像修改列表那样修改字符串，可使用list()
+list('Hello') # ['H','e','l','l','o']
+# 如果像将字符列表转换为字符串
+''.join(somelist)
+```
+
+
+
+
+
 ### List 列表
 
-访问值
+列表可以修改，而元组不可以
 
-更新值
+索引 切片 步长 相加 相乘 成员资格 方法见**容器**和**序列**
 
-删除值
+```python
+# 修改元素的值
+x = [1,1,1]
+x[1] = 2 # [1,2,1]
 
-列表截取与拼接
+# 删除元素，del语句还可以删除字典和变量
+names = ['Alice','Beth','Cecil','Dee-Dee','Earl']
+del names[2] # ['Alice','Beth','Dee-Dee','Earl']
+
+# 给切片赋值
+name = list('Prel') # 覆盖切片
+name[2:] = list('ar') # ['P','e','a','r']
+name = list('Prel') # 长度不同的序列
+name[1:] =list('ython')#['P','y','t','h','o','n']
+numbers = [1,5]
+numbers[1,5] = [2,3,4] #[1,2,3,4,5] 相当于插入新元素
+numbers[1:4] = [] # [1,5] 相当于删除元素
+del numbers[1:4] # 与上一句等效
+```
+
+
+
+```python
+# append直接修改旧列表，不会返回修改后的新列表
+lst = [1,2,3]
+lst.append(4) # [1,2,3,4] 末尾添加对象
+
+# clear就地清空列表内容
+lst = [1,2,3]
+lst.clear() # [] 类似于lst[:] =[]
+
+# copy复制列表
+a = [1,2,3]
+b = a # 直接复制只是关联另一个名称到列表
+b[1] = 4 # [1,4,3] 
+
+
+
+
+```
+
+
+
+
+
+47.104.155.140
+
+
+
+
+
+
 
 ### Tuple 元组
+
+当元组用作字典键的时候，不能用列表代替
+
+列表可以修改，而元组不可以
+
+
 
 访问元组
 
@@ -543,21 +694,88 @@ a b
 
 
 
-**输入输出**
+**内置函数列表**
 
 ```python
-input("提示信息")
+# 数学函数
+abs(-10) # 绝对值
+pow(2,3) # 幂函数，2的3次方 8
+round(2/3) # 把小数化为整数，四舍五入
+
+# 类型转换，类型检测，长度检测
+type() # 类型检测
+bool() # 布尔
+int() # 整形
+float() # 浮点
+complex() # 复数
+str() # 字符串
+list() # 列表
+tuple() # 元组
+dict() # 字典
+set() # 集合
+
+len() # 长度
+max() # 最大值
+min() # 最小值
+
+# 输入输出，文件IO
+print() # 输出字符串
+input("提示信息") # 输入字符串
+open() #打开文件
+
+
+# 其他
+all
+any
+ascii
+bin
+breakpoint
+bytearray
+bytes
+callable
+chr
+classmethod
+compile
+delattr
+dir
+divmod
+enumerate
+eval
+exec
+filter
+format
+frozenset
+getattr
+globals
+hasattr
+hash
+help
+hex
+id
+isinstance
+issubclass
+iter
+locals
+map
+memoryview
+next
+object
+oct
+ord
+property
+range
+repr
+reversed
+setattr
+slice
+sorted
+staticmethod
+sum
+super
+vars
+zip
+__import__
 ```
-
-**数学函数**
-
-```python
-abs(-10)  # 绝对值
-pow(2,3)  # 幂函数，2的3次方8
-round(2/3)# 把小数化为整数，四舍五入
-```
-
-
 
 
 
@@ -565,19 +783,25 @@ round(2/3)# 把小数化为整数，四舍五入
 
 ## 模块
 
-import
+**引入模块**
 
-from import
+```python
+# 在python中用 import 或者 from...import 来导入相应的模块
+# 将整个模块(somemodule)导入
+import somemodule
 
-在 python 用 **import** 或者 **from...import** 来导入相应的模块。
+# 从某个模块中导入某个函数
+from somemodule import somefunction
 
-将整个模块(somemodule)导入，格式为： **import somemodule**
+# 从某个模块中导入多个函数
+from somemodule import firstfunc, secondfunc, thirdfunc
 
-从某个模块中导入某个函数,格式为： **from somemodule import somefunction**
+# 将某个模块中的全部函数导入
+from somemodule import *
+```
 
-从某个模块中导入多个函数,格式为： **from somemodule import firstfunc, secondfunc, thirdfunc**
 
-将某个模块中的全部函数导入，格式为： **from somemodule import \***
+
 
 ```python
 # 导入sys模块

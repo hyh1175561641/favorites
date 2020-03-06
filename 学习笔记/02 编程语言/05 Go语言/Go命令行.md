@@ -104,6 +104,16 @@ go build
 ```
 编译源文件，生成一个hello的二进制文件
 go build hello.go
+
+如果$GOPATH=/.../go/
+/.../go/src/aaa/bbb/ccc/g.go
+go build aaa/bbb/ccc
+可以直接编译源代码，不需要指定
+无论pwd在哪一条路径，都能将编译好的二进制文件放在pwd下
+
+编译时指定二进制文件的路径和名字
+go build -o bin/hello aaa/bbb/ccc
+
 ```
 
 
@@ -154,6 +164,12 @@ go get
 ## compile and install packages and dependencies
 
 go install
+
+用法和build类似
+
+自动创建bin目录和pkg目录
+
+
 
 
 ## list packages or modules
