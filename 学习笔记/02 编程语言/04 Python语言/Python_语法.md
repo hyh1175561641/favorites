@@ -365,15 +365,160 @@ min(9,3,2,5) # 2
 
 ### String 字符串
 
+标准序列操作（索引 切片 乘法 成员资格检查 长度 最小值 最大值）都适用于字符串
+
+字符串还有拆分 合并 查找等功能
+
+```python
+# 字符串是不可变的，不能元素赋值和切片赋值
+website = 'http://www.python.org'
+website[-3:] = 'com' # 错误
+
+# 字符串格式，类C风格的printf
+# 可以使用单个值(如字符串或数字)，可使用元组(如果要设置多个值的格式)，还可使用字典，但最常用的是元组
+format = "Hello, %s. %s enough for ya?"
+values = ('world', 'Hot')
+format % values#'Hello, world. Hot enough for ya?'
+
+# 模板字符串，类似于UNIX shell的格式
+# 包含等号的参数称为关键字参数
+from string import Template
+tmpl = Template("Hello, $who! $what enough for ya?") tmpl.substitute(who="Mars", what="Dusty")
+  #'Hello, Mars! Dusty enough for ya?'
+
+# 字符串方法format，用花括号括起替换字段，其中包含名称
+"{}, {} and {}".format("first", "second", "third") 
+  # 'first, second and third'
+"{0}, {1} and {2}".format("first", "second", "third")
+  # 'first, second and third' 把索引当做名称
+"{3} {0} {2} {1} {3} {0}".format("be","not","or","to") 
+  # 'to be or not to be' 索引不需要排列
+from math import pi
+"{name} is approximately {value:.2f}.".format(value=pi, name="π")
+  # 'π is approximately 3.14.' 命名字段
+"{name} is approximately {value}.".format(value=pi, name="π")
+  # 'π is approximately 3.141592653589793.' 上一个例子，不指定2f
 
 
-字符串转义字符
 
-字符串运算符
 
-字符串格式化
+# 啊啊
 
-Unicode字符串
+
+
+```
+
+```python
+# 字符串方法
+
+# capitalize
+# casefold
+# center 在两边添加填充字符让字符居中
+"The Middle by Jimmy Eat World".center(39)
+  # '     The Middle by Jimmy Eat World     '
+"The Middle by Jimmy Eat World".center(39, "*")
+  # '*****The Middle by Jimmy Eat World*****'
+
+# count
+# encode
+# endswith
+# expandtabs
+# find 在字符串中查找子串，如果找到则返回索引，没找到返回-1
+# 注意：字符串返回0是找到了字符串，所以不能用作布尔判断
+'With a moo-moo here, and a moo-moo there'.find('moo') # 7
+title = "Monty Python's Flying Circus"
+title.find('Monty') # 0
+title.find('Python') # 6
+title.find('Flying') # 15
+title.find('Zirquss') # -1
+subject = '$$$ Get rich now!!! $$$'
+subject.find('$$$') # 0
+subject.find('$$$', 1) # 只指定了起点 20
+subject.find('!!!') # 16
+subject.find('!!!', 0, 16) # -1 同时指定了起点和终点
+  # 起点值和终点值，包含起点，但不包含终点
+
+# format
+# format_map
+# index
+
+# 判断字符串是否满足特定条件
+# isalnum
+# isalpha
+# isdecimal
+# isdight
+# isidentifier
+# islower
+# isnumeric
+# isprintable
+# isspace
+# istitle
+# isupper
+
+
+# join 合并序列的元素
+seq = [1, 2, 3, 4, 5]
+sep = '+'
+sep.join(seq) # 错误，不能合并整形列表
+seq = ['1', '2', '3', '4', '5']
+sep.join(seq) # '1+2+3+4+5' 合并一个字符串列表
+dirs = '', 'usr', 'bin', 'env'
+'/'.join(dirs) # '/usr/bin/env'
+print('C:' + '\\'.join(dirs)) # C:\usr\bin\env双斜杠是转义字符
+
+
+
+
+# ljust
+# lower 返回字符串的小写版本
+'Trondheim Hammer Dance'.lower()
+  # 'trondheim hammer dance'
+
+
+# lstrip
+# str.maketrans
+# partition
+# replace 将指定字符串替换为另一个字符串，并返回结果
+'This is a test'.replace('is', 'eez')
+  # 'Theez eez a test'
+
+# rfind
+# rindex
+# rjust
+# rpartition
+# rstrip
+# rsplit
+# split 将字符拆分成序列，作用与join相反
+# 如果没有指定分隔符，默认在单个或多个空白字符处进行拆分
+'1+2+3+4+5'.split('+') #['1', '2', '3', '4', '5']
+'/usr/bin/env'.split('/') #['','usr','bin','env']
+'Using the default'.split() #['Using','the','default']
+
+# splitlines
+# startswith
+# strip 将开头和末尾的空白删除，并返回删除后的结果
+'   internal whitespace is kept   '.strip() 
+  #'internal whitespace is kept'
+'*** SPAM * for * everyone!!! ***'.strip(' *!')
+  #'SPAM * for * everyone'指定删除的字符，开头和结尾
+
+# swapcase
+# title 词首大写
+"that's all folks".title() # "That'S All, Folks"
+
+# translate 单字符替换，replace是多字符替换，效率更高
+# 转换之前需要转换表
+table = str.maketrans('cs', 'kz')
+  # Unicode码点之间的映射，c变成k，s变成z
+'this is an incredible test'.translate(table)
+  #'thiz iz an inkredible tezt'
+table = str.maketrans('cs', 'kz', ' ') #将指定字母删除
+'this is an incredible test'.translate(table)
+  #'thizizaninkredibletezt'
+
+# upper
+# zfill
+```
 
 
 
@@ -428,18 +573,81 @@ lst.clear() # [] 类似于lst[:] =[]
 # copy复制列表
 a = [1,2,3]
 b = a # 直接复制只是关联另一个名称到列表
-b[1] = 4 # [1,4,3] 
+b[1] = 4 # [1,4,3]
+a = [1,2,3]
+b = a.copy() # 复制a的副本
 
+# count计算指定元素在列表中出现了多少次
+['to','be','or','not','to','be'].count('to') # 2
+x = [[1, 2], 1, 1, [2, 1, [1, 2]]]
+x.count(1) # 2
+x.count([1, 2]) # 1
 
+# extend让多个值附加到列表末尾
+a = [1,2,3]
+b = [4,5,6]
+a.extend(b) # [1,2,3,4,5,6] 这里的a列表被修改了
+a + b # [1,2,3,4,5,6] 拼接 这里的列表没有被修改
+a = a + b # 这个能起到相同效果，但是效率比extend低
+a[len(a):] = b # 切片赋值 这个也可行，但是可读性低
 
+# index查找指定值第一次出现的索引
+k=['We','are','the','knights','who','say','ni'] 
+k.index('who') # 4
+k[4] # 'who'
 
+# insert 将一个对象插入列表
+numbers = [1,2,3,5,6,7]
+numbers.insert(3,'four')#[1,2,3,'four',5,6,7]
+numbers[3:3] = ['four'] # 同上,可读性差
+numbers[3:3]='four'#[1,2,3,'f','o','u','r',4,5,6]
+
+# pop 从末尾删除一个元素，这是唯一既修改列表又返回一个非None值的列表方法
+# 使用pop与append可以实现栈(stack)(后进先出LIFO)
+# 如果想创建(先进先出FIFO)可以使用insert(0,...)代替append，或者使用pop(0)代替pop()
+x = [1, 2, 3]
+x.pop() # 3
+x # [1, 2]
+x.pop(0) # 1
+x # [2]
+
+# remove 删除第一个指定元素，remove是就地修改且不返回值的方法之一
+x = ['to','be','or','not','to','be']
+x.remove('be')
+x # ['to','or','not','to','be']
+
+# reverse 按相反的顺序排列列表中的元素，修改列表但不返回任何值
+x = [1, 2, 3]
+x.reverse() # [3, 2, 1]
+# 如果要按相反的顺序迭代序列，可使用函数reversed。这个函数不返回列表，而是返回一个迭代器。你可使用list将返回的对象转换为列表
+x = [1, 2, 3]
+list(reversed(x)) # [3, 2, 1]
+
+# sort 给列表排序，修改原来的列表，不返回值，不返回副本
+x = [4, 6, 2, 1, 7, 9]
+x.sort()
+x # [1, 2, 4, 6, 7, 9]
+# 副本排序
+x = [4, 6, 2, 1, 7, 9]
+y = x.copy()
+y.sort()
+# 函数sorted()，返回副本
+x = [4, 6, 2, 1, 7, 9]
+y = sorted(x)
+x # [4, 6, 2, 1, 7, 9]
+y # [1, 2, 4, 6, 7, 9]
+# 可用于任何可迭代的对象，总是返回一个列表
+sorted('Python') # ['P','h','n','o','t','y']
+# 可以给sort指定不同的参数，key和reverse
+
+# 数据结构
 ```
 
 
 
 
 
-47.104.155.140
+
 
 
 
@@ -453,23 +661,97 @@ b[1] = 4 # [1,4,3]
 
 列表可以修改，而元组不可以
 
+有些内置函数和方法返回元组
+
+```python
+# 将一些值用逗号隔开，就能创建元组
+1,2,3 # (1,2,3)
+# 但是一般使用括号括起来
+(1,2,3) #  (1,2,3)
+# 两个括号的空元祖
+()
+# 一个值的元组，需要一个逗号
+42, # (42,)
+3 * (40 + 2) # 126
+3 * (40 + 2,) # (42,42,42)
+# 元素的索引和切片
+x = 1,2,3
+x[1] # 2
+x[0:2] # (1,2)
+
+```
 
 
-访问元组
-
-修改元组
-
-删除元组
-
-索引截取
-
-内置函数
 
 ### Dictionary 字典
 
-键值对
+字典这种数据结构映射 (mapping)，字典可以快速翻到任何一页
 
-访问修改删除
+字典由键及其相应的值组成，这种键-值对称为项 (item)
+
+键可以是任何不变的类型 如整数、字符串或元组，键必须是独一无二的。
+
+```python
+# 字典操作方法
+# 字典的创建
+phonebook = {'Alice':'2341','Beth':'9102'}
+{} # 空字典
+
+# 函数dict
+items = [('name','Gumby'),('age',42)]#键值对序列
+d = dict(item) # {'age':42,'name':'Gumby'}
+d = dict(name='Gumbt',age=42)#关键字参数
+
+# len(d)返回字典d包含的项（键值对数量）
+# d[k]返回与键k相关联的值
+# d[k]=v 将值v关联到键k
+# del d[k] 删除键为k的项
+# k in d  检查字典d是否包含键为k的项，查找的是键，不是值
+# v in l  value和list 查找的是值，不是索引
+# 相比于检查列表是否包含指定的值，检查字典是否包含指定的键的效率更高。数据结构越大，效率差距就越大
+```
+
+
+
+```python
+# 字典方法
+
+# clear 删除所有字典项，就地执行，不返回值
+d = {'age'=42,'name'='Gumby'}
+d.clear()
+d # {}
+
+# copy 返回一个新字典，这个执行的是浅复制
+x={'username':'admin','machines':['foo','bar','baz']}
+y = x.copy()
+y['username'] = 'mlh'
+y['machines'].remove('bar')
+y #{'username': 'mlh', 'machines': ['foo', 'baz']}
+x #{'username': 'admin', 'machines': ['foo', 'baz']}
+# 深复制的方法
+from copy import deepcopy
+d = {'names':['Alfred','Bertrand']}
+c = d.copy()
+dc = deepcopy(d)
+d['name'].append('Clive')
+c # {'names':['Alfred','Bertrand','Clive']}
+dc # {'names':['Alfred','Bertrand']}
+
+# fromkeys 指定多个键，对应的值是None
+
+
+# get
+# items
+# iterkeys
+# keys
+# pop
+# popitem
+# setdefault
+# update
+# values
+```
+
+
 
 ### Set 集合
 
@@ -702,7 +984,8 @@ abs(-10) # 绝对值
 pow(2,3) # 幂函数，2的3次方 8
 round(2/3) # 把小数化为整数，四舍五入
 
-# 类型转换，类型检测，长度检测
+# 类型转换，类型检测
+# list,tuple,str,dict根本就不是函数，而是一个类
 type() # 类型检测
 bool() # 布尔
 int() # 整形
@@ -714,6 +997,9 @@ tuple() # 元组
 dict() # 字典
 set() # 集合
 
+# 长度检测，最大值最小值
+sorted() # 排序，可用于任何序列，但总是返回一个列表
+reversed() # 反向迭代序列
 len() # 长度
 max() # 最大值
 min() # 最小值
@@ -727,7 +1013,7 @@ open() #打开文件
 # 其他
 all
 any
-ascii
+ascii # 创建指定对象的ASCII表示
 bin
 breakpoint
 bytearray
@@ -765,10 +1051,8 @@ ord
 property
 range
 repr
-reversed
 setattr
 slice
-sorted
 staticmethod
 sum
 super
@@ -905,6 +1189,8 @@ if __name__=="__main__":
 # 参考书目
 
 《Python基础教程》[挪]海特兰德 著 人民邮电出版社 ISBN 978-7115353528
+
+4.2.3看不懂
 
 [随书源码第二版](https://www.apress.com/cn/book/9781590599822)
 

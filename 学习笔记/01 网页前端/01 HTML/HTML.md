@@ -638,7 +638,7 @@ demo_index.html demo.css
 
 ### 特殊符号实体
 
-[](https://www.runoob.com/html/html-entities.html)
+[字符实体](https://www.runoob.com/html/html-entities.html)
 
 
 

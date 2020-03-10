@@ -19,7 +19,7 @@
 
 
 
-
+[toc]
 
 
 
@@ -547,7 +547,7 @@ clipper 大剪刀 剪削者 理发剪 斩波器 截波器 限制器
 
 # 参考书目
 
-《HTTP权威指南》[美]David Gourley   Brian Totty   Marjorie Sayer   Sailu Reddy   Anshu Aggarwal著 人民邮电出版社 ISBN 978-7115281487
+《HTTP权威指南》[美]David Gourley   Brian Totty   Marjorie Sayer   Sailu Reddy   Anshu Aggarwal著 人民邮电出版社 ISBN 978-7-115-28148-7
 
 [运行实例：Joe的五金商店](http://joes-hardware.com)
 
