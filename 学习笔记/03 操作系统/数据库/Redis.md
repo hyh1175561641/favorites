@@ -88,6 +88,8 @@ which redis-cli
 
 接下来使用redis-cli登录redis-server
 
+如果直接登录redis-cli则报错，Connection refused（），默认端口是6379，默认ip是本机
+
 redis-cli -p 7200 -h 127.0.0.1   如果修改了端口，则要指定端口
 
 光标变成127.0.0.1:7200>
@@ -131,13 +133,64 @@ $ redis-cli --help
 
 可以对字符串进行操作，对整数类型加减
 
+key-value (string/int/float)
+
+key是字符串
+
+```bash
+> set string1 yeyeye  #设置字符串
+OK
+> get string1  # 获取字符串
+"yeyeye"
+> set string2 4 # 设置整形
+OK
+> get string2 # 获取整形
+"4"
+> incr string2 # 整形自增1
+(integer) 5
+> get string2 # 获取整形
+"5"
+> decrby string2 2 # 整形减法
+(integer) 3
+> get string2 # 获取被减掉之后的值
+"3"
+```
+
+
+
+
+
 
 
 ## 列表List
 
+List集合是一个有序的列表
+
 一个序列集合且每个节点都包好了一个元素
 
 可以对序列两端推入、或弹出元素修剪，查找或移除元素
+
+列表分左右，（左边推入，右边弹出是队列）（左边推入和弹出是栈空间）
+
+```bash
+>lpush list1 12
+(integer) 1
+>
+
+>
+
+>
+
+>
+
+>
+
+
+```
+
+
+
+
 
 
 
@@ -187,7 +240,7 @@ $ redis-cli --help
 
 
 
-
+# php的拓展Redis
 
 
 
@@ -206,6 +259,36 @@ $ redis-cli --help
 # 集群
 
 
+
+
+
+
+
+
+
+
+
+
+
+# 单词
+
+
+
+
+
+
+
+
+
+
+
+refuse 拒绝
+
+refused 遭到拒绝的
+
+connection 连接，关系，人脉
+
+connection refused 连接被拒绝
 
 
 
