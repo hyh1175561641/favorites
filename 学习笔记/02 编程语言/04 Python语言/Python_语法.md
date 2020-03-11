@@ -503,7 +503,7 @@ print('C:' + '\\'.join(dirs)) # C:\usr\bin\env双斜杠是转义字符
   #'SPAM * for * everyone'指定删除的字符，开头和结尾
 
 # swapcase
-# title 词首大写
+# title 词首大写，另一种方法是String函数中的capwords
 "that's all folks".title() # "That'S All, Folks"
 
 # translate 单字符替换，replace是多字符替换，效率更高
@@ -702,6 +702,7 @@ items = [('name','Gumby'),('age',42)]#键值对序列
 d = dict(item) # {'age':42,'name':'Gumby'}
 d = dict(name='Gumbt',age=42)#关键字参数
 
+
 # len(d)返回字典d包含的项（键值对数量）
 # d[k]返回与键k相关联的值
 # d[k]=v 将值v关联到键k
@@ -738,17 +739,73 @@ c # {'names':['Alfred','Bertrand','Clive']}
 dc # {'names':['Alfred','Bertrand']}
 
 # fromkeys 指定多个键，对应的值是None
+{}.fromkeys(['name','age']) # {'age':None,'name':None}
+dict.fromkeys(['name','age']) # {'age':None,'name':None}
+dict.fromkeys(['name','age'],'(unknown)')
+  #{'age':'(unknown)','name':'(unknown)'}
 
+# get 给字典提供了宽松的环境，如果字典里没有这一项，不会引发错误
+d = {}
+print(d['name']) # 错误
+print(d.get('name')) # None
+d.get('name','N/A') # 'N/A' 指定值
+d['name'] = 'Eric'
+d.get('name') # 'Eric' 和普通的字典查找相同
 
-# get
-# items
+# items 返回一个包含所有字典项的列表，返回一个字典视图，可用于迭代
+d={'title':'Python Web Site','url':'http://www.python.org','spam':0}
+d.items() # dict_items([('url','http://www.python.org'),('spam',0),('title','Python Web Site')])
+it = d.items()
+len(it) # 3
+('spam',0) in it # True
+# 视图不是复制，始终反映底层字典的反应
+d['spam'] = 1
+('spam',0) in it # False
+d['spam'] = 0
+('spam',1) in it # True
+# 把字典项复制到列表中
+list(d.items()) # [('url','http://www.python.org'),('spam',0),('title','Python Web Site')]
+
 # iterkeys
-# keys
+# keys 返回一个字典视图，包含指定字典中的键
+d = {'age':42}
+d.keys() # dict_keys(['age'])
+type(d.keys()) # <class 'dict_keys'> # 字典视图
+
 # pop
-# popitem
-# setdefault
-# update
-# values
+d = {'x':1,'y':2}
+d.pop('x') # 1
+d # {'y':2}
+
+# popitem 随机弹出一个字典项，比上一个函数高效，因为这样无需先获取列表
+d={'url':'http://www.python.org','spam':0,'title':'Python Web Site'}
+d.popitem() # ('url', 'http://www.python.org')
+d # {'spam': 0, 'title': 'Python Web Site'}
+# 如果希望方法popitem以可预测的顺序弹出字典项，请参阅模块collections中的OrderedDict类
+
+# setdefault 如果有值则获取，如果没有则添加，默认的值是None
+d = {}
+d.setdefault('name','N/A') # 'N/A'
+d # {'name':'N/A'}
+d['name'] = 'Gumby'
+d.setdefault('name','N/A') # 'Gumby'
+d # {'name':'Gumby'}
+# 如果希望有用于整个字典的全局默认值，请参阅模块collections中的defaultdict类
+
+# update 使用一个字典中的项更新另一个字典
+# 可以像调用dict函数那样调用update，可向它提供一个映射{k:v}、一个由键-值对组成的序列(k,v)(或其他可迭代对象)或关键字参数k=v
+d = {'title': 'Python Web Site','url': 'http://www.python.org','changed': 'Mar 14 22:09:15 MET 2016'}
+x = {'title':'Python Language Website'}
+d.update(x)
+d # {'url':'http://www.python.org','changed':'Mar 14 22:09:15 MET 2016', 'title':'Python Language Website'}
+
+# values 返回一个字典值的字典视图，可能包含重复的值
+d = {}
+d[1] = 1
+d[2] = 2
+d[3] = 3
+d[4] = 1
+d.values() # dict_values([1, 2, 3, 1])
 ```
 
 
@@ -775,7 +832,9 @@ isinstance(name, list) # True
 a = "ccc"
 isinstance(a, str) # 这里的String类型是str
 
+# type返回的类型有以下几种
 # 元组类型是tuple
+# 字典视图类型
 ```
 
 
