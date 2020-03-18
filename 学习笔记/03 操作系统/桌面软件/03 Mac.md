@@ -87,6 +87,7 @@ cmd是梅花，opt或alt是小推车，ctrl是^，shift是凸箭头
 >按住cmd键可以多选项目
 >按住shift键选择连续的若干项目
 >cmd+a 全选各项
+cmd+shift+.> 显示隐藏文件（部分系统有效）
 
 编辑器
 >cmd+z撤回，x剪切，c复制，v粘贴 shift+cmd+z 重做

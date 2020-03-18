@@ -6,17 +6,6 @@
 
 
 
-**标记规范**
-
-```markdown
-
-# 标题（#）
-内容或简述（普通内容）
-​```
-代码（）
-​```
-```
-
 
 
 [toc]
@@ -27,9 +16,17 @@
 
 HTTP (Hypertext Transfer Protocol，超文本传输协议)是在万维网上进行通信时所使用的协议方案。HTTP是Web客户端与服务器交互文档和信息时所使用的协议
 
-
-
 HTTP的应用不仅仅是浏览Web内容，尤其是采用SOAP和XML-RPC这样的Web服务
+
+
+
+HTTP是无连接：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。
+
+HTTP是媒体独立：这意味着，只要客户端和服务器知道如何处理数据内容，任何类型的数据都可以通过HTTP发送
+
+HTTP是无状态：HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快
+
+
 
 
 
@@ -45,7 +42,7 @@ URL是因特网资源的标准化名称，是浏览器寻找信息是所需的�
 
 一个统一资源定位器URL用于定位万维网上的文档。第一部分是URL方案(scheme)，告知Web客户端怎样访问资源。第二部分是指服务器的位置，告知Web客户端资源位于何处。第三部分是资源路径，说明了请求的是服务器上的哪个特定的本地资源。
 
-Mailto , ftp, rtsp,ftp,smtp
+Mailto , ftp, rtsp,sftp,smtp,smb
 
 大多数URL方案都是建立在由这9个部分构成的通用格式上：
 
@@ -53,7 +50,7 @@ Mailto , ftp, rtsp,ftp,smtp
 
 - scheme方案-使用什么协议
 
-scheme定义因特网服务的类型，使用什么协议，方案组件必须以一个字母符号开始，与第一个冒号隔开，方案名与大小写无关。比如http https ftp file smtp mailto rtsp
+scheme定义因特网服务的类型，使用什么协议，方案组件必须以一个字母符号开始，与第一个冒号隔开，方案名与大小写无关。比如http https ftp file smtp mailto rtsp sftp
 
 - user用户
 
@@ -521,6 +518,30 @@ Content-Length主体的长度
 
 
 
+# Cookies
+
+某些网站为了辨别用户身份、进行session跟踪而储存在用户本地终端上的数据
+
+最新规范RFC6265
+
+实际是由服务器发送给客户端的特殊信息，这些信息以文本文件的方式存放在客户端，客户端每次向服务器发送请求的时候都会带上这些特殊的信息。服务器在接收到Cookie以后，会验证Cookie的信息，以此来辨别用户的身份
+
+# Session
+
+一个浏览器窗口从打开到关闭这个期间
+
+
+
+
+
+# HTTPS
+
+HTTPS 全称(Hyper Text Transfer Protocol over Secure Socket Layer或Hypertext Transfer Protocol Secure, 超文本传输安全协议)，是以安全为目标的HTTP通道
+
+在HTTP下加了一层SSL/TLS协议，数据传输是加密的
+
+默认端口443
+
 # 英语单词
 
 guides 指南
@@ -555,7 +576,7 @@ clipper 大剪刀 剪削者 理发剪 斩波器 截波器 限制器
 
 还有URL编码还没补齐全，以后学爬虫再写吧
 
-
+[iana官网](http://www.iana.org/assignments/media-types/media-types.xhtml)
 
 
 

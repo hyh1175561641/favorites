@@ -87,7 +87,7 @@
 
 
 
-组合选择器
+组合选择器权重
 
 id选择器多的权重高
 
@@ -167,10 +167,10 @@ a:visited{已访问的链接}
 a:hover{鼠标悬停时}
 a:active{鼠标点击时}
 input:focus{获得焦点的input元素}
-:first-letter{}
-:first-line{}
-:before{}
-:after{}
+p:first-letter{}
+p:first-line{}
+:before 在每个节点之前插入内容，用content属性指定插入的内容
+:after 在元素后面插入内容
 :lang(language){}
 :root
 :empty
@@ -185,14 +185,16 @@ input:focus{获得焦点的input元素}
 :last-of-type{}
 :only-of-type{}
 :only-child{}
-:nth-child{}
-:nth-last-child{}
-:nth-of-type{}
-:nth-last-of-type{}
+:nth-child{n}
+:nth-last-child{n}
+:nth-of-type{n}
+:nth-last-of-type{n}
 :first-child{}
 :last-child{}
-:
+
 ```
+
+[:after和:before的用法，可以清除浮动](https://blog.csdn.net/qq_21225505/article/details/80967680)
 
 
 
@@ -240,6 +242,8 @@ div{
 
 
 ### 文本
+
+文本是不同的字组成的一个句子
 
 ```css
 p{
@@ -305,16 +309,26 @@ word-wrap
 
 3. 行内元素的概念，顶线(text-top) 中线(middle) 基线(baseline) 底线(text-bottom) 行框(border) 顶端(top) 低端(bottom)
 
+**基线对齐**
+
+行高line-height：一行文字的最小高度
+
+文字内容font-size：
+
+文字基线：字母x的底线
+
+行间距：上下留着空白的地方
 
 
 
-**New Word**
 
-- wrap 包，缠绕，外套，围巾
+wrap 包，缠绕，外套，围巾
 
 
 
 ### 字体
+
+字体是单个的字
 
 ```css
 p{
@@ -422,7 +436,7 @@ div{
 }
 ```
 
-内容生成属性
+
 
 网格属性
 
@@ -431,6 +445,72 @@ div{
 用户外观属性
 
 [runoob css文档内容](https://www.runoob.com/cssref/css-reference.html)
+
+
+
+### 内容生成属性
+
+```css
+/*常与:after,:before使用，来插入生成的内容*/
+content:none(设置Content,如果指定成Nothing)
+        normal(设置Content,如果指定的话，正常，默认是"none"(该是nothing))
+        counter(设定计数器的内容)
+        attr(设置Content作为选择器的属性之一)
+        string(设置Content到你指定的文本)
+        open-quote(设置Content是开口引号)
+        close-quote(设置Content是闭合引号)
+        no-open-quote(如果指定，移除内容的开始引号)
+        no-close-quote(如果指定，移除内容的闭合引号)
+        url(url)(设置某种媒体(图像声音视频等内容))
+        inherit;
+conter-increment:none(没有计数器递增)
+                 id()
+                 inherit;
+conter-reset:;
+```
+
+```css
+示例：
+p:after{
+  content:"";
+  display:inline-block;
+  width:0px;
+  height:0px;
+  border:8px solid black;
+  border-left:8px solid red;
+  position:relative;
+  top:3px;
+  left:0px;
+}
+<p>小三角</p>
+```
+
+可以使用url插入图像（CSS3还能插入音频文件，视频文件，浏览器暂不支持）
+
+```css
+/*追加图像文件的两种方法*/
+h1.ha:before{content:url(new.gif);}
+h1.hb{
+  background-image:url(new.gif);
+  background-repeat:no-repeat;
+  padding-left:28px;
+}
+
+<h1 class="ha">标题A</h1>
+<h1 class="hb">标题B</h1>
+
+/*可以在文字后面插入图片，但是不能在图片后面插入文字
+  可以使用p标签包裹img标签*/
+img:after{content:'Pic';}/*无效*/
+<img src="j.jpg">/*<p><img></p>*/
+```
+
+```css
+/*对项目追加连续的编号*/
+h1{counter-increment:name;}
+h1:before{content:counter(name);}
+<h1>标题</h1><h1>标题</h1><h1>标题</h1>
+```
 
 
 
@@ -568,8 +648,44 @@ margin:top right bottom left;/*可取负值*/
 
 1. 上下内边距的百分数相对于父元素宽度设置，而不是相对于高度。
 
-**外边距合并**
-两个元素的垂直外边距相遇时，外边距会合并成两者的较大者。只有普通块元素的垂直外边距会发生合并，行内元素，浮动框或绝对定位之间的外边距不会合并。
+### 外边距合并
+
+一上一下的两个外边距，两个元素的垂直外边距相遇时，外边距会合并成两者的较大者。如果想避免这种问题，可以在之间加一个边框线
+
+一里一外的外边距合并，两个嵌套元素的上下外边距会合并（如果外边的元素里面没有内容，里面的元素会左上角对齐，外边距选大的）（为了避免这种问题，1可以在父元素加外边距，2给父亲添加padding，3给父元素添加overflow:hidden）
+
+```html
+<head>
+<style>
+body{margin:0;}
+.w{
+  background:pink;
+  width:200px;
+  height:200px;
+  margin-top:50px;
+}
+.n{
+  background:skyblue;
+  width:40px;
+  height:40px;
+  margin-top:150px;/*如果内元素的外边距大于外元素的，则以这里为准*/
+}
+</style>
+</head>
+<body>
+<div class="w">a<!--如果这里没有内容，外边距会合并-->
+  <div class="n">aaa</div>
+</div>
+</body>
+```
+
+
+
+在同一个元素内，如果内容为空，外边距也会自己合并
+
+如果这个空内容的元素，上面还有一个外边距，也会发生合并
+
+只有普通块元素的垂直外边距会发生合并，行内元素，浮动框或绝对定位之间的外边距不会合并。
 
 
 ### 用户界面css3
@@ -594,7 +710,7 @@ css有三种定位方式：普通流，浮动和绝对定位
 
 绝对定位
 
-### 定位
+### 框类型
 
 定位允许你定义元素框相对于正常位置应该出现的位置。
 
@@ -617,12 +733,22 @@ display:none(不显示)/*元素生成的框类型*/
   			table-column-group(作为一个或多个列的分组来显示 类似<colgroup>)
   			table-column(作为一个单元格列显示 类似<col>)
 			  table-cell(作为一个表格单元格显示 类似<td><th>)
-  			table-caption(作为一个表格标题显示 类似<caption>);
+  			table-caption(作为一个表格标题显示 类似<caption>)
+        inherit(继承display属性的值);
 visibility:visible(默认，可见) hidden(不可见，仍然占位) collapse(删除一行或一列表格，但是不影响表格布局);/*元素是否可见*/
+```
+
+元素生成的框类型block可以任意修改大小，inline的大小根据行高决定，但是inline-block即是行内元素，又能任意修改大小
+
+### 定位
 
 
+```css
 /*绝对定位：*/
-position: static(普通流，默认值) absolute(绝对定位，相对于static以外的第一个父元素) relative(相对定位) fixed(固定定位，相对浏览器窗口);/*元素的定位类型*/
+position:static(普通流，默认值)
+         absolute(绝对定位，相对于static以外的第一个父元素)
+         relative(相对定位)
+         fixed(固定定位，相对浏览器窗口);/*元素的定位类型*/
 top:auto % 15px;
 right:;
 bottom:;

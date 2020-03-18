@@ -157,7 +157,7 @@ launch.json配置文件
 
 schema 计划 概要 提要
 
-
+properties 属性 性能 道具
 
 
 

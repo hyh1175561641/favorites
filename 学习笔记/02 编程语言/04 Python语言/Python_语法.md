@@ -190,6 +190,18 @@ PYTHONDEVMODE: enable the development mode.
 
 
 
+
+
+pip
+
+```bash
+pip install re # 在线安装
+pip install re.whl # 源码安装 
+这里下载whl文件https://pypi.org/project/redis/#description
+```
+
+
+
 ## 规则
 
 **标识符**
