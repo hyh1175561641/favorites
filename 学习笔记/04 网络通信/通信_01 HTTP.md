@@ -173,6 +173,8 @@ Host: www.host.com
 
 GET是最常用的方法，通常用于请求服务器发送某个资源
 
+数据最多只有1024字节
+
 GET请求是在URL中发送的
 
 **HEAD**
@@ -201,7 +203,9 @@ OPTIONS方法请求Web服务器告知其支持的各项功能
 
 DELETE方法是请求服务器删除请求URL所指定的资源
 
+**CONNECT**
 
+把服务器当做跳板，主要用于测试或诊断
 
 **拓展方法**
 
@@ -269,13 +273,13 @@ HTTP状态码被分成了五大类
 
 **100-199信息提示**
 
-100 - Continue 
+100 - Continue 继续 服务器收到了一部分，正在等待其余部分
 
 101 - Switching Protocols
 
 **200-299成功**
 
-200 - OK  成功
+200 - OK  成功 服务器成功处理了请求
 
 201 - Created
 
@@ -307,15 +311,15 @@ HTTP状态码被分成了五大类
 
 **400-499客户端错误**
 
-400 - Bad Request
+400 - Bad Request 错误请求 用于告知客户端发送了一个错误的请求
 
-401 - Unauthorized（未授权）  需要输入用户名和密码
+401 - Unauthorized 未授权 需要输入用户名和密码，身份验证没有通过
 
 402 - Payment Required
 
-403 - Forbidden
+403 - Forbidden 禁止访问 服务器拒绝此请求
 
-404 - Not Found（未找到）  找不到文件或目录
+404 - Not Found 未找到 找不到文件或目录
 
 405 - Method Not Allowed
 
@@ -345,7 +349,7 @@ HTTP状态码被分成了五大类
 
 **500-599服务器错误**
 
-500 - Internal Server Error  内部服务器错误
+500 - Internal Server Error  内部服务器错误 服务器遇到错误，无法完成请求
 
 501 - Not Implemented  无法实现
 
@@ -394,12 +398,14 @@ Server: Test Server Version 1.0
 ```
 通用的信息性首部
 Connection
-Date
+Date 报文创建的时间
 MIME-Version
 Trailer
 Transfer-Encoding
 Update
 Via
+
+
 通用缓存首部
 Cache-Control
 Pragma
@@ -409,24 +415,30 @@ Pragma
 
 **请求首部**
 
+请求首部只在请求报文中才有意义，用于说明谁在发送请求，客户端的喜好及能力。服务端收到这些信息，为客户端提供更好的响应
+
 ```
 请求信息首部
 Client-IP
 From
-Host 给出了接收请求的服务器的主机名和端口号
-Referer
+Host 给出了接收请求的服务器的主机名和端口号，1.1版必须
+Referer 标识这个请求是从哪个页面发过来的，可以做来源统计，防盗链处理等
 UA-Color
 UA-CPU
 UA-Disp
 UA-OS
 UA-Pixels
-User-Agent 将发起请求的应用程序名称告知服务器
-Accept首部
-Accept
-Accept-Charset
-Accept-Encoding
-Accept-Language
+User-Agent 将发起请求的操作系统 浏览器 应用程序的名称告知服务器
+
+
+Accept首部 告知服务器客户端需要什么样的信息
+Accept 请求报头域，用于指定客户端可接受哪些类型的信息
+Accept-Charset 客户端可接受的字符集
+Accept-Encoding 客户端可接受的内容编码
+Accept-Language 客户端可接受的语言
 TE
+
+
 条件请求首部
 Expect
 If-Match
@@ -435,10 +447,14 @@ If-None-Match
 If-Range
 If-Unmodified-Since
 Range
-安全请求首部
+
+
+安全请求首部，对请求进行质询或响应认证
 Authorization
-Cookie
+Cookie 也常用复数形式cookies，认证信息
 Cookie2
+
+
 代理请求首部
 Max-Forward
 Proxy-Authorization
@@ -454,17 +470,30 @@ Proxy-Connection
 Age
 Public
 Retry-After
-Server
+Server 包含服务器的信息，比如名称版本号等
 Title
 Warning
+
+
 协商首部
 Accept-Ranges
 Vary
+
+
 安全响应首部
 Proxy-Authenticate
-Set-Cookie
+Set-Cookie 设置cookies
 Set-Cookie2
 WWW-Authenticate
+```
+
+实例：
+
+```
+server:nginx
+       apache
+       Tengine(淘宝网发起的Web服务器项目)
+       nginx/1.16.1
 ```
 
 
@@ -475,19 +504,23 @@ WWW-Authenticate
 实体信息首部
 Allow
 Location
+
+
 内容首部
 Content-Base
-Content-Encoding
+Content-Encoding 内容的编码
 Content-Language
 Content-Length
 Content-Location
 Content-MD5
 Content-Range
-Content-Type
+Content-Type MIME类型 媒体类型信息
+
+
 实体缓存首部
 ETag
-Expires
-Last-Modified
+Expires 指定响应的过期时间，可以使代理服务器或浏览器将加载的内容更新到缓存中，如果再次访问，可以直接从缓存中加载，降低服务器负载，缩短加载时间
+Last-Modified 指定资源的最后修改时间
 ```
 
 
@@ -499,6 +532,17 @@ Last-Modified
 ```
 
 
+
+**其他首部**
+
+```
+refresh 刷新网页 这是一个响应头
+refresh:5;URL=跳转到的网址  自动跳转到网址
+```
+
+```
+
+```
 
 
 
@@ -514,11 +558,54 @@ Content-Length主体的长度
 
 主体部分就是HTTP要传输的内容，图片 视频 HTML文档 软件应用程序 信用卡事务 电子邮件
 
+在请求报文中，请求报文主体一般承载的内容是POST请求中的表单数据，而对于GET请求，请求体则为空。
+
+
+
+## 示例
+
+在用POST方式登录github时，主体部分发送表单数据，头部的Content-Type只有正确指定了类型application/x-www-form-urlencoded，主体才会以表单类型提交，否则服务器响应无效
+
+```
+application/x-www-form-urlencoded 表单数据
+multipart/form-data 表单文件上传
+application/json 序列化JSON数据
+text/xml XML数据
+```
 
 
 
 
-# Cookies
+
+
+
+# 爬虫
+
+把互联网比作一张大网，蜘蛛从一个节点爬到另一个节点，直到将整个网站全部爬完，整个网站的数据就可以被抓取下来了
+
+**获取网页**
+
+获取源代码，提取有用的信息。构造一个有用的请求发送给服务器，返回的响应体便是网页源代码
+
+**提取信息**
+
+分析网页源代码，提取想要的数据。使用正则或者网页节点属性，CSS选择器，XPath提取网页信息
+
+**保存数据**
+
+既可以保存到TXT或JSON，也可以保存到数据库MySQL，MongoDB
+
+
+
+只要是基于HTTP或HTTPS协议的，HTML代码，JSON字符串，图片视频音频，各种普通的文件，都可以抓取下来
+
+
+
+如果网页和显示的不一样，可以使用JavaScript渲染。如Selenium，Splash
+
+
+
+# Cookies和Session
 
 某些网站为了辨别用户身份、进行session跟踪而储存在用户本地终端上的数据
 
@@ -526,7 +613,11 @@ Content-Length主体的长度
 
 实际是由服务器发送给客户端的特殊信息，这些信息以文本文件的方式存放在客户端，客户端每次向服务器发送请求的时候都会带上这些特殊的信息。服务器在接收到Cookie以后，会验证Cookie的信息，以此来辨别用户的身份
 
-# Session
+
+
+
+
+**Session**
 
 一个浏览器窗口从打开到关闭这个期间
 
@@ -541,6 +632,26 @@ HTTPS 全称(Hyper Text Transfer Protocol over Secure Socket Layer或Hypertext T
 在HTTP下加了一层SSL/TLS协议，数据传输是加密的
 
 默认端口443
+
+
+
+
+
+
+
+
+
+
+
+# 附录
+
+MIME类型
+
+[媒体类型](http://tool.oschina.net/commons)
+
+
+
+
 
 # 英语单词
 
@@ -558,7 +669,7 @@ clipper 大剪刀 剪削者 理发剪 斩波器 截波器 限制器
 
 [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616.html)
 
-[RFC 2616 HTTP/1.1 ietf](https://www.ietf.org/rfc/rfc2616.txt)
+[RFC 2616 HTTP/1.1 ietf txt](https://www.ietf.org/rfc/rfc2616.txt)
 
 百度搜索"rfc 2616"
 

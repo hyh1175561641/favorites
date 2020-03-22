@@ -112,6 +112,8 @@ redis/src/redis.conf 配置文件
 
 `slaveof`主从复制，类似于双机备份，搭建主从需要
 
+[还可以设置密码](https://www.cnblogs.com/aspsea/articles/10964606.html)
+
 **启动服务端**
 
 启动服务端命令：redis-server redis-conf
@@ -293,16 +295,53 @@ key是字符串
 > set string1 yeyeye  #设置字符串
 > get string1  # 获取字符串
 
+
+> mset a1 python a2 java a3 c # 设置多个键多个值
+> mget a1 a2 a3 # 获取多个值
+
+> append a1 haha # 在字符串后面追加一段值
+
 > incr string2 # 整形自增1
 > decrby string2 2 # 整形减法
-> setex aa 3 aa # 设置过期时间，3秒后不可用
-> mset a1 python a2 java a3 c # 设置多个键多个值
-> append a1 haha # 在字符串后面追加一段值
-> get 
+
+> setex sring3 3 aa # 设置过期时间，3秒后不可用
 
 
 
 
+
+
+```
+
+
+
+[字符串runoob](https://www.runoob.com/redis/redis-strings.html)
+
+```bash
+APPEND # 字符串后面追加一段值
+BITCOUNT
+BITFIELD
+BITOP
+BITPOS
+DECR
+DECRBY # 整形减法
+GET # 获取字符串
+GETBIT
+GETRANGE
+GETSET
+INCR # 整形自增
+INCRBY
+INCRBYFLOAT
+MGET # 获取多个键
+MSET # 设置多个值
+MSETNX
+PSETEX
+SET # 设置字符串
+SETBIT
+SETEX # 设置过期时间
+SETNX
+SETRANGE
+STRLEN
 ```
 
 
@@ -324,21 +363,43 @@ List集合是一个有序的列表
 key-[value (string/int/float),value (string/int/float)]
 
 ```bash
->lpush list1 12 # 左边插入
-(integer) 1
->lpush list1 13
-(integer) 2
->rpop list1 # 右边弹出 先进先出，后进后出
-"12"
+>lpush list1 12 # 左边插入，在同一侧插入弹出是栈空间
+>lpop list1 # 左边弹出
+>rpush list1 13 # 右边插入，一侧插入另一侧弹出是队列
+>rpop list1 # 右边弹出
+>linsert list1 before 13 12.5 # 在13前面插入12.5 
+>linsert list1 after 12 12.5 # 在12后面插入12.5 
+
 # list中的元素可以是重复的，但是集合没有重复的
->lpush list2 12
->lpush list2 13
->lpush list2 13
-(integer) 3
+
 >llen list2 # 列出list中元素的个数
-(integer) 3
+
+>lrange l1 0 4 # 列出列表的从哪到哪的数据
+
+```
 
 
+
+[列表](https://www.runoob.com/redis/redis-lists.html)
+
+```bash
+BLPOP
+BRPOP
+BRPOPLPUSH
+LINDEX
+LINSERT # 在某个元素的前面或后面插入数据
+LLEN # 列出元素的个数
+LPOP # 列表左侧弹出数据
+LPUSH # 列表左侧插入数据
+LPUSHX
+LRANGE # 列出区间内的数据
+LREM
+LSET
+LTRIM
+RPOP # 列表右侧弹出数据
+RPOPLPUSH
+RPUSH # 列表右侧插入数据
+RPUSHX
 ```
 
 
@@ -359,35 +420,57 @@ key-[key-value (string/int/float),key-value (string/int/float)]
 
 ```bash
 >hset hash1 key1 12 # 插入散列键值 key1-12
-(integer) 1
 >hget hash1 key1 # 获取散列hash1中的key1
-"12"
->hset hash1 key2 13 # 插入散列键值 key2-13
-(integer) 1
->hset hash1 key3 13 
-(integer) 1
->hlen hash1 # 查看散列有多少元素
-(integer) 3
->hset hash1 key3 14 # 修改key3的值
-(integer) 0
->hget hash1 key3
-"14"
+
+>hmset hash1 key1 13 key2 14 # 设置多个值
 >hmget hash1 key1 key2 # 一次性获取get的值
-1) "12"
-2) "13"
->
 
->
+>hlen hash1 # 查看散列有多少元素
+>hkeys hash1 # 获取指定键所有的属性
 
+>hvals hash1 # 获取所有属性的值
+>hdel hash1 # 删除散列的键，如果使用del命令，会删除整个散列表
 ```
 
 
 
+[哈希](https://www.runoob.com/redis/redis-hashes.html)
+
+```bash
+HDEL # 删除散列的键
+HEXISTS
+HGET # 获取散列值
+HGETALL
+HINCRBY
+HINCRBYFLOAT
+HKEYS # 获取指定键所有的属性
+HLEN # 查看散列有多少元素
+HMGET # 获取多个散列值
+HMSET # 设置多个散列值
+HSCAN
+HSET # 插入散列值
+HSETNX
+HSTRLEN
+HVALS # 获取所有属性的值
+```
+
+```
+注意：如果出现了这个错误
+MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.
+Redis被配置为保存数据库快照，但它目前不能持久化到硬盘。用来修改集合数据的命令不能用。hset修改集合不能用
+原因：强制关闭Redis快照导致不能持久化
+将stop-writes-on-bgsave-error设置为no
+127.0.0.1:6379> config set stop-writes-on-bgsave-error no
+
+```
+
+[Redis修改hash报错解决方案](https://www.jianshu.com/p/3aaf21dd34d6)
 
 
 
+**单词**
 
-
+field 字段 信息组 栏
 
 ## 集合Sets
 
@@ -423,6 +506,26 @@ key-[value (string/int/float),value (string/int/float)]
 
 
 
+[集合](https://www.runoob.com/redis/redis-sets.html)
+
+```bash
+SADD
+SCARD
+SDIFF
+SDIFFSTORE
+SINTER
+SINTERSTORE
+SISMEMBER
+SMEMBERS
+SMOVE
+SPOP
+SRANDMEMBER
+SREM
+SSCAN
+SUNION
+SUNIONSTORE
+```
+
 
 
 
@@ -436,6 +539,8 @@ key-[value (string/int/float),value (string/int/float)]
 带分数的score-value有序集合，其中score为浮点，如果score的值一样，则按照value的字母顺序排列，value为元素，value必须是全局唯一
 
 集合插入删除，按照分数范围查找
+
+key-[value (string/int/float)-score,value (string/int/float)-score]
 
 ```bash
 >zadd zset1 10.1 val1 # score为10.1 value为val1的元素
@@ -466,6 +571,36 @@ key-[value (string/int/float),value (string/int/float)]
 
 
 
+[有序集合](https://www.runoob.com/redis/redis-sorted-sets.html)
+
+```bash
+BZPOPMAX
+BZPOPMIN
+ZADD
+ZCARD
+ZCOUNT
+ZINCRBY
+ZINTERSTORE
+ZLEXCOUNT
+ZPOPMAX
+ZPOPMIN
+ZRANGE
+ZRANGEBYLEX
+ZRANGEBYSCORE
+ZRANK
+ZREM
+ZREMRANGEBYLEX
+ZREMRANGEBYRANK
+ZREMRANGEBYSCORE
+ZREVRANGE
+ZREVRANGEBYLEX
+ZREVRANGEBYSCORE
+ZREVRANK
+ZSCAN
+ZSCORE
+ZUNIONSTORE
+```
+
 
 
 
@@ -475,14 +610,18 @@ key-[value (string/int/float),value (string/int/float)]
 ## 键 keys
 
 ```bash
-keys * # 查找所有的keys，可以使用正则
+keys * # 查找所有的keys，可以使用正则  (keys a* 查找a开头的键)
+
+del key1 key2 ...# 删除指定的key（一个或多个）
+exists key # 查询一个key是否存在 存在返回1 不存在返回0
+type a1 # 获取key的存储类型
+# 如果没有指定过期时间，值则一直存在，直到使用del移除
+expire a1 3 # 设置一个key的过期秒数
+ttl a1# 获取key的有效时间，过期的键返回-2
 
 
 
-del key ...# 删除指定的key（一个或多个）
 dump key # 导出key的值
-exists key # 查询一个key是否存在
-expire key seconds # 设置一个key的过期秒数
 expireat key timestamp # 设置一个UNIX时间戳的过期时间
 migrate#原子性的将key从Redis的一个实例移到另一个实例
 move 移动一个key到另一个数据库
@@ -496,13 +635,60 @@ rename # 将一个key重命名
 renamenx # 重命名一个key，新的key必须是不存在的key
 restore #
 sort # 对序列，集合，有序集合排序
-ttl # 获取key的有效时间
-type # 获取key的存储类型
 wait # 
 scan # 增量迭代key
 ```
 
+
+
+
+
+```bash
+DEL
+DUMP
+EXISTS
+EXPIRE
+EXPIREAT
+KEYS
+MIGRATE
+MOVE
+OBJECT
+PERSIST
+PEXPIRE
+PEXPIREAT
+PTTL
+RANDOMKEY
+RENAME
+RENAMENX
+RESTORE
+SCAN
+SORT
+TOUCH
+TTL
+TYPE
+UNLINK
+WAIT
+```
+
+
+
+
+
 ## 事务 Transactions
+
+
+
+```bash
+DISCARD
+EXEC
+MULTI
+UNWATCH
+WATCH
+```
+
+
+
+
 
 
 
@@ -510,23 +696,203 @@ scan # 增量迭代key
 
 
 
+
+
+```bash
+EVAL
+EVALSHA
+SCRIPT DEBUG
+SCRIPT EXISTS
+SCRIPT FLUSH
+SCRIPT KILL
+SCRIPT LOAD
+```
+
+
+
+
+
+
+
 ## 连接 Connection
+
+
+
+```bash
+AUTH
+ECHO
+PING
+QUIT
+SELECT
+SWAPDB
+```
+
+
 
 
 
 ## 服务器 Server
 
+```bash
+> config get loglevel # 查看配置
+> config get * # 查看所有配置
+> config set loglevel "notice" # 修改配置
+
+> save # 当前数据库的备份
+```
+
+[参数说明](https://www.runoob.com/redis/redis-conf.html)
+
+[数据库的备份](https://www.runoob.com/redis/redis-backup.html)
+
+```bash
+BGREWRITEAOF
+BGSAVE
+CLIENT GETNAME
+CLIENT ID
+CLIENT KILL
+CLIENT LIST
+CLIENT PAUSE
+CLIENT REPLY
+CLIENT SETNAME
+CLIENT UNBLOCK
+COMMAND
+COMMAND COUNT
+COMMAND GETKEYS
+COMMAND INFO
+CONFIG GET
+CONFIG RESETSTAT
+CONFIG REWRITE
+CONFIG SET
+DBSIZE
+DEBUG OBJECT
+DEBUG SEGFAULT
+FLUSHALL
+FLUSHDB
+INFO
+LASTSAVE
+MEMORY DOCTOR
+MEMORY HELP
+MEMORY MALLOC-STATS
+MEMORY PURGE
+MEMORY STATS
+MEMORY USAGE
+MONITOR
+REPLICAOF
+ROLE
+SAVE # 备份数据
+SHUTDOWN
+SLAVEOF
+SLOWLOG
+SYNC
+TIME
+```
+
 
 
 ## Cluster
 
+
+
+
+
+```bash
+CLUSTER ADDSLOTS
+CLUSTER COUNT-FAILURE-REPORTS
+CLUSTER COUNTKEYSINSLOT
+CLUSTER DELSLOTS
+CLUSTER FAILOVER
+CLUSTER FORGET
+CLUSTER GETKEYSINSLOT
+CLUSTER INFO
+CLUSTER KEYSLOT
+CLUSTER MEET
+CLUSTER NODES
+CLUSTER REPLICAS
+CLUSTER REPLICATE
+CLUSTER RESET
+CLUSTER SAVECONFIG
+CLUSTER SET-CONFIG-EPOCH
+CLUSTER SETSLOT
+CLUSTER SLAVES
+CLUSTER SLOTS
+READONLY
+READWRITE
+```
+
+
+
+
+
+
+
 ## Geo
 
+
+
+```bash
+GEOADD
+GEODIST
+GEOHASH
+GEOPOS
+GEORADIUS
+GEORADIUSBYMEMBER
+```
+
+
+
+
+
+
+
 ## HyperLogLog
+
+
+
+```bash
+PFADD
+PFCOUNT
+PFMERGE
+```
+
+
+
+
+
+
 
 ## 发布订阅Pub/Sub
 
 
+
+```bash
+PSUBSCRIBE
+PUBLISH
+PUBSUB
+PUNSUBSCRIBE
+SUBSCRIBE
+UNSUBSCRIBE
+```
+
+
+
+## Streams
+
+```bash
+XACK
+XADD
+XCLAIM
+XDEL
+XGROUP
+XINFO
+XLEN
+XPENDING
+XRANGE
+XREAD
+XREADGROUP
+XREVRANGE
+XTRIM
+```
 
 
 
@@ -585,41 +951,6 @@ Redis-cli -h 192.168.0.1 -p 6379 info Replication 查看信息，主从都能看
 
 
 
-
-
-
-# 和Python的交互
-
-安装Redis包
-
-Pip3 install redis
-
-pip freeze 
-
-安装好Redis的python包之后，有许多命令可以和Redis交互，函数类似于Redis命令
-
-```python
-import redis
->>> r = redis.Redis(host='localhost', port=6379, db=0)
->>> r.set('foo', 'bar')
-True
->>> r.get('foo')
-'bar'
-```
-
-
-
-[redis PyPl首页](https://pypi.org/project/redis/#description)
-
-[作者github首页](https://github.com/andymccurdy/redis-py)
-
-[手册](https://redis-py.readthedocs.io/en/latest/)
-
-手册还可以在pydoc命令中找到
-
-
-
-Strict  严格的，绝对的，精确的，详细的
 
 # php的拓展Redis
 
