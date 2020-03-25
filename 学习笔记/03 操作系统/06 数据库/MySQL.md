@@ -1,10 +1,6 @@
 
 
-**如何使用本篇笔记？**
 
-
-
-**规范**
 
 
 
@@ -68,7 +64,7 @@ MySQL 是可以定制的，采用了 GPL 协议，你可以修改源码来开发
 
 
 
-## 安装和配置
+## Ubuntu安装和配置
 
 **服务器安装**
 
@@ -110,15 +106,34 @@ log_error 默认是/var/log/mysql/error.log 表示错误日志
 
 
 
-```bash
+```sh
 # 默认的库有
-information_schema
-mysql
-performance_schema
-sys
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
 ```
 
+## Mac安装和配置
 
+```bash
+在~目录下的./.bash_profile文件末尾添加两行
+export PATH=$PATH:/usr/local/mysql/bin
+export PATH=$PATH:/usr/local/mysql/support-files
+输入"source ~/.bash_profile"让配置文件生效
+$ echo $PATH
+
+sudo mysql.server stop # 停止MySQL服务
+sudo mysql.server restart # 重启MySQL服务
+sudo mysql.server status # 查看MySQL服务状态
+
+```
+
+[Mac安装MySQL](https://www.cnblogs.com/nickchen121/p/11145123.html)
 
 ## 开发环境
 
@@ -411,10 +426,8 @@ USE dbs; # 使用数据库
 
 
 
-## 数据表操作
-
 ```mysql
-SHOW tbs;
+SHOW tbs; # 显示表
 ```
 
 
@@ -466,13 +479,21 @@ select * from goods; # 选择数据库并且
 
 [具体数据类型](https://www.cnblogs.com/-xlp/p/8617760.html)
 
+[mysql数据类型](http://blog.csdn.net/anxpp/article/details/51284106)
+
 对于图片、音频、视频等文件，不存储在数据库中，而是上传到某个服务器上，然后把媒体路径存储在数据库中
 
 ### 整数
 
-int
+TINYINT   1字节  unsigned 255  signed -128-127
 
-bit
+SMALLINT   2字节  unsigned 65536  signed -32768~32767
+
+MEDIUMINT   3字节  unsigned 16777215  signed -8388608~8388607
+
+INT/INTEGER   4字节  unsigned 4294967295  signed
+
+BIGINT   8字节  unsigned 18446744073709551615
 
 ### 小数
 
@@ -480,19 +501,23 @@ decimal表示浮点数，如decimal(5,2)表示共存5位数，小数占2位
 
 ### 字符串
 
-varchar可变长度的字符串，如varchar(3)，'ab'会存成'ab'
+char表示固定长度的字符串，大小255，如char(3)，'ab'会补一个空格'ab '
 
-char表示固定长度的字符串，如char(3)，'ab'会补一个空格'ab '
+varchar可变长度的字符串，大小255，如varchar(3)，'ab'会存成'ab'
 
-text字符串表示存储大文本，当字符大于4000时推荐使用
+text字符串表示存储大文本，大小65536，当字符大于4000时推荐使用
 
 ### 日期时间
 
-date
+date，4字节，如'2020-01-01'
 
-time
+time，3字节，如'12:29:59'
 
-datetime
+datetime，8字节，如'2020-01-01 12:29:59'
+
+year，1字节，如'2017'
+
+timestamp，4字节，如'1970-01-01 00:00:01'UTC~'2038-01-19 03:14:07' UTC
 
 ### 枚举类型
 
@@ -510,7 +535,7 @@ enum把可能出现的结果列举出来，如性别，
 
 默认default：当不填写此值时会使用默认值，如果填写时以填写为准
 
-外键foreign key：对关系字段进行约束，当为关系字段填写值时，会到关联的表中查询此值是否存在
+外键foreign key：对关系字段进行约束，当为关系字段填写值时，会到关联的表中查询此值是否存在。外键约束虽然可以保证数据的有效性，在数据crud（增改删查）时，会降低数据库的性能，不推荐使用，建议一般在逻辑层进行控制
 
 
 

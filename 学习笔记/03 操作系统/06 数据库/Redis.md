@@ -2,6 +2,8 @@
 
 ## 概述
 
+Redis（Remote Dictionary Server )，即远程字典服务
+
 Redis是一种NoSQL技术，它的性能十分优越，可以支持每秒几十万次的读写操作，性能远超数据库，并且还支持集群、分布式、主从同步等配置，原则上可以无限扩展，让更多的数据存储在内存中，更让人欣慰的是它还支持一定的事务能力，这保证了高并发的场景下数据的安全和一致性
 
 **NoSQL (not only SQL)技术**
@@ -363,18 +365,27 @@ List集合是一个有序的列表
 key-[value (string/int/float),value (string/int/float)]
 
 ```bash
+# list中的元素可以是重复的，但是集合没有重复的
 >lpush list1 12 # 左边插入，在同一侧插入弹出是栈空间
 >lpop list1 # 左边弹出
 >rpush list1 13 # 右边插入，一侧插入另一侧弹出是队列
 >rpop list1 # 右边弹出
->linsert list1 before 13 12.5 # 在13前面插入12.5 
->linsert list1 after 12 12.5 # 在12后面插入12.5 
+>linsert list1 before 13 12.5 # 在13前面插入12.5，遇到的第一个
+>linsert list1 after 12 12.5 # 在12后面插入12.5
 
-# list中的元素可以是重复的，但是集合没有重复的
+# 设置指定元素，第一个元素是0，-1表示末尾的元素
+>lset l1 1 14
 
+# 查找元素命令
 >llen list2 # 列出list中元素的个数
-
 >lrange l1 0 4 # 列出列表的从哪到哪的数据
+>lrange l1 0 -1 # 查看列表所有数据,-1表示末尾的数据,-2表示倒数第二的数据
+
+# 删除指定的元素，正数从左到右删除，负数从末尾删除，0删除所有，值相同的元素
+>lrem l1 3 12.5
+
+
+
 
 ```
 
@@ -387,14 +398,14 @@ BLPOP
 BRPOP
 BRPOPLPUSH
 LINDEX
-LINSERT # 在某个元素的前面或后面插入数据
+LINSERT # 在某个元素的前面或后面插入数据，第一个遇到的
 LLEN # 列出元素的个数
 LPOP # 列表左侧弹出数据
 LPUSH # 列表左侧插入数据
 LPUSHX
 LRANGE # 列出区间内的数据
-LREM
-LSET
+LREM # 删除指定的元素
+LSET # 设置元素的值
 LTRIM
 RPOP # 列表右侧弹出数据
 RPOPLPUSH
@@ -474,7 +485,7 @@ field 字段 信息组 栏
 
 ## 集合Sets
 
-使用无序的方式存储多个不相同的元素
+使用无序的方式存储多个不相同的元素，对于集合没有修改的操作
 
 从集合中插入或者删除元素
 
@@ -484,21 +495,14 @@ key-[value (string/int/float),value (string/int/float)]
 
 ```bash
 >sadd set1 12 # 插入元素
-(integer) 1
+
 >scard set1 # 查看有多少元素
-(integer) 1
->sadd set1 13
-(integer) 1
->sadd set1 13 # 插入两个相同的元素
-(integer) 0
->scard set1 # 查看有多少元素
-(integer) 2
->sismember set1 13 # 判断13是否在这个集合中
-(integer) 1
->srem set1 13 # 从集合中删除13
-(integer) 1
->sismember set1 13
-(integer) 0
+>smembers set1 # 获取所有元素
+
+>sismember set1 12 # 判断13是否在这个集合中
+
+>srem set1 12 # 从集合中删除13
+
 
 
 
@@ -509,18 +513,18 @@ key-[value (string/int/float),value (string/int/float)]
 [集合](https://www.runoob.com/redis/redis-sets.html)
 
 ```bash
-SADD
-SCARD
+SADD # 插入元素
+SCARD # 查看有多少元素
 SDIFF
 SDIFFSTORE
 SINTER
 SINTERSTORE
-SISMEMBER
-SMEMBERS
+SISMEMBER # 判断元素是否在集合中
+SMEMBERS # 获取所有元素
 SMOVE
 SPOP
 SRANDMEMBER
-SREM
+SREM # 从集合删除元素
 SSCAN
 SUNION
 SUNIONSTORE
@@ -544,29 +548,15 @@ key-[value (string/int/float)-score,value (string/int/float)-score]
 
 ```bash
 >zadd zset1 10.1 val1 # score为10.1 value为val1的元素
-(integer) 1
->zadd zset1 11.1 val2
-(integer) 1
->zadd zset1 9.2 val3
-(integer) 1
->zcard zset1
-(integer) 3
->zrange zset1 0 2 withscores # 打印0-2的元素，附带分数
-1) "val3"
-2) "9.1999999999"
-3) "val1"
-4) "10.1"
-5) "val2"
-6) "11.1999999999"
->zrank zset1 val2 # 查看一下val2的排名
-(integer) 2
->zadd zset1 12.2 val3 # 修改val3的分数
-(integer) 0
->zrange zset1 0 2 withscores
-# 排名顺序是 val1 val2 val3
->
 
->
+>zcard zset1 # 查看有多少元素
+>zrange zset1 0 2 withscores # 打印0-2的元素，附带分数，0 -1表示最后一个元素，返回的值是排列好的
+>zrangebyscore zset1 min max # 打印score一定范围内的值，边缘值包括在内
+>zscore zset1 val1 # 查看某个元素的score值
+>zrank zset1 val2 # 查看一下val2的排名
+
+>zrem zset1 val1 # 删除指定元素
+>zremrangebyscore zset1 min max # 删除一定范围内的值
 ```
 
 
@@ -576,28 +566,28 @@ key-[value (string/int/float)-score,value (string/int/float)-score]
 ```bash
 BZPOPMAX
 BZPOPMIN
-ZADD
-ZCARD
+ZADD # 添加有序集合
+ZCARD # 查看有多少元素
 ZCOUNT
 ZINCRBY
 ZINTERSTORE
 ZLEXCOUNT
 ZPOPMAX
 ZPOPMIN
-ZRANGE
+ZRANGE # 打印元素，排列好的
 ZRANGEBYLEX
-ZRANGEBYSCORE
-ZRANK
-ZREM
+ZRANGEBYSCORE # 打印一定范围内元素的值
+ZRANK # 查看元素的排名
+ZREM # 删除指定元素
 ZREMRANGEBYLEX
 ZREMRANGEBYRANK
-ZREMRANGEBYSCORE
+ZREMRANGEBYSCORE # 删除一定范围内的值
 ZREVRANGE
 ZREVRANGEBYLEX
 ZREVRANGEBYSCORE
 ZREVRANK
 ZSCAN
-ZSCORE
+ZSCORE # 查看某个元素的score值
 ZUNIONSTORE
 ```
 
@@ -1025,3 +1015,6 @@ connection refused 连接被拒绝（Redis连接未指定端口）
 [runoob 简单教程](https://www.runoob.com/redis/redis-tutorial.html)
 
 [Redis入门文章](https://www.jianshu.com/p/56999f2b8e3b)
+
+[Redis命令参考](http://doc.redisfans.com/index.html)
+
