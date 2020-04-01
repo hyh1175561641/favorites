@@ -18,7 +18,7 @@
 
 
 
-### window对象
+## window对象
 
 [window对象](https://www.runoob.com/jsref/obj-window.html)
 
@@ -28,25 +28,28 @@ window对象表示浏览器中打开的窗口
 
 ```javascript
 属性
+document//对Document对象的只读引用
+history//对History对象的只读引用
+location//用于窗口或框架的Location对象
+navigator//对Navigator对象的只读引用
+screen//对Screen对象的只读引用
+
+
+
 closed//返回窗口是否被关闭
 defaultStatus//设置或返回窗口状态栏中的默认文本
-document//对Document对象的只读引用
 frames//
-history//
 innerHeight//
 innerWidth//
 localStorage//
 length//
-location//
 name//
-navigator//
 opener//
 outerHeight//
 outerWidth//
 pageXOffset//
 pageYOffset//
 parent//
-screen//
 screenLeft//
 screenTop//
 screenX//
@@ -88,45 +91,45 @@ stop()//停止页面载入
 
 
 
-### Navigator对象
+## Navigator对象
 
 Navigator对象包含有关浏览器的信息
 
 ```javascript
 属性
-appCodeName//返回浏览器的代码名
-appName//返回浏览器的名称
-appVersion//返回浏览器的平台和版本信息
-cookieEnabled//返回指明浏览器中是否启用cookie的布尔值
-platform//返回运行浏览器的操作系统平台
-userAgent//返回由客户端发送服务器的user-agent头部的值
+navigator.appCodeName//返回浏览器的代码名
+navigator.appName//返回浏览器的名称
+navigator.appVersion//返回浏览器的平台和版本信息
+navigator.cookieEnabled//返回指明浏览器中是否启用cookie的布尔值
+navigator.platform//返回运行浏览器的操作系统平台
+navigator.userAgent//返回由客户端发送服务器的user-agent头部的值
 
 方法
-javaEnabled()//指定是否在浏览器中启用Java
-taintEnabled()//规定浏览器是否启用数据污点
+navigator.javaEnabled()//指定是否在浏览器中启用Java
+navigator.taintEnabled()//规定浏览器是否启用数据污点
 ```
 
 
 
-### Screen对象
+## Screen对象
 
 Screen对象包含有关客户端显示屏幕的信息
 
 ```javascript
 属性
-availHeight//返回屏幕的高度(不包括Windows任务栏)
-availWidth//返回屏幕的宽度(不包括Windows任务栏)
-colorDepth//返回目标设备或缓存器上的调色板的比特深度
-height//返回屏幕的总高度
-pixelDepth//返回屏幕的颜色分辨率(每像素的位数)
-width//返回屏幕的总宽度
+screen.availHeight//返回屏幕的高度(不包括Windows任务栏)
+screen.availWidth//返回屏幕的宽度(不包括Windows任务栏)
+screen.colorDepth//返回目标设备或缓存器上的调色板的比特深度
+screen.height//返回屏幕的总高度
+screen.pixelDepth//返回屏幕的颜色分辨率(每像素的位数)
+screen.width//返回屏幕的总宽度
 ```
 
 
 
 
 
-### History对象
+## History对象
 
 History对象包含用户(在浏览器窗口中)访问过的URL
 
@@ -134,19 +137,19 @@ History对象是window对象的一部分，可通过window.history属性对其�
 
 ```javascript
 属性
-length//返回历史列表中的网址数
+history.length//返回历史列表中的网址数
 
 方法
-back()//加载history列表中的前一个URL
-forward()//加载history列表中的下一个URL
-go()//加载history列表中的某个具体页面
+history.back()//加载history列表中的前一个URL
+history.forward()//加载history列表中的下一个URL
+history.go()//加载history列表中的某个具体页面
 ```
 
 
 
 
 
-### Location对象
+## Location对象
 
 Location对象包含有关当前URL的信息
 
@@ -154,24 +157,24 @@ Location对象是window对象的一部分，可通过window.location属性对其
 
 ```javascript
 属性
-hash//返回一个URL的锚部分
-host//返回一个URL的主机名和端口
-hostname//返回URL的主机名
-href//返回完整的URL
-pathname//返回URL的路径名
-port//返回一个URL服务器使用的端口号
-protocol//返回一个URL协议
-search//返回一个URL的查询部分
+location.hash//返回一个URL的锚部分
+location.host//返回一个URL的主机名和端口
+location.hostname//返回URL的主机名
+location.href//返回完整的URL
+location.pathname//返回URL的路径名
+location.port//返回一个URL服务器使用的端口号
+location.protocol//返回一个URL协议
+location.search//返回一个URL的查询部分
 
 方法
-assign()//载入一个新的文档
-reload()//重新载入当前文档
-replace()//用新的文档替换当前文档
+location.assign()//载入一个新的文档
+location.reload()//重新载入当前文档
+location.replace()//用新的文档替换当前文档
 ```
 
 
 
-### 存储对象
+## 存储对象
 
 Web 存储 API 提供了 sessionStorage （会话存储） 和 localStorage（本地存储）两个存储对象来对网页的数据进行添加、删除、修改、查询操作。
 
@@ -209,6 +212,7 @@ clear()//清除存储对象中所有的键
 
 
 
+
 # DOM
 
 通过DOM可以访问JavaScript HTML文档的所有元素，当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）。文档模型是一个对象的树。JavaScript获得了足够的能力来创建动态的HTML。能够改变所有的HTML元素，属性，CSS样式，对所有事件做出反应。
@@ -225,7 +229,7 @@ HTML文档中所有内容都是节点：整个文档是一个文档节点，每�
 
 
 
-### Document对象
+## Document对象
 
 ```javascript
 var x = document.getElementById("main")
@@ -269,19 +273,39 @@ document.
 
 
 
-### 元素对象
+## 元素对象
+
+```js
+element.accessKey
 
 
 
-### 属性对象
+```
 
 
 
-### 事件对象
+## 属性对象
+
+```js
+attr.isId
+
+
+```
 
 
 
-### Console对象
+## 事件对象
+
+```js
+
+
+
+ß
+```
+
+
+
+## Console对象
 
 ```javascript
 Console.assert()//如果断言为false，则在信息到控制台输出错误信息
@@ -306,12 +330,29 @@ Console.warn()//输出警告信息
 
 
 
-### CSSStyleDeclaration对象
+## CSSStyleDeclaration对象
+
+```js
 
 
 
-### HTMLCollection对象
+
+
+```
+
+
+
+## HTMLCollection对象
 
 
 
 # 
+
+
+
+
+
+
+
+
+

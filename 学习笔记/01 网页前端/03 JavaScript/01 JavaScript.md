@@ -398,10 +398,6 @@ String.sup()//把字符串显示为上标。
 
 ```javascript
 //函数包裹在花括号里，前面使用关键词function
-function functionname(){
-  //执行代码
-}
-
 //调用函数时，可以传递参数，必须以一致的顺序出现
 function myFunction(name, job){
   alert("Welcome" + name + ", the " + job);
@@ -543,6 +539,8 @@ function isArray(myArray) {
 
 算术运算符，赋值运算符，字符串连接运算符，比较运算符，逻辑运算符，条件运算符
 
+**算术操作符**
+
 ```javascript
 //算术运算符
 +加法
@@ -550,8 +548,53 @@ function isArray(myArray) {
 *乘法
 /除法
 %取模
+
+```
+
+**递增递减操作符**
+
+```javascript
+//递增递减操作符
+//前置操作符是先改变值再运算，后置操作符是先运算再改变值
 ++自增
 --自减
+
+```
+**正负操作符**
+
+```javascript
+//正负操作符
+var num = 25;
+num = +num;//任然是25
+num = -num;//变成了-25
+
+//使用一元加减操作符时，值会自动转化成Number()类型，布尔值变成0 1，字符串也跟着变化，而对象是先调用它们的 valueOf()和(或)toString()方法，再转换得到的值
+var s1 = "01";
+var s2 = "1.1";
+var s3 = "z";
+var b = false;
+var f = 1.1;
+var o = {valueOf: function(){return -1;}};
+
+s1 = +s1; // 值变成数值 1
+s2 = +s2; // 值变成数值 1.1
+s3 = +s3; // 值变成 NaN
+b= +b; // 值变成数值 0
+f= +f; // 值未变，仍然是 1.1
+o= +o; // 值变成数值-1
+（或）
+s1 = -s1;// 值变成了数值-1
+s2 = -s2;// 值变成了数值-1.1
+s3 = -s3; // 值变成了NaN
+b = -b;// 值变成了数值0
+f = -f; // 变成了-1.1
+o = -o;// 值变成了数值1
+```
+
+**赋值运算符**
+
+```javascript
+
 
 //赋值运算符
 =赋值
@@ -561,6 +604,10 @@ function isArray(myArray) {
 /=等同于 x/=y x=x/y
 %=等同于 x%=y x=x%y
 
+```
+**字符串拼+接**
+
+```javascript
 //字符串+运算符
 text1 = "What a very";
 text2 = "nice day";
@@ -570,7 +617,10 @@ text4 = text1 + " " + text2;//What a very nice day
 x = 5 + 5;//10
 y = "5" + 5;//55
 z = "Hello" + 5;//Hello5
+```
+**比较运算符**
 
+```javascript
 //比较运算符，计算结果是true或者false
 ==等于
 ===绝对等于（值和类型都相等）
@@ -580,15 +630,24 @@ z = "Hello" + 5;//Hello5
 <小于
 >=大于或等于
 <=小于或等于
+```
+**逻辑运算符**
 
+```javascript
 //逻辑运算符
 && and
 || or
 ! not
+```
+**条件运算符**
 
+```javascript
 //条件运算符
 A?B:C
+```
+**位运算符**
 
+```javascript
 //位运算符
 & AND
 | OR
@@ -604,7 +663,9 @@ A?B:C
 
 通常在每条可执行的语句结尾添加分号;或者在一行中编写多条语句;
 
-### if...Else语句
+### 条件
+
+**if...Else语句**
 
 条件语句基于不同的条件来执行不同的动作
 
@@ -631,7 +692,7 @@ if(condition1){
 }
 ```
 
-### switch语句
+**switch语句**
 
 基于不同的条件来执行不同的动作
 
@@ -648,29 +709,72 @@ switch(n){//首先设置表达式n，然后与下面每一个case语句相比较
   default://default匹配不存在时做的事情
     0;
 }
+//有意忽略一个值，合并两种情形，不要忘了在代码中添加注释，说明你是有意省略了 break 关键字
+var i = 25;
+switch (i) {
+  case 25: 
+    /* falls through */
+  case 35: 
+    alert("25 or 35");
+    break;
+  case 45: 
+    alert("45");
+    break;
+  default: 
+    alert("Other");
+}
+//case可以匹配变量值，这一点和C语言不同
+//switch 语句在比较值时使用的是全等操作符，因此不会发生类型转换(例如， 字符串"10"不等于数值 10)
+var num = 25; switch (true) {
+  case num < 0:
+    alert("Less than 0.");
+    break;
+  case num >= 0 && num <= 10:
+    alert("Between 0 and 10.");
+    break;
+  case num > 10 && num <= 20:
+    alert("Between 10 and 20.");
+    break;
+  default:
+    alert("More than 20.");
+}
+//switch比较的值可以是任何类型，不限于数值类型，无论是字符串，还是对象都没有问题
 ```
 
-### for循环
+### 循环
+
+**for循环**
 
 循环可以将代码块执行指定的次数
 
 ```javascript
 for(var i=0;i<10;i++){//初始化语句；判断语句；更新语句
   //语句循环10次
+  //变量i在循环内部有效
 }
+for(;;){/*无限循环*/}
+```
+**for-in语句**
 
-//循环遍历对象的属性
+```js
+//循环遍历对象的属性，建议在使用 for-in 循环之前，先检测确认该对象的值不是 null 或 undefined
 var person = {fname:"Bill", lname:"Gates", age:56};
 for(x in person){
   txt = txt + person[x];
+}
+for (var propName in window) {//遍历window对象的所有属性
+  document.write(propName);
+  document.write("<br />");
 }
 ```
 
 
 
-### while循环
+**while循环**
 
 只要指定条件为true，循环就可以一直执行代码块
+
+使用 while 循环做不到的，使用 for 循环同样也做不到。也就是说，for 循环只是把与循环有关 的代码集中在了一个位置 
 
 ```javascript
 while(i<5){
@@ -685,9 +789,11 @@ while(i<5);
 
 
 
-### break和continue语句
+**break和continue语句**
 
 break语句跳出循环，continue用于跳过循环的一个迭代
+
+break 语句会立即退出循环，强制继续执行循环后面的语句。而 continue 语句虽然也是立即退出循环，但退出循环后会从循环的顶 部继续执行 
 
 ```javascript
 //break跳出switch()语句
@@ -702,17 +808,59 @@ for(i=0;i<10;i++){
   if(i==3){continue;}
   x = x + "The number is " + i + "<br>";
 }//i等于3跳过了
+```
 
+**label标签**
+
+虽然联用 break、continue 和 label 语句能够执行复杂的操作，但如果使用过度，也会给调试 带来麻烦。在此，我们建议如果使用 label 语句，一定要使用描述性的标签，同时不要嵌套过多的循环 
+
+```js
 //label标签
 label:statements
 break labelname;//跳出有标签的代码块
 continue labelname;
+
+
+var num = 0;
+            
+outermost:
+for (var i=0; i < 10; i++) {
+  for (var j=0; j < 10; j++) {
+    if (i == 5 && j == 5) {
+      break outermost;  //55
+      //continue outermost; // 95 //55-59没有执行
+    }
+    num++;
+    // console.log("i",i,"j",j);
+  }
+}
+alert(num);    //55 //95
+```
+
+### with语句
+
+with 语句的作用是将代码的作用域设置到一个特定的对象中，定义 with 语句的目的主要是为了简化多次编写同一个对象的工作
+
+严格模式下不允许使用 with 语句
+
+```js
+//with (expression) statement;
+
+var qs = location.search.substring(1);
+var hostName = location.hostname;
+var url = location.href;
+
+with(location){
+  var qs = search.substring(1);
+  var hostName = hostname;
+  var url = href;
+}
 ```
 
 
 
 
-## 作用域
+# 作用域
 
 作用域是可访问变量的集合，在JavaScript中，对象和函数同样也是变量
 
@@ -766,9 +914,19 @@ console.log(var2); // 已经删除 报错变量未定义
 
 
 
+```js
+//不存在块级作用域，在循环内部定义的变量也可以在外部访问到
+var count = 10;
+for (var i = 0; i < count; i++){
+  alert(i); 
+}
+alert(i);    //10
+
+```
 
 
-## 面向对象
+
+# 面向对象
 
 
 
@@ -776,7 +934,7 @@ console.log(var2); // 已经删除 报错变量未定义
 
 
 
-## 异常
+# 异常
 
 
 

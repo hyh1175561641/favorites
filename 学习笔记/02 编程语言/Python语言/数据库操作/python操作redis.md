@@ -31,6 +31,53 @@ True
 
 手册还可以在pydoc命令中找到
 
+[使用python操作redis](https://www.jianshu.com/p/2639549bedc8)
 
+3.40
 
 Strict  严格的，绝对的，精确的，详细的
+
+
+
+
+
+
+
+# pydoc3
+
+```python
+>>> import redis
+>>> redis.__all__
+['AuthenticationError', 'AuthenticationWrongNumberOfArgsError', 'BlockingConnectionPool', 'BusyLoadingError', 'ChildDeadlockedError', 'Connection', 'ConnectionError', 'ConnectionPool', 'DataError', 'from_url', 'InvalidResponse', 'PubSubError', 'ReadOnlyError', 'Redis', 'RedisError', 'ResponseError', 'SSLConnection', 'StrictRedis', 'TimeoutError', 'UnixDomainSocketConnection', 'WatchError']
+>>> 
+```
+
+
+
+```python
+'AuthenticationError'
+'AuthenticationWrongNumberOfArgsError'
+'BlockingConnectionPool'
+'BusyLoadingError'
+'ChildDeadlockedError'
+'Connection'
+'ConnectionError'
+'ConnectionPool' # 连接池
+'DataError'
+'from_url'
+'InvalidResponse'
+'PubSubError'
+'ReadOnlyError'
+'Redis' # redis
+'RedisError'
+'ResponseError'
+'SSLConnection'
+'StrictRedis' # 严格redis
+'TimeoutError'
+'UnixDomainSocketConnection'
+'WatchError'
+
+
+
+```
+
