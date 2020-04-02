@@ -25,7 +25,6 @@
 window对象表示浏览器中打开的窗口
 
 注意：如果文档包含框架iframe，浏览器会为HTML文档创建一个window对象，并为每个框架创建一个额外的window对象
-
 ```javascript
 属性
 document//对Document对象的只读引用
@@ -296,12 +295,78 @@ attr.isId
 
 ## 事件对象
 
-```js
+[续写事件对象](https://www.runoob.com/tags/ref-eventattributes.html)
+
+```javascript
+// ## 窗口事件属性 Window Event Attributes
 
 
-
-ß
 ```
+
+```javascript
+// ## 表单事件 Form Events
+```
+
+```javascript
+// ## 键盘事件 Keyboard Events
+onkeydown() 按下按键
+onkeypress() 按下并松开按键
+onkeyup() 松开按键
+```
+
+```javascript
+// ## 鼠标事件 Mouse Events
+onclick() 单击鼠标
+ondblclick() 双击鼠标
+
+onmousedown() 鼠标按下
+onmouseup() 鼠标松开
+
+ //over(在上面)只触发一次  move(移动)只要移动就不停触发
+onmouseout() 鼠标移出
+onmouseover() 鼠标悬浮
+
+onmousemove() 鼠标移动
+onmouseenter()
+onmouseleave()
+
+oncontextmenu() 鼠标右键触发并打开上下文
+
+
+//HTML5：
+ondrag() 拖动
+ondragend() 拖动结束
+ondragenter() 
+ondragleave()
+ondragover()
+ondragstart()
+ondrop() 
+
+onmousewheel() 鼠标滚轮
+onscroll() 滚动元素的滚条
+```
+
+```javascript
+// ## 多媒体事件 Media Events
+```
+
+```javascript
+// ## 其他事件
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+
 
 
 

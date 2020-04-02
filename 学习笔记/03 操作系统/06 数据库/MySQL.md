@@ -640,7 +640,7 @@ SELECT * FROM students ORDER BY age ASC, height DESC;
 
 
 ```mysql
--- 聚合函数
+-- 聚合函数，一般会得出一个结论
 -- count()总数
 SELECT COUNT(*) FROM students WHERE gender=1;-- 查看男性有多少人
 -- max()最大值
@@ -656,14 +656,29 @@ SELECT SUM(age)/ COUNT(*) FROM students;-- 效果相同
 SELECT ROUND((SUM(age)/COUNT(*)),2) FROM students;-- 保留2位小数，四舍五入
 ```
 
-15.00
+
 
 ```mysql
+-- 分组，要和聚合函数一起用
+SELECT gender,COUNT(*) FROM students GROUP BY gender;-- 各性别的人数
+SELECT gender,AVG(age) FROM students GROUP BY gender;-- 各性别的平均年龄
+-- group_concat()
+SELECT gender,GROUP_CONCAT(name) FROM students GROUP BY gender;-- 各性别人的名字
+SELECT gender,COUNT(*) FROM students WHERE gender=1 GROUP BY gender;-- 男性的人数
+SELECT gender,GROUP_CONCAT(name) FROM students WHERE gender=1 GROUP BY gender;-- 男性的名字
+SELECT gender,GROUP_CONCAT(name,"_",age," ",id) FROM students WHERE gender=1 GROUP BY gender;-- 男性的名字,年龄,id
+-- having
+SELECT gender,GROUP_CONCAT(name),avg(age) FROM students GROUP BY gender HAVING AVG(age)>30;-- 平均年龄超过30的性别和其中的人
+SELECT gender,GROUP_CONCAT(name) FROM students GROUP BY gender HAVING COUNT(*)>2;-- 性别中人数多于2的信息
+
 
 
 ```
 
 ```mysql
+-- 分页
+
+
 
 ```
 
