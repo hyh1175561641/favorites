@@ -30,11 +30,51 @@
 
 
 
+# Canvas
+
+在canvas标签上设置宽高，若在css上设置宽高 则会把canvas进行缩放
+
+左上角是原点，向右向下是坐标的正方向
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+canvas{
+  border:1px solid gray;
+}
+	</style>
+</head>
+<body>
+<canvas width="600" height="400">
+  您的浏览器不支持canvas，请升级浏览器或使用Chrome最新版访问
+</canvas>
+<script type="text/javascript">
+  let canvas = document.getElementsByTagName('canvas')[0];
+  let ctx = canvas.getContext('2d');
+
+  
+  
+  
+  function clearCanvas(){
+    c.height = 300;//重设width或height属性来清空画布
+  }
+</script>
+</body>
+</html>
+```
 
 
 
 
 
+
+
+
+
+# API
 
 ## 颜色、样式和阴影
 
@@ -148,10 +188,37 @@
 
 ## 其他
 
-| 方法          | 描述                             |
-| :------------ | :------------------------------- |
-| save()        | 保存当前环境的状态。             |
-| restore()     | 返回之前保存过的路径状态和属性。 |
-| createEvent() |                                  |
-| getContext()  |                                  |
-| toDataURL()   |                                  |
+save()保存当前环境的状态。
+
+restore()返回之前保存过的路径状态和属性。
+
+createEvent()
+
+getContext()
+
+toDataURL()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

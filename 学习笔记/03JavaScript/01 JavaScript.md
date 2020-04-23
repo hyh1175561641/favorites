@@ -417,11 +417,15 @@ var person = new Object;
 ### Object对象
 
 ```javascript
-//创建新对象
+//new构造函数，创建新对象
 var obj = new Object();
 var obj2 = new Object;//如果没有参数可省略括号
+obj.firstname = "John";
+obj.lastname = "Doe";
+obj.id = 5566;
 
-//对象由花括号分隔。在对象内部，对象的属性以名称和值对的形式来定义
+//对象字面量，对象由花括号分隔。在对象内部，对象的属性以名称和值对的形式来定义
+var person0 = {};//只包含默认属性和方法
 var person = {firstname:"John", lastname:"Doe", id:5566};
 
 //可以折行
@@ -430,11 +434,33 @@ var person = {
   lastname:"Doe",
   id:5566
 };
+//属性名字可以使用字符串
+var person = {
+  "firstname" :"John",
+  "lastname" :"Doe",
+  8:5566//属性名8会自动变成字符串
+};
+console.log(person[8])
+console.log(person["8"])
+```
 
+
+
+
+```javascript
 //访问对象属性
 name = person.lastname;
 name = person["lastname"];
+p = lastname;
+name = person[p];//方括号可以通过变量名访问属性
+name = person["last name"];//如果包含特殊字符或者关键字保留字，使用方括号访问属性
+//通常，除非必须使用变量来访问属性，否则我们建议使用点表示法
+```
 
+
+
+
+```javascript
 //对象定义了一个函数，并作为对象的属性储存
 var person = {
   firstname:"John",
@@ -1172,7 +1198,7 @@ W3C:World Wide Web Consortium 万维网联盟
 
 
 
-# 书籍翻阅记录
+# 参考资料
 
 《JavaScript高级程序设计（第3版）》[美]Nicholas C.Zakas 著 李松峰 曹力 译 人民邮电出版社 ISBN 978-7-115-27579-0
 [随书源码](http://www.wrox.com/WileyCDA/WroxTitle/Professional-JavaScript-for-Web-Developers-3rd-Edition.productCd-1118026691,descCd-DOWNLOAD.html)

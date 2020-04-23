@@ -200,6 +200,46 @@ div{
 - Background-position属性要写两个值，如果设置第一个值，第二个值是center或50%
 - background-size属性的百分比是以元素的大小为基准，不是以图片的大小为准，如果设置了第一个值宽度，第二个高度值是auto
 
+**渐变**
+
+[css3渐变](https://www.runoob.com/css3/css3-gradients.html)
+
+```css
+body{
+  background-image: linear-gradient(direction, color-stop1, color-stop2, ...);
+  background-image: linear-gradient(angle, color-stop1, color-stop2);
+}
+线性渐变，默认从上到下
+方向
+linear-gradient(red,blue);上红下蓝
+linear-gradient(to right,red,yellow);左红右黄
+linear-gradient(to bottom right,red,yellow);左上红右下黄
+linear-gradient(to top right,red,yellow);左下红右上黄
+linear-gradient(to bottom,red,yellow);默认值
+角度
+linear-gradient(90deg,red,blue);左红右黄
+linear-gradient(180deg,red,blue);上红下黄
+linear-gradient(-90deg,red,blue);左黄右红
+透明
+linear-gradient(to right,rgba(255,0,0,0),rgba(255,0,0,1));
+repeating-linear-gradient(red, yellow 10%, green 20%);重复渐变
+
+body{
+  background-image: radial-gradient(shape size at position, start-color, ..., last-color);
+}
+径向渐变，
+radial-gradient();
+repeating-linear-gradient()/*重复线性渐变*/;
+repeating-radial-gradient()/*重复径向渐变*/;
+
+```
+
+
+
+
+
+
+
 
 
 ### 文本
@@ -335,11 +375,28 @@ font-kerning:auto;/**/
 font-optical-sizing:auto;/**/
 font-language-override:normal;/**/
 font-feature-settings:normal;/**/
-  
-@font-face{/*引入其他ico字体，见字体文档*/}
 ```
+
+
+
+
+
+
 1. italic让文字斜体，oblique使没有斜体属性的文字倾斜（通过计算得到）（不太支持）
 2. Serif(有衬线)，大量文字内容区域。Sans Serif(无衬线)，标题，醒目的区域。
+```css
+/*引用外部字体*/
+@font-face{
+  font-family:userDefinedFont;
+  src:url('userDefinedFont.ttf');
+}
+p{
+  font-family:userDefinedFont;
+}
+<p>这里使用自定义字体</p>
+```
+
+
 
 
 
@@ -492,7 +549,132 @@ h1:before{content:counter(name);}
 
 ## 盒子模型
 
-弹性盒子模型
+
+
+### display属性
+
+定位允许你定义元素框相对于正常位置应该出现的位置。
+
+``` css
+div{
+display:none(不显示)/*元素生成的框类型*/
+  			block(转换成块级元素)
+  			inline(默认值，显示为内联元素)
+			  inline-block(行内块元素)
+  			list-item(作为列表显示)
+				run-in(根据上线文作为块元素或内联元素显示)
+			  compact(已删除)
+			  marker(已删除)
+			  table(块级表格 类似<table>)
+			  inline-table(内联表格 类似<table>)
+			  table-row-group(作为一或多个行的分组显示 类似<tbody>)
+			  table-header-group(同上，类似<tbody>)
+				table-footer-group(同上，类似<tbody>)
+  			table-row(作为一个表格行显示 类似<tr>)
+  			table-column-group(作为一个或多个列的分组来显示 类似<colgroup>)
+  			table-column(作为一个单元格列显示 类似<col>)
+			  table-cell(作为一个表格单元格显示 类似<td><th>)
+  			table-caption(作为一个表格标题显示 类似<caption>)
+        inherit(继承display属性的值);
+visibility:visible(默认，可见) hidden(不可见，仍然占位) collapse(删除一行或一列表格，但是不影响表格布局);/*元素是否可见*/
+```
+
+元素生成的框类型block可以任意修改大小，inline的大小根据行高决定，但是inline-block即是行内元素，又能任意修改大小
+
+**Flex**
+
+2009年，W3C提出了一种新的方案—-Flex布局，可以简便、完整、响应式地实现各种页面布局。
+
+采用Flex布局的元素，称为Flex容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称”项目”。
+
+```css
+/*Flex布局语法*/
+.box{
+  display: -webkit-flex; /* Safari,webkit内核加前缀 */
+  display:flex;
+  
+/*容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。
+  主轴的开始位置（与边框的交叉点）叫做main start，
+  结束位置叫做main end；
+  交叉轴的开始位置叫做cross start，结束位置叫做cross end。
+  项目默认沿主轴排列。
+  单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。*/
+  
+  /*容器的6个属性*/
+  flex-flow: <flex-direction> <flex-wrap>;/*下边两个属性的简写形式*/
+    flex-direction:/*容器内元素的排列方向*/
+      row默认，主轴为水平方向，起点在左边
+      row-reverse水平方向，起点在右边
+      column垂直方向，起点在上沿
+      column-reverse垂直方向，起点在下沿;
+    flex-wrap:/*如果一条线排不下，如何换行*/
+      nowrap默认，不换行
+      wrap换行，多余的在下一行
+      wrap-reverse换行，第一行在上方;
+  
+  justify-content:/*水平主轴的对齐方式*/
+    flex-start默认左对齐
+    flex-end右对齐
+    center居中
+    space-between两端对齐，项目之间的间隔都相等
+    space-around每个项目两侧的间隔相等，项目之间的间隔比项目与边框的间隔大一倍;
+
+  align-items:/*垂直交叉轴的对齐方式*/
+    flex-start上端对齐
+    flex-end下端对齐
+    center中间对齐
+    baseline项目中的文字基线对齐
+    stretch默认，占满容器的高度;
+  align-content:/*多跟水平轴线的对齐方式，如果只有一根轴线，该属性不起作用*/
+    flex-start上端对齐
+    flex-end下端对齐
+    center居中对齐
+    space-between上下对齐，水平轴之间的间隔相等
+    space-around每个轴的间隔相等
+    stretch默认，轴线占满容器高度;
+}
+/*容器里面项目的属性*/
+.item{
+  order:整数，默认0，数值越小，越靠前;
+  
+  flex:默认0 1 auto，flex-grow,flex-shrink,flex-basis的缩写;
+    flex-grow:数字，默认0，放大比例;
+    flex-shrink:数字，默认1，缩小比例，空间不足，首先缩小;
+    flex-basis:长度35px，默认auto;
+  
+  align-self:/*单独定义对齐方式，可以覆盖align-items属性*/
+    auto继承父元素
+    flex-start
+    flex-end
+    center
+    baseline
+    stretch;
+}
+
+
+```
+
+注意，设为Flex布局以后，子元素的float、clear和vertical-align属性将失效
+
+[Flex 布局语法教程](https://www.runoob.com/w3cnote/flex-grammar.html)
+
+flex 折曲，弯曲，收缩，弹性工作制
+
+flow 流动，流通
+
+reverse 颠倒，反转
+
+direction 方向，指导，趋势，用法说明
+
+justify 证明合法，整理版面，替...辩护，文本对齐
+
+content 内容，目录，满意的，使满足
+
+align 使结盟，排列，排成一行，匹配
+
+stretch 伸展 拉紧 延长 夸大 延续 伸张 弹性 可拉伸
+
+
 
 ### 盒子属性
 
@@ -669,10 +851,89 @@ body{margin:0;}
 ```css
 /**/  /**/
 div{
-resize:none(不可调) horizontal(调宽) vertical(调高) both;/*用户可调整盒子尺寸*/
-box-sizing:content-box(内边距和边框另外计算，买东西另外购买) border-box(包括了边框和内边距，赠送了大礼包);/*宽高容纳的范围*/
+resize:/*用户可调整盒子尺寸*/
+  none(不可调)
+  horizontal(调宽)
+  vertical(调高)
+  both;
+box-sizing:/*宽高容纳的范围*/
+  content-box(内边距和边框另外计算，买东西另外购买) 
+  border-box(包括了边框和内边距，赠送了大礼包);
 }
 ```
+
+## CSS Mask
+
+### clip-path
+
+Clip-path可以显示一个剪切的区域，区域内部显示，外部隐藏
+
+左上角是原点
+
+[clip-path MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path)
+
+[clip-path介绍 csdn](https://blog.csdn.net/weixin_44116302/article/details/98882841)
+
+[CSS3--clip-path练习](https://www.cnblogs.com/liangdecha/p/9629150.html)
+
+可以写三种属性
+
+Clip-source = url
+
+basic-shape = inset矩形 circle圆形 ellipse椭圆 polygon多边形
+
+Geometry-box = shape-box fill-box stroke-box view-box
+
+```css
+.shape{
+  clip-path:
+    none;
+}
+```
+
+
+
+详细参数百度“clip-path”
+
+```css
+<style>
+.outer{
+  width:100px;
+  height: 100px;
+  background:orange;
+  clip-path:inset(0px 0px 0px 0px round 50px)矩形;
+  clip-path:circle(30% at 150px 120px)圆形;
+  clip-path:ellipse(30% 45% at 50% 50%)椭圆;
+  clip-path:polygon(50% 0,100% 50%,0 100%)多边形;
+  clip-path:polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%)左箭头;
+  clip-path:polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)星星;
+  clip-path:polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%)叉号×;
+  clip-path:polygon(
+    0% 0%, 
+    0% 100%, 
+    25% 100%, 
+    25% 25%, 
+    75% 25%, 
+    75% 75%, 
+    25% 75%, 
+    25% 100%, 
+    100% 100%, 
+    100% 0%)空心矩形;
+}
+
+</style>
+
+<div class="outer"></div>
+
+```
+
+clip-path 动画虽然美好，但是存在一定的局限性，那就是进行过渡的两个状态，坐标顶点的数量必须一致。
+
+
+
+
+
+
 
 
 
@@ -685,36 +946,6 @@ css有三种定位方式：普通流，浮动和绝对定位
 浮动
 
 绝对定位
-
-### 框类型
-
-定位允许你定义元素框相对于正常位置应该出现的位置。
-
-``` css
-div{
-display:none(不显示)/*元素生成的框类型*/
-  			block(转换成块级元素)
-  			inline(默认值，显示为内联元素)
-			  inline-block(行内块元素)
-  			list-item(作为列表显示)
-				run-in(根据上线文作为块元素或内联元素显示)
-			  compact(已删除)
-			  marker(已删除)
-			  table(块级表格 类似<table>)
-			  inline-table(内联表格 类似<table>)
-			  table-row-group(作为一或多个行的分组显示 类似<tbody>)
-			  table-header-group(同上，类似<tbody>)
-				table-footer-group(同上，类似<tbody>)
-  			table-row(作为一个表格行显示 类似<tr>)
-  			table-column-group(作为一个或多个列的分组来显示 类似<colgroup>)
-  			table-column(作为一个单元格列显示 类似<col>)
-			  table-cell(作为一个表格单元格显示 类似<td><th>)
-  			table-caption(作为一个表格标题显示 类似<caption>)
-        inherit(继承display属性的值);
-visibility:visible(默认，可见) hidden(不可见，仍然占位) collapse(删除一行或一列表格，但是不影响表格布局);/*元素是否可见*/
-```
-
-元素生成的框类型block可以任意修改大小，inline的大小根据行高决定，但是inline-block即是行内元素，又能任意修改大小
 
 ### 定位
 
@@ -1010,9 +1241,9 @@ outline 轮廓，大纲，框
 
 # 参考资料
 
-- [w3school](https://www.w3school.com.cn/css/index.asp)
+[w3school](https://www.w3school.com.cn/css/index.asp)
 
-
+[caniuse](https://www.caniuse.com/) 意思是Can I ues，我能使用吗？
 
 
 
